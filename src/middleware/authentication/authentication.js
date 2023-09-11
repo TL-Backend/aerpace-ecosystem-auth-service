@@ -79,13 +79,13 @@ exports.verifyIdToken = (req, res, next) => {
       });
     }
 
-    req.userId = tokenData.user_id;
-    req.params = {
+    req.claims = {
       userId: tokenData.user_id,
       userType: tokenData.user_type,
       roleName: tokenData.role_name,
       roleId: tokenData.role_id,
     };
+
     next();
   } catch (err) {
     logger.error(err);

@@ -12,16 +12,7 @@ const { logger } = require('../../utils/logger');
 
 exports.checkUserPermission = (apiPermission) => async (req, res, next) => {
   try {
-    const userId = req.userId;
-
-    const userRoles = await sequelize.query(`
-      SELECT ar.role_name, aur.user_id, aur.role_id
-      FROM ${dbTables.USER_ROLES_TABLE} AS aur
-        LEFT JOIN ${dbTables.ROLES_TABLE} AS ar ON ar.id = aur.role_id
-      WHERE aur.user_id = '${userId}'
-  `);
-
-    const role = userRoles[0][0].role_name;
+    const role = req.claims.roleName;
 
     // To check whether the user or admin has the required permission
     const hasPermission = await rbac.can(role, apiPermission);
