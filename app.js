@@ -10,7 +10,6 @@ const { errorResponse } = require('./src/utils/responseHandler');
 const { statusCodes } = require('./src/utils/statusCode');
 const { router } = require('./src/routes/index');
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
