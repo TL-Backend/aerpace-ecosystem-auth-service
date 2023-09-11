@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken');
 const { logger } = require('../../utils/logger');
 const { errorResponse } = require('../../utils/responseHandler');
-const { errorResponses, successResponses, tokenTypes } = require('../../utils/constant');
+const {
+  errorResponses,
+  successResponses,
+  tokenTypes,
+} = require('../../utils/constant');
 const { statusCodes } = require('../../utils/statusCode');
 
 exports.verifyToken = (idToken) => {
@@ -14,7 +18,7 @@ exports.verifyToken = (idToken) => {
         success: false,
         data: tokenData,
         message: errorResponses.INVALID_TOKEN_TYPE,
-        errorCode: 403
+        errorCode: statusCodes.STATUS_CODE_FORBIDDEN,
       };
     }
 
@@ -23,7 +27,6 @@ exports.verifyToken = (idToken) => {
       data: tokenData,
       message: successResponses.TOKEN_DATA_FETCHED,
     };
-
   } catch (err) {
     logger.error(err);
 
@@ -32,7 +35,7 @@ exports.verifyToken = (idToken) => {
         success: false,
         data: tokenData,
         message: errorResponses.TOKEN_EXPIRED,
-        errorCode: 401
+        errorCode: statusCodes.STATUS_CODE_UNAUTHORIZED,
       };
     }
 
@@ -40,7 +43,7 @@ exports.verifyToken = (idToken) => {
       success: false,
       data: tokenData,
       message: err.message,
-      errorCode: 403
+      errorCode: statusCodes.STATUS_CODE_FORBIDDEN,
     };
   }
 };
@@ -60,9 +63,14 @@ exports.verifyIdToken = (req, res, next) => {
       });
     }
 
-    const {data: tokenData, success, errorCode, message} = this.verifyToken(idToken);
+    const {
+      data: tokenData,
+      success,
+      errorCode,
+      message,
+    } = this.verifyToken(idToken);
 
-    if(!success) {
+    if (!success) {
       return errorResponse({
         req,
         res,

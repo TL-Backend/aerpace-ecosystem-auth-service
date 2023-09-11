@@ -4,22 +4,20 @@ exports.dbTables = {
 };
 
 exports.successResponses = {
-  TOKEN_DATA_FETCHED:  `Token data fetched successfully`
-}
+  TOKEN_DATA_FETCHED: `Token data fetched successfully`,
+};
 
 exports.errorResponses = {
   ACCESS_DENIED: `Access denied`,
   ID_TOKEN_REQUIRED: `Id token is required`,
   INVALID_TOKEN_TYPE: `Invalid token type`,
   TOKEN_EXPIRED: `Token expired`,
-  JWT_EXPIRED: `jwt expired`
-}
-
+  JWT_EXPIRED: `jwt expired`,
+};
 
 exports.permissions = {
-  SAMPLE: `SAMPLE`
-}
-
+  SAMPLE: `SAMPLE`,
+};
 
 exports.tokenTypes = {
   ID_TOKEN: `ID_TOKEN`,

@@ -21,8 +21,8 @@ exports.checkUserPermission = (apiPermission) => async (req, res, next) => {
       WHERE aur.user_id = '${userId}'
   `);
 
-    const role = userRoles[0][0].role_name; 
-    
+    const role = userRoles[0][0].role_name;
+
     // To check whether the user or admin has the required permission
     const hasPermission = await rbac.can(role, apiPermission);
 
