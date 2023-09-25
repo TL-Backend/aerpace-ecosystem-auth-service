@@ -3,7 +3,7 @@ const {
   verifyIdToken,
 } = require('../middleware/authentication/authentication');
 const {
-  checkUserPermission,
+  checkUserPermissionsAny,
 } = require('../middleware/authorization/authorization');
 const { permissions } = require('../utils/constant');
 
@@ -11,7 +11,7 @@ module.exports = function (app) {
   app.get(
     '/sample',
     verifyIdToken,
-    checkUserPermission(permissions.SAMPLE),
+    checkUserPermissionsAny([permissions.SAMPLE]),
     sampleTest,
   );
 };

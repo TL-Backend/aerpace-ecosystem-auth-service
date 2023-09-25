@@ -1,6 +1,6 @@
 'use strict';
 
-require('dotenv').config();
+const dotenv = require('dotenv');
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -9,6 +9,10 @@ app.disable('x-powered-by');
 const { errorResponse } = require('./src/utils/responseHandler');
 const { statusCodes } = require('./src/utils/statusCode');
 const { router } = require('./src/routes/index');
+
+const environment = process.env.NODE_ENV || 'dev';
+const envFilePath = `config/${environment}.env`;
+require('dotenv').config({ path: envFilePath });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

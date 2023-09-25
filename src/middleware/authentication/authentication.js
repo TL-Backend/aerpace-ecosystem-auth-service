@@ -11,9 +11,8 @@ const { statusCodes } = require('../../utils/statusCode');
 exports.verifyToken = (idToken) => {
   try {
     const tokenData = jwt.verify(idToken, process.env.SECURITY_KEY);
-    logger.info(tokenData);
 
-    if (tokenData.token_type !== tokenTypes.ID_TOKEN) {
+    if (tokenData?.token_type !== tokenTypes.ID_TOKEN) {
       return {
         success: false,
         data: tokenData,
@@ -30,10 +29,10 @@ exports.verifyToken = (idToken) => {
   } catch (err) {
     logger.error(err);
 
-    if (err.message === errorResponses.JWT_EXPIRED) {
+    if (err instanceof jwt.TokenExpiredError) {
       return {
         success: false,
-        data: tokenData,
+        data: {},
         message: errorResponses.TOKEN_EXPIRED,
         errorCode: statusCodes.STATUS_CODE_UNAUTHORIZED,
       };
@@ -41,7 +40,7 @@ exports.verifyToken = (idToken) => {
 
     return {
       success: false,
-      data: tokenData,
+      data: {},
       message: err.message,
       errorCode: statusCodes.STATUS_CODE_FORBIDDEN,
     };
@@ -80,11 +79,13 @@ exports.verifyIdToken = (req, res, next) => {
     }
 
     req.claims = {
-      userId: tokenData.user_id,
-      userType: tokenData.user_type,
-      roleName: tokenData.role_name,
-      roleId: tokenData.role_id,
+      userId: tokenData?.user_id,
+      userType: tokenData?.user_type,
+      roleName: tokenData?.role_name,
+      roleId: tokenData?.role_id,
     };
+
+    req.query.userId = tokenData?.user_id;
 
     next();
   } catch (err) {
