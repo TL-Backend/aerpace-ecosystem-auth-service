@@ -1,0 +1,3 @@
+exports.sampleUrls = {
+  SAMPLE: `sample`,
+};
