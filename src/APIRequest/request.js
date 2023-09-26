@@ -1,3 +1,4 @@
+const { methods } = require('../utils/constant');
 const { HelperResponse } = require('../utils/helperResponse');
 const { logger } = require('../utils/logger');
 const { sendRequest } = require('./requestCall');
@@ -12,7 +13,7 @@ exports.postAsync = async ({
 }) => {
   try {
     const postResponse = await sendRequest({
-      method: 'POST',
+      method: methods.POST,
       headers,
       url,
       body,
@@ -21,11 +22,13 @@ exports.postAsync = async ({
       form,
     });
 
-    return {
+    let response = {
       data: postResponse.data,
       message: postResponse.message,
       code: postResponse.code,
     };
+
+    return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
     return new HelperResponse({ success: false, message: err.message });
@@ -35,7 +38,7 @@ exports.postAsync = async ({
 exports.getAsync = async ({ headers, uri, body, query, json = true, form }) => {
   try {
     const getResponse = await sendRequest({
-      method: 'GET',
+      method: methods.GET,
       headers,
       uri,
       body,
@@ -44,11 +47,13 @@ exports.getAsync = async ({ headers, uri, body, query, json = true, form }) => {
       form,
     });
 
-    return {
+    let response = {
       data: getResponse.data,
       message: getResponse.message,
       code: getResponse.code,
     };
+
+    return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
     return new HelperResponse({ success: false, message: err.message });
@@ -65,7 +70,7 @@ exports.patchAsync = async ({
 }) => {
   try {
     const patchResponse = await sendRequest({
-      method: 'PATCH',
+      method: methods.PATCH,
       headers,
       url,
       body,
@@ -74,11 +79,38 @@ exports.patchAsync = async ({
       form,
     });
 
-    return {
+    let response = {
       data: patchResponse.data,
       message: patchResponse.message,
       code: patchResponse.code,
     };
+
+    return new HelperResponse({ success: true, data: response });
+  } catch (err) {
+    logger.error(err);
+    return new HelperResponse({ success: false, message: err.message });
+  }
+};
+
+exports.putAsync = async ({ headers, url, body, query, json = true, form }) => {
+  try {
+    const putResponse = await sendRequest({
+      method: methods.PUT,
+      headers,
+      url,
+      body,
+      query,
+      json,
+      form,
+    });
+
+    let response = {
+      data: putResponse.data,
+      message: putResponse.message,
+      code: putResponse.code,
+    };
+
+    return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
     return new HelperResponse({ success: false, message: err.message });
@@ -95,7 +127,7 @@ exports.deleteAsync = async ({
 }) => {
   try {
     const deleteResponse = await sendRequest({
-      method: 'DELETE',
+      method: methods.DELETE,
       headers,
       url,
       body,
@@ -104,11 +136,13 @@ exports.deleteAsync = async ({
       form,
     });
 
-    return {
+    let response = {
       data: deleteResponse.data,
       message: deleteResponse.message,
       code: deleteResponse.code,
     };
+
+    return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
     return new HelperResponse({ success: false, message: err.message });

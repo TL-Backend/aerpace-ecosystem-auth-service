@@ -23,3 +23,11 @@ exports.tokenTypes = {
   ID_TOKEN: `ID_TOKEN`,
   REFRESH_TOKEN: `REFRESH_TOKEN`,
 };
+
+exports.methods = {
+  POST: `POST`,
+  GET: `GET`,
+  PATCH: `PATCH`,
+  PUT: `PUT`,
+  DELETE: `DELETE`,
+};

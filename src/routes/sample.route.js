@@ -1,4 +1,4 @@
-const { sampleTest } = require('../controllers/sample/sample.controller');
+const { sampleTestUsers } = require('../controllers/sample/sample.controller');
 const {
   verifyIdToken,
 } = require('../middleware/authentication/authentication');
@@ -9,9 +9,9 @@ const { permissions } = require('../utils/constant');
 
 module.exports = function (app) {
   app.get(
-    '/sample',
+    '/sample/users',
     verifyIdToken,
     checkUserPermissionsAny([permissions.SAMPLE]),
-    sampleTest,
+    sampleTestUsers,
   );
 };

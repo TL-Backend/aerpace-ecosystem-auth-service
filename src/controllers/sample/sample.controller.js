@@ -8,22 +8,37 @@ const { logger } = require('../../utils/logger');
 const { getAsync } = require('../../APIRequest/request');
 const { sampleUrls } = require('./sample.url');
 
-exports.sampleTest = async (req, res, next) => {
+exports.sampleTestUsers = async (req, res, next) => {
   try {
     const baseUrl = process.env.USERS_URL;
 
-    const { message, code, data } = await getAsync({
+    const { message, data, success } = await getAsync({
       uri: `${baseUrl}/${sampleUrls.SAMPLE}`,
       query: req.query,
     });
 
+    if (!success) {
+      return errorResponse({
+        req,
+        res,
+        message,
+        code: statusCodes.STATUS_CODE_FAILURE,
+      });
+    }
+
+    const {
+      message: responseMessage,
+      data: responseData,
+      code: responseCode,
+    } = data;
+
     logger.info('success');
     return successResponse({
-      data,
+      data: responseData,
       req,
       res,
-      message,
-      code,
+      message: responseMessage,
+      code: responseCode,
     });
   } catch (err) {
     logger.error(err);
@@ -31,7 +46,6 @@ exports.sampleTest = async (req, res, next) => {
       req,
       res,
       code: statusCodes.STATUS_CODE_FAILURE,
-      error: err,
     });
   }
 };

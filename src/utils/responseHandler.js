@@ -18,5 +18,4 @@ exports.errorResponse = ({
   data = {},
   code = statusCodes.STATUS_CODE_FAILURE,
   message = 'Internal server error',
-  error = null,
 }) => res.status(code).send({ data, code, message });
