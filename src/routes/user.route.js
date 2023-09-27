@@ -2,6 +2,7 @@ const {
   listUsers,
   createUser,
   editUser,
+  getConfig,
 } = require('../controllers/user/user.controller');
 const {
   verifyIdToken,
@@ -30,4 +31,5 @@ module.exports = function (app) {
     checkUserPermissionsAny([permissions.LIST_USER]),
     listUsers,
   );
+  app.get('/users/config', verifyIdToken, getConfig);
 };

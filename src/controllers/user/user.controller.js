@@ -1,4 +1,5 @@
 const { getAsync, postAsync, patchAsync } = require('../../APIRequest/request');
+const { logger } = require('../../utils/logger');
 const {
   successResponse,
   errorResponse,
@@ -98,6 +99,46 @@ exports.editUser = async (req, res, next) => {
       uri: `${baseUrl}/${userUrls.ADD_USER}/${id}`,
       query: req.query,
       body: req.body,
+    });
+
+    if (!success) {
+      return errorResponse({
+        req,
+        res,
+        message,
+        code: errorCode,
+        data,
+      });
+    }
+
+    const {
+      message: responseMessage,
+      data: responseData,
+      code: responseCode,
+    } = data;
+
+    return successResponse({
+      data: responseData,
+      req,
+      res,
+      message: responseMessage,
+      code: responseCode,
+    });
+  } catch (err) {
+    logger.error(err);
+    return errorResponse({
+      req,
+      res,
+      code: statusCodes.STATUS_CODE_FAILURE,
+    });
+  }
+};
+
+exports.getConfig = async (req, res, next) => {
+  try {
+    const { message, data, success, errorCode } = await getAsync({
+      uri: `${baseUrl}/${userUrls.CONFIG}`,
+      query: req.query,
     });
 
     if (!success) {
