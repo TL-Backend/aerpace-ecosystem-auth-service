@@ -7,9 +7,10 @@ const {
 const { statusCodes } = require('../../utils/statusCode');
 const { authUrls } = require('./auth.url');
 
+const baseUrl = process.env.AUTH_URL;
+
 exports.login = async (req, res, next) => {
   try {
-    const baseUrl = process.env.AUTH_URL;
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${authUrls.LOGIN}`,
       body: req.body,
@@ -52,7 +53,6 @@ exports.login = async (req, res, next) => {
 
 exports.forgotPassword = async (req, res, next) => {
   try {
-    const baseUrl = process.env.AUTH_URL;
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${authUrls.FORGOT_PASSWORD}`,
       body: req.body,
@@ -95,7 +95,6 @@ exports.forgotPassword = async (req, res, next) => {
 
 exports.temporaryPasswordReset = async (req, res, next) => {
   try {
-    const baseUrl = process.env.AUTH_URL;
 
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${authUrls.TEMPORARY_PASSWORD_REST}`,
@@ -139,7 +138,6 @@ exports.temporaryPasswordReset = async (req, res, next) => {
 
 exports.resetPassword = async (req, res, next) => {
   try {
-    const baseUrl = process.env.AUTH_URL;
     const { uuid } = req.params;
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${authUrls.RESET_PASSWORD}/${uuid}`,
@@ -183,7 +181,6 @@ exports.resetPassword = async (req, res, next) => {
 
 exports.getAccessTokenWithRefresh = async (req, res, next) => {
   try {
-    const baseUrl = process.env.AUTH_URL;
 
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${authUrls.REFRESH_TOKEN}`,
