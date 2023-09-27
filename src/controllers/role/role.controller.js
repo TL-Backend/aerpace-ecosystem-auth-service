@@ -12,7 +12,7 @@ exports.listRoles = async (req, res, next) => {
   try {
     const baseUrl = process.env.ROLES_URL;
 
-    const { message, data, success } = await getAsync({
+    const { message, data, success, errorCode } = await getAsync({
       uri: `${baseUrl}/${roleUrls.LIST_ROLES}`,
       query: req.query,
     });
@@ -22,7 +22,8 @@ exports.listRoles = async (req, res, next) => {
         req,
         res,
         message,
-        code: statusCodes.STATUS_CODE_FAILURE,
+        code: errorCode,
+        data,
       });
     }
 
@@ -32,7 +33,6 @@ exports.listRoles = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -56,7 +56,7 @@ exports.createRole = async (req, res, next) => {
 
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${roleUrls.LIST_ROLES}`,
-      body: req.body
+      body: req.body,
     });
 
     if (!success) {
@@ -65,7 +65,7 @@ exports.createRole = async (req, res, next) => {
         res,
         message,
         code: errorCode,
-        data: data?.data
+        data,
       });
     }
 
@@ -75,7 +75,6 @@ exports.createRole = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
