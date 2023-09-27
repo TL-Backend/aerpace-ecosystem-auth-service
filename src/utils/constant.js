@@ -17,6 +17,10 @@ exports.errorResponses = {
 
 exports.permissions = {
   SAMPLE: `SAMPLE`,
+  ADD_ROLE: `USERS#ROLES_TAB#ADD_ROLE`,
+  LIST_ROLES:  `USERS#ROLES_TAB#TAB_LIST_VIEW`,
+  ADD_USER:  `USERS#USERS_TAB#ADD_USER`,
+  EDIT_USER: `USERS#USERS_TAB#EDIT_USER`,
 };
 
 exports.tokenTypes = {
