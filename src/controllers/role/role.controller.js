@@ -8,10 +8,10 @@ const { logger } = require('../../utils/logger');
 const { getAsync, postAsync } = require('../../APIRequest/request');
 const { roleUrls } = require('./role.url');
 
+const baseUrl = process.env.ROLES_URL;
+
 exports.listRoles = async (req, res, next) => {
   try {
-    const baseUrl = process.env.ROLES_URL;
-
     const { message, data, success, errorCode } = await getAsync({
       uri: `${baseUrl}/${roleUrls.LIST_ROLES}`,
       query: req.query,
@@ -52,8 +52,6 @@ exports.listRoles = async (req, res, next) => {
 
 exports.createRole = async (req, res, next) => {
   try {
-    const baseUrl = process.env.ROLES_URL;
-
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${roleUrls.LIST_ROLES}`,
       body: req.body,
