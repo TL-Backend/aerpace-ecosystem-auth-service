@@ -5,7 +5,7 @@ const { sendRequest } = require('./requestCall');
 
 exports.postAsync = async ({
   headers,
-  url,
+  uri,
   body,
   query,
   json = true,
@@ -15,7 +15,7 @@ exports.postAsync = async ({
     const postResponse = await sendRequest({
       method: methods.POST,
       headers,
-      url,
+      uri,
       body,
       query,
       json,
@@ -31,6 +31,16 @@ exports.postAsync = async ({
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
+
+    if (err.statusCode) {
+      return new HelperResponse({
+        success: false,
+        data: err.error?.data,
+        errorCode: err.statusCode,
+        message: err.error?.message,
+      });
+    }
+
     return new HelperResponse({ success: false, message: err.message });
   }
 };
@@ -56,13 +66,23 @@ exports.getAsync = async ({ headers, uri, body, query, json = true, form }) => {
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
+
+    if (err.statusCode) {
+      return new HelperResponse({
+        success: false,
+        data: err.error?.data,
+        errorCode: err.statusCode,
+        message: err.error?.message,
+      });
+    }
+
     return new HelperResponse({ success: false, message: err.message });
   }
 };
 
 exports.patchAsync = async ({
   headers,
-  url,
+  uri,
   body,
   query,
   json = true,
@@ -72,7 +92,7 @@ exports.patchAsync = async ({
     const patchResponse = await sendRequest({
       method: methods.PATCH,
       headers,
-      url,
+      uri,
       body,
       query,
       json,
@@ -88,16 +108,26 @@ exports.patchAsync = async ({
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
+
+    if (err.statusCode) {
+      return new HelperResponse({
+        success: false,
+        data: err.error?.data,
+        errorCode: err.statusCode,
+        message: err.error?.message,
+      });
+    }
+
     return new HelperResponse({ success: false, message: err.message });
   }
 };
 
-exports.putAsync = async ({ headers, url, body, query, json = true, form }) => {
+exports.putAsync = async ({ headers, uri, body, query, json = true, form }) => {
   try {
     const putResponse = await sendRequest({
       method: methods.PUT,
       headers,
-      url,
+      uri,
       body,
       query,
       json,
@@ -113,13 +143,23 @@ exports.putAsync = async ({ headers, url, body, query, json = true, form }) => {
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
+
+    if (err.statusCode) {
+      return new HelperResponse({
+        success: false,
+        data: err.error?.data,
+        errorCode: err.statusCode,
+        message: err.error?.message,
+      });
+    }
+
     return new HelperResponse({ success: false, message: err.message });
   }
 };
 
 exports.deleteAsync = async ({
   headers,
-  url,
+  uri,
   body,
   query,
   json = true,
@@ -129,7 +169,7 @@ exports.deleteAsync = async ({
     const deleteResponse = await sendRequest({
       method: methods.DELETE,
       headers,
-      url,
+      uri,
       body,
       query,
       json,
@@ -145,6 +185,16 @@ exports.deleteAsync = async ({
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
     logger.error(err);
+
+    if (err.statusCode) {
+      return new HelperResponse({
+        success: false,
+        data: err.error?.data,
+        errorCode: err.statusCode,
+        message: err.error?.message,
+      });
+    }
+
     return new HelperResponse({ success: false, message: err.message });
   }
 };
