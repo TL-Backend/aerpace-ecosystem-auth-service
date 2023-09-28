@@ -1,7 +1,12 @@
 const {
   listInventory,
   getImportHistoryList,
+  importCSV,
 } = require('../controllers/inventory/inventory.controller');
+const {
+  importCsvMiddleware,
+  importCsvValidation,
+} = require('../controllers/inventory/inventory.middleware');
 const {
   verifyIdToken,
 } = require('../middleware/authentication/authentication');
@@ -26,5 +31,13 @@ module.exports = function (app) {
     verifyIdToken,
     checkUserPermissionsAny([permissions.CSV_IMPORT_HISTORY]),
     getImportHistoryList,
+  );
+  app.post(
+    '/inventory/csv',
+    verifyIdToken,
+    checkUserPermissionsAny([permissions.IMPORT_CSV]),
+    importCsvMiddleware,
+    importCsvValidation,
+    importCSV,
   );
 };
