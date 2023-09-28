@@ -10,6 +10,7 @@ exports.postAsync = async ({
   query,
   json = true,
   form,
+  formData,
 }) => {
   try {
     const postResponse = await sendRequest({
@@ -20,6 +21,7 @@ exports.postAsync = async ({
       query,
       json,
       form,
+      formData,
     });
 
     let response = {
