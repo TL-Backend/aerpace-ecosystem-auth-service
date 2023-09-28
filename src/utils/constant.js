@@ -16,7 +16,9 @@ exports.errorResponses = {
 };
 
 exports.permissions = {
-  SAMPLE: `SAMPLE`,
+  LIST_USER: `USERS#USERS_TAB#TAB_LIST_VIEW`,
+  ADD_USER: `USERS#ROLES_TAB#ADD_ROLE`,
+  EDIT_USER: `USERS#USERS_TAB#EDIT_USER`,
 };
 
 exports.tokenTypes = {
