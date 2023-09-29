@@ -1,5 +1,5 @@
-const { postAsync } = require("../../APIRequest/request");
-const { logger } = require("../../utils/logger");
+const { postAsync } = require('../../APIRequest/request');
+const { logger } = require('../../utils/logger');
 const {
   successResponse,
   errorResponse,
@@ -23,7 +23,7 @@ exports.login = async (req, res, next) => {
         res,
         message,
         code: errorCode,
-        data: data?.data
+        data: data?.data,
       });
     }
 
@@ -33,7 +33,6 @@ exports.login = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -42,14 +41,14 @@ exports.login = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
       code: statusCodes.STATUS_CODE_FAILURE,
     });
   }
-}
+};
 
 exports.forgotPassword = async (req, res, next) => {
   try {
@@ -65,7 +64,7 @@ exports.forgotPassword = async (req, res, next) => {
         res,
         message,
         code: errorCode,
-        data: data?.data
+        data: data?.data,
       });
     }
 
@@ -75,7 +74,6 @@ exports.forgotPassword = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -84,18 +82,17 @@ exports.forgotPassword = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
       code: statusCodes.STATUS_CODE_FAILURE,
     });
   }
-}
+};
 
 exports.temporaryPasswordReset = async (req, res, next) => {
   try {
-
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${authUrls.TEMPORARY_PASSWORD_REST}`,
       body: req.body,
@@ -108,7 +105,7 @@ exports.temporaryPasswordReset = async (req, res, next) => {
         res,
         message,
         code: errorCode,
-        data: data?.data
+        data: data?.data,
       });
     }
 
@@ -118,7 +115,6 @@ exports.temporaryPasswordReset = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -127,14 +123,14 @@ exports.temporaryPasswordReset = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
       code: statusCodes.STATUS_CODE_FAILURE,
     });
   }
-}
+};
 
 exports.resetPassword = async (req, res, next) => {
   try {
@@ -151,7 +147,7 @@ exports.resetPassword = async (req, res, next) => {
         res,
         message,
         code: errorCode,
-        data: data?.data
+        data: data?.data,
       });
     }
 
@@ -161,7 +157,6 @@ exports.resetPassword = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -170,18 +165,17 @@ exports.resetPassword = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
       code: statusCodes.STATUS_CODE_FAILURE,
     });
   }
-}
+};
 
 exports.getAccessTokenWithRefresh = async (req, res, next) => {
   try {
-
     const { message, data, success, errorCode } = await postAsync({
       uri: `${baseUrl}/${authUrls.REFRESH_TOKEN}`,
       body: req.body,
@@ -194,7 +188,7 @@ exports.getAccessTokenWithRefresh = async (req, res, next) => {
         res,
         message,
         code: errorCode,
-        data: data?.data
+        data: data?.data,
       });
     }
 
@@ -204,7 +198,6 @@ exports.getAccessTokenWithRefresh = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -213,11 +206,11 @@ exports.getAccessTokenWithRefresh = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
       code: statusCodes.STATUS_CODE_FAILURE,
     });
   }
-}
+};

@@ -8,11 +8,9 @@ exports.successResponses = {
 };
 
 exports.errorResponses = {
+  SOMETHING_WENT_WRONG: `Something went wrong`,
   ACCESS_DENIED: `Access denied`,
-  ID_TOKEN_REQUIRED: `Id token is required`,
-  INVALID_TOKEN_TYPE: `Invalid token type`,
-  TOKEN_EXPIRED: `Token expired`,
-  JWT_EXPIRED: `jwt expired`,
+  INVALID_CSV_FILE: `Invalid csv file`,
 };
 
 exports.permissions = {
@@ -23,8 +21,8 @@ exports.permissions = {
   IMPORT_CSV: `INVENTORY#INVENTORY_TAB#IMPORT_CSV`,
   SAMPLE: `SAMPLE`,
   ADD_ROLE: `USERS#ROLES_TAB#ADD_ROLE`,
-  LIST_ROLES:  `USERS#ROLES_TAB#TAB_LIST_VIEW`,
-  ADD_USER:  `USERS#USERS_TAB#ADD_USER`,
+  LIST_ROLES: `USERS#ROLES_TAB#TAB_LIST_VIEW`,
+  ADD_USER: `USERS#USERS_TAB#ADD_USER`,
   LIST_USER: `USERS#USERS_TAB#TAB_LIST_VIEW`,
   EDIT_USER: `USERS#USERS_TAB#EDIT_USER`,
 };

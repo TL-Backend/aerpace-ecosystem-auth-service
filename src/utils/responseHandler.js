@@ -2,6 +2,7 @@
  * Response handler methods to maintain common response format for all APIs.
  */
 
+const { errorResponses } = require('./constant');
 const { statusCodes } = require('./statusCode');
 
 exports.successResponse = ({
@@ -17,5 +18,5 @@ exports.errorResponse = ({
   res,
   data = {},
   code = statusCodes.STATUS_CODE_FAILURE,
-  message = 'Internal server error',
+  message = errorResponses.SOMETHING_WENT_WRONG,
 }) => res.status(code).send({ data, code, message });

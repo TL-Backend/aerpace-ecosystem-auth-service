@@ -5,7 +5,6 @@ const { errorResponse } = require('../../utils/responseHandler');
 const { errorResponses } = require('../../utils/constant');
 const { logger } = require('../../utils/logger');
 
-
 const storage = multer.memoryStorage({
   dest: 'uploads/',
   limits: {
@@ -13,7 +12,6 @@ const storage = multer.memoryStorage({
   },
 });
 const upload = multer({ storage: storage });
-
 
 exports.importCsvMiddleware = upload.single('csv_file');
 
@@ -25,7 +23,7 @@ exports.importCsvValidation = async (req, res, next) => {
     }
     return next();
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,

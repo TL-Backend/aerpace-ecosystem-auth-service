@@ -16,7 +16,7 @@ exports.verifyToken = (idToken) => {
       return {
         success: false,
         data: tokenData,
-        message: errorResponses.INVALID_TOKEN_TYPE,
+        message: errorResponses.SOMETHING_WENT_WRONG,
         errorCode: statusCodes.STATUS_CODE_FORBIDDEN,
       };
     }
@@ -27,13 +27,13 @@ exports.verifyToken = (idToken) => {
       message: successResponses.TOKEN_DATA_FETCHED,
     };
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
 
     if (err instanceof jwt.TokenExpiredError) {
       return {
         success: false,
         data: {},
-        message: errorResponses.TOKEN_EXPIRED,
+        message: errorResponses.SOMETHING_WENT_WRONG,
         errorCode: statusCodes.STATUS_CODE_UNAUTHORIZED,
       };
     }
@@ -41,7 +41,7 @@ exports.verifyToken = (idToken) => {
     return {
       success: false,
       data: {},
-      message: err.message,
+      message: errorResponses.SOMETHING_WENT_WRONG,
       errorCode: statusCodes.STATUS_CODE_FORBIDDEN,
     };
   }
@@ -57,7 +57,7 @@ exports.verifyIdToken = (req, res, next) => {
       return errorResponse({
         req,
         res,
-        message: errorResponses.ID_TOKEN_REQUIRED,
+        message: errorResponses.SOMETHING_WENT_WRONG,
         code: statusCodes.STATUS_CODE_FORBIDDEN,
       });
     }
@@ -89,11 +89,11 @@ exports.verifyIdToken = (req, res, next) => {
 
     next();
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
-      message: err.message,
+      message: errorResponses.SOMETHING_WENT_WRONG,
       code: statusCodes.STATUS_CODE_FAILURE,
     });
   }

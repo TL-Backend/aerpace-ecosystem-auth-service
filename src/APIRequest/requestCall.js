@@ -8,7 +8,7 @@ exports.sendRequest = async ({
   query,
   json = true,
   form,
-  formData
+  formData,
 }) => {
   const options = {
     method,
@@ -18,7 +18,7 @@ exports.sendRequest = async ({
     qs: query,
     json,
     form,
-    formData
+    formData,
   };
   return rp(options);
 };

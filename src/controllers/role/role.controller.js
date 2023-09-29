@@ -41,7 +41,7 @@ exports.listRoles = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
@@ -81,7 +81,7 @@ exports.createRole = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
