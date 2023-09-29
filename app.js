@@ -25,6 +25,25 @@ app.use(
 
 app.use('/api/v1', router);
 
+const { swaggerSpec, swaggerValidation } = require('./src/utils/swagger');
+
+if (environment !== 'production') {
+  const swaggerUi = require('swagger-ui-express');
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
+}
+
+app.use((err, req, res, next) => {
+  if (err instanceof swaggerValidation.InputValidationError) {
+    return errorResponse({
+      code: 400,
+      req,
+      res,
+      message: JSON.stringify(err.errors),
+    });
+  }
+  return next(err);
+});
+
 app.use((req, res, next) =>
   errorResponse({
     code: statusCodes.STATUS_CODE_DATA_NOT_FOUND,
