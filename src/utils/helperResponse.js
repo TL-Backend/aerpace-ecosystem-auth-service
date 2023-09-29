@@ -5,7 +5,7 @@ class HelperResponse {
   constructor({ success, data, errorCode, message }) {
     if (success) {
       if (!message) {
-        message = successResponses.SUCCESS;
+        message = '';
       }
       if (!data) {
         data = {};
@@ -17,9 +17,9 @@ class HelperResponse {
         errorCode = statusCodes.STATUS_CODE_FAILURE;
       }
       if (!message) {
-        message = errorResponses.FAILURE;
+        message = errorResponses.SOMETHING_WENT_WRONG;
       }
-      data = data || null;
+      data = data || {};
       this.errorCode = errorCode;
     }
 

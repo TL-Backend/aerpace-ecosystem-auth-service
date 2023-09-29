@@ -1,6 +1,3 @@
-const FormData = require('form-data');
-const fs = require('fs');
-
 const {
   successResponse,
   errorResponse,
@@ -36,7 +33,6 @@ exports.listInventory = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -45,7 +41,7 @@ exports.listInventory = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
@@ -77,7 +73,6 @@ exports.getImportHistoryList = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -86,7 +81,7 @@ exports.getImportHistoryList = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,
@@ -127,7 +122,6 @@ exports.importCSV = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    logger.info('success');
     return successResponse({
       data: responseData,
       req,
@@ -136,7 +130,7 @@ exports.importCSV = async (req, res, next) => {
       code: responseCode,
     });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
     return errorResponse({
       req,
       res,

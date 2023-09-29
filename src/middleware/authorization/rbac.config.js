@@ -5,17 +5,17 @@ const { logger } = require('../../utils/logger');
 
 module.exports = async () => {
   try {
-    const allRoles = await aergov_roles.findAll({ raw: true }); // Retrieve all roles from the database
+    const allRoles = await aergov_roles.findAll({ raw: true });
     const rbacConfig = {};
 
     allRoles.forEach((role) => {
       rbacConfig[role.role_name] = {};
-      rbacConfig[role.role_name]['can'] = role.permission_list; // Use the permission_list column to define permissions for each role
+      rbacConfig[role.role_name]['can'] = role.permission_list;
     });
 
     return rbacConfig;
   } catch (err) {
-    logger.error('RBAC configuration error:', err.message);
+    logger.error(`RBAC configuration error: ${err.message}`);
     throw err;
   }
 };

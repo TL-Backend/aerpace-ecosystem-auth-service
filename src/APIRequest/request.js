@@ -1,4 +1,4 @@
-const { methods } = require('../utils/constant');
+const { methods, errorResponses } = require('../utils/constant');
 const { HelperResponse } = require('../utils/helperResponse');
 const { logger } = require('../utils/logger');
 const { sendRequest } = require('./requestCall');
@@ -32,7 +32,7 @@ exports.postAsync = async ({
 
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
 
     if (err.statusCode) {
       return new HelperResponse({
@@ -43,7 +43,10 @@ exports.postAsync = async ({
       });
     }
 
-    return new HelperResponse({ success: false, message: err.message });
+    return new HelperResponse({
+      success: false,
+      message: errorResponses.SOMETHING_WENT_WRONG,
+    });
   }
 };
 
@@ -67,7 +70,7 @@ exports.getAsync = async ({ headers, uri, body, query, json = true, form }) => {
 
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
 
     if (err.statusCode) {
       return new HelperResponse({
@@ -78,7 +81,10 @@ exports.getAsync = async ({ headers, uri, body, query, json = true, form }) => {
       });
     }
 
-    return new HelperResponse({ success: false, message: err.message });
+    return new HelperResponse({
+      success: false,
+      message: errorResponses.SOMETHING_WENT_WRONG,
+    });
   }
 };
 
@@ -109,7 +115,7 @@ exports.patchAsync = async ({
 
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
 
     if (err.statusCode) {
       return new HelperResponse({
@@ -120,7 +126,10 @@ exports.patchAsync = async ({
       });
     }
 
-    return new HelperResponse({ success: false, message: err.message });
+    return new HelperResponse({
+      success: false,
+      message: errorResponses.SOMETHING_WENT_WRONG,
+    });
   }
 };
 
@@ -144,7 +153,7 @@ exports.putAsync = async ({ headers, uri, body, query, json = true, form }) => {
 
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
 
     if (err.statusCode) {
       return new HelperResponse({
@@ -155,7 +164,10 @@ exports.putAsync = async ({ headers, uri, body, query, json = true, form }) => {
       });
     }
 
-    return new HelperResponse({ success: false, message: err.message });
+    return new HelperResponse({
+      success: false,
+      message: errorResponses.SOMETHING_WENT_WRONG,
+    });
   }
 };
 
@@ -186,7 +198,7 @@ exports.deleteAsync = async ({
 
     return new HelperResponse({ success: true, data: response });
   } catch (err) {
-    logger.error(err);
+    logger.error(err.message);
 
     if (err.statusCode) {
       return new HelperResponse({
@@ -197,6 +209,9 @@ exports.deleteAsync = async ({
       });
     }
 
-    return new HelperResponse({ success: false, message: err.message });
+    return new HelperResponse({
+      success: false,
+      message: errorResponses.SOMETHING_WENT_WRONG,
+    });
   }
 };
