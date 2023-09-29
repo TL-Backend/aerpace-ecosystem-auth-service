@@ -3,14 +3,12 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const cors = require('cors');
-// const YAML = require('yamljs');
 const app = express();
 app.disable('x-powered-by');
 
 const { errorResponse } = require('./src/utils/responseHandler');
 const { statusCodes } = require('./src/utils/statusCode');
 const { router } = require('./src/routes/index');
-// const swaggerDocument = YAML.load('./swagger.yaml');
 
 const environment = process.env.NODE_ENV || 'development';
 const envFilePath = `config/${environment}.env`;
