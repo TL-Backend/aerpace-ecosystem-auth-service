@@ -12,9 +12,9 @@ const { statusCodes } = require('./src/utils/statusCode');
 const { router } = require('./src/routes/index');
 // const swaggerDocument = YAML.load('./swagger.yaml');
 
-const environment = process.env.NODE_ENV || 'development';
-const envFilePath = `config/${environment}.env`;
-require('dotenv').config({ path: envFilePath });
+  const environment = process.env.NODE_ENV || 'development';
+  const envFilePath = `config/${environment}.env`;
+  require('dotenv').config({ path: envFilePath });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
