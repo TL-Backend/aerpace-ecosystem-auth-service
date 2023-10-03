@@ -28,7 +28,11 @@ const { swaggerSpec, swaggerValidation } = require('./src/utils/swagger');
 
 if (environment !== 'production') {
   const swaggerUi = require('swagger-ui-express');
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
+  app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec, { explorer: true }),
+  );
 }
 
 app.use((err, req, res, next) => {
