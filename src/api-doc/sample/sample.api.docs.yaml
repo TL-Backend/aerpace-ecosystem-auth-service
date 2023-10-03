@@ -24,4 +24,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/sample"
+                $ref: '#/components/schemas/sample'
