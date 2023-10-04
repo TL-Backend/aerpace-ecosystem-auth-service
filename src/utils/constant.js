@@ -5,6 +5,7 @@ exports.dbTables = {
 
 exports.successResponses = {
   TOKEN_DATA_FETCHED: `Token data fetched successfully`,
+  HEALTH_CHECK_SUCCESS: `Health check passed`,
 };
 
 exports.errorResponses = {
