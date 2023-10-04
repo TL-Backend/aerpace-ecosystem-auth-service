@@ -1,4 +1,4 @@
-const { sampleTestUsers } = require('../controllers/sample/sample.controller');
+const { sampleTestUsers, healthCheck } = require('../controllers/sample/sample.controller');
 const {
   verifyIdToken,
 } = require('../middleware/authentication/authentication');
@@ -14,4 +14,5 @@ module.exports = function (app) {
     checkUserPermissionsAny([permissions.SAMPLE]),
     sampleTestUsers,
   );
+  app.get('/health', healthCheck)
 };
