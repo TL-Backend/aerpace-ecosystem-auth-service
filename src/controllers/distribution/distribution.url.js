@@ -4,4 +4,5 @@ exports.distributionUrl = {
   UNASSIGN_DEVICES: `unassign`,
   LIST_DISTRIBUTION: ``,
   EDIT_DISTRIBUTION: ``,
+  DISTRIBUTION_DETAILS: ``,
 };

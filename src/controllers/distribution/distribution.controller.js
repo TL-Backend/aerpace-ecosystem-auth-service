@@ -214,3 +214,44 @@ exports.unassignDistribution = async (req, res, next) => {
     });
   }
 };
+
+exports.getDistributionDetails = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { message, data, success, errorCode } = await getAsync({
+      uri: `${distributionEndPoint}/${id}`,
+      query: req.query,
+    });
+
+    if (!success) {
+      return errorResponse({
+        req,
+        res,
+        message,
+        code: errorCode,
+        data: data?.data,
+      });
+    }
+
+    const {
+      message: responseMessage,
+      data: responseData,
+      code: responseCode,
+    } = data;
+
+    return successResponse({
+      data: responseData,
+      req,
+      res,
+      message: responseMessage,
+      code: responseCode,
+    });
+  } catch (err) {
+    logger.error(err.message);
+    return errorResponse({
+      req,
+      res,
+      code: statusCodes.STATUS_CODE_FAILURE,
+    });
+  }
+};
