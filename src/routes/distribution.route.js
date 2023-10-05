@@ -4,6 +4,7 @@ const {
   editDistribution,
   assignDistribution,
   unassignDistribution,
+  getDistributionDetails,
 } = require('../controllers/distribution/distribution.controller');
 const {
   verifyIdToken,
@@ -43,5 +44,15 @@ module.exports = function (app) {
     verifyIdToken,
     checkUserPermissionsAny([permissions.UNASSIGN_DEVICES]),
     unassignDistribution,
+  );
+  app.get(
+    '/distribution/:id',
+    verifyIdToken,
+    checkUserPermissionsAny([
+      permissions.ASSIGN_DEVICES,
+      permissions.UNASSIGN_DEVICES,
+      permissions.EDIT_DISTRIBUTION,
+    ]),
+    getDistributionDetails
   );
 };
