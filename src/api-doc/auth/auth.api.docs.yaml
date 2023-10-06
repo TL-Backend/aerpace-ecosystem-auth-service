@@ -1,0 +1,147 @@
+paths:
+  /auth/login:
+    post:
+      tags:
+        - AUTH
+      summary: user can login using email and password credentials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@aerpace.in
+                password:
+                  type: string
+                  example: aerpace@123
+                app:
+                  type: string
+                  example: ADMIN_PORTAL
+      responses:
+        200:
+          $ref: "#/components/responses/loginSuccess"
+        401:
+          $ref: "#/components/responses/loginUnauthorizedRequest"
+        400:
+          $ref: "#/components/responses/loginBadRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+
+  /auth/forgot-password:
+    post:
+      tags:
+        - AUTH
+      summary: user can reset his password when he forgots his, this will sent reset link to his mail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@aerpace.in
+      responses:
+        200:
+          $ref: "#/components/responses/forgotPasswordSuccess"
+        404:
+          $ref: "#/components/responses/userNotFound"
+        400:
+          $ref: "#/components/responses/forgotPasswordBadRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+
+  /auth/reset-password/:uuid:
+    post:
+      tags:
+        - AUTH
+      summary: user can change the password by clicking on the reset link sent to his mail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_password:
+                  type: string
+                  example: newpassword@123
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          description: uuid to be provided which is recieved by user through mail
+          schema:
+            type: string
+            example: 2d1db902-2f44-4c90-9a3e-b9319755e8cd
+      responses:
+        200:
+          $ref: "#/components/responses/resetPasswordSuccess"
+        400:
+          $ref: "#/components/responses/resetPasswordBadRequest"
+        401:
+          $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+        500:
+          $ref: "#/components/responses/internalError"
+
+  /auth/refresh:
+    post:
+      tags:
+        - AUTH
+      summary: when id token expires, new id token is generated with a valid refresh token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
+      responses:
+        200:
+          $ref: "#/components/responses/refreshSuccess"
+        400:
+          $ref: "#/components/responses/somethingWentWrong"
+        401:
+          $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+        500:
+          $ref: "#/components/responses/internalError"
+
+  /auth/temporary-password-reset:
+    post:
+      tags:
+        - AUTH
+      summary: When user logins for the first time he can change his temporary password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_password:
+                  type: string
+                  example: newpassword@123
+      parameters:
+        - name: authorization
+          in: headers
+          required: true
+          description: Id token to be provided to change the temporary password
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInVzZXJfdHlwZSI6IlVTRVIiLCJyb2xlX25hbWUiOm51bGwsInJvbGVfaWQiOiJyXzIiLCJ0b2tlbl90eXBlIjoiSURfVE9LRU4iLCJpYXQiOjE2OTU4ODMzMzQsImV4cCI6MTY5NTg4MzM2NH0.4yjUiuZ3Y-UfN1cZhCr56Erf0v4alwzseb6zmxCxffE
+      responses:
+        200:
+          $ref: "#/components/responses/resetPasswordSuccess"
+        400:
+          $ref: "#/components/responses/somethingWentWrong"
+        404:
+          $ref: "#/components/responses/userNotFound"
+        500:
+          $ref: "#/components/responses/internalError"

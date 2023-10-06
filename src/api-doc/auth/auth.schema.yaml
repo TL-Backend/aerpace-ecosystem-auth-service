@@ -1,0 +1,255 @@
+components:
+  schemas:
+    profile:
+      description: "profile"
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: aditya
+        last_name:
+          type: string
+          example: chandra
+        email:
+          type: string
+          example: aditya@tilicho.in
+        phone_number:
+          type: string
+          example: 9090909090
+        user_id:
+          type: string
+          example: u_1
+        role_id:
+          type: string
+          example: r_1
+        role_name:
+          type: string
+          example: admin
+        profile_url:
+          type: string
+          example: null
+        first_time_login:
+          type: integer
+          example: 0
+
+  responses:
+    loginSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  id_token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
+                  refresh_token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
+                  profile:
+                    $ref: "#/components/schemas/profile"
+              message:
+                type: string
+                example: "Login successful"
+    loginUnauthorizedRequest:
+      description: "Unauthorized"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 401
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Invalid credentials"
+    loginBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: Email required, Password required, App type required
+
+    forgotPasswordSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: Link to reset password is sent to your email
+    forgotPasswordBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: Email required
+
+    resetPasswordSuccess:
+      description: "Bad request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Password changed successfully
+    resetPasswordBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: password required
+
+    refreshSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id_token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Access token refreshed successfully
+
+    internalError:
+      description: "Internal server error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Internal server error"
+    userNotFound:
+      description: "Internal server error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 404
+              message:
+                type: string
+                example: User not found
+    somethingWentWrong:
+      description: "Internal server error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: something went wrong
+    UnauthorizedSomethingWentWrong:
+      description: "Internal server error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 401
+              message:
+                type: string
+                example: something went wrong
+
+    # invalidCredentials:
+    #   type: object
+    #   properties:
+    #     data:
+    #       type: object
+    #       example: {}
+    #     code:
+    #       type: integer
+    #       example: 400
+    #     message:
+    #       type: string
+    #       example: Invalid credentials
