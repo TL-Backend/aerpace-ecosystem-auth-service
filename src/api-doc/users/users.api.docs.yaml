@@ -50,36 +50,7 @@ paths:
             type: string
             example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
       requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                first_name:
-                  type: string
-                  example: aditya
-                last_name:
-                  type: string
-                  example: chandra
-                email:
-                  type: string
-                  example: aditya@tilicho.in
-                phone_number:
-                  type: string
-                  example: 9090909090
-                country_code:
-                  type: string
-                  example: +91
-                address:
-                  type: string
-                  example: Visakhapatnam
-                pin_code:
-                  type: string
-                  example: 530022
-                state:
-                  type: string
-                  example: andhra pradesh
+        $ref: "#/components/requestBodies/addUser"
       responses:
         200:
           $ref: "#/components/responses/addUserSuccess"

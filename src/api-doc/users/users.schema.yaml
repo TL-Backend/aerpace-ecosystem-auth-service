@@ -270,3 +270,34 @@ components:
               state:
                 type: string
                 example: andhra pradesh
+    addUser:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: aditya
+                last_name:
+                  type: string
+                  example: chandra
+                email:
+                  type: string
+                  example: aditya@tilicho.in
+                phone_number:
+                  type: string
+                  example: 9090909090
+                country_code:
+                  type: string
+                  example: +91
+                address:
+                  type: string
+                  example: Visakhapatnam
+                pin_code:
+                  type: string
+                  example: 530022
+                state:
+                  type: string
+                  example: andhra pradesh
