@@ -1,0 +1,70 @@
+components:
+  schemas:
+    inventory:
+      
+  
+  responses:
+    listInventoryResponse:
+      description: "Unauthorized request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: ""
+    unauthorizedRequest:
+      description: "Unauthorized request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 401
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+    forbiddenRequest:
+      description: "Forbidden request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 403
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+    internalError:
+      description: "Internal Server Error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"

@@ -1,0 +1,20 @@
+paths:
+  /role:
+    get:
+      tags:
+        - "Inventory"
+      summary: Get list of Inventory
+      parameters:
+        - name: "search"
+          in: "query"
+          required: false
+          type: "string"
+      responses:
+        200:
+          $ref: "#/components/responses/listInventoryResponse"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
