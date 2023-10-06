@@ -213,7 +213,7 @@ components:
     importCsv:  
       required: true
       content:
-        application/json:
-          schema:
-            type: form-data
-            example: sample.csv
+        multipart/form-data::
+          # schema:
+          #   type: form-data
+          example: sample.csv
