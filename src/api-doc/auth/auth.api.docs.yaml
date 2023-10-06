@@ -5,21 +5,7 @@ paths:
         - AUTH
       summary: user can login using email and password credentials
       requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: user@aerpace.in
-                password:
-                  type: string
-                  example: aerpace@123
-                app:
-                  type: string
-                  example: ADMIN_PORTAL
+        $ref: "#/components/requestBodies/login"
       responses:
         200:
           $ref: "#/components/responses/loginSuccess"
@@ -36,15 +22,7 @@ paths:
         - AUTH
       summary: user can reset his password when he forgots his, this will sent reset link to his mail
       requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: user@aerpace.in
+        $ref: "#/components/requestBodies/forgotPassword"  
       responses:
         200:
           $ref: "#/components/responses/forgotPasswordSuccess"
@@ -61,15 +39,7 @@ paths:
         - AUTH
       summary: user can change the password by clicking on the reset link sent to his mail
       requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                new_password:
-                  type: string
-                  example: newpassword@123
+        $ref: "#/components/requestBodies/resetPassword"  
       parameters:
         - name: uuid
           in: path
@@ -94,15 +64,7 @@ paths:
         - AUTH
       summary: when id token expires, new id token is generated with a valid refresh token
       requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                refresh_token:
-                  type: string
-                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
+        $ref: "#/components/requestBodies/refresh"  
       responses:
         200:
           $ref: "#/components/responses/refreshSuccess"
@@ -119,6 +81,7 @@ paths:
         - AUTH
       summary: When user logins for the first time he can change his temporary password
       requestBody:
+        $ref: "#/components/requestBodies/temporaryPasswordReset"  
         required: true
         content:
           application/json:

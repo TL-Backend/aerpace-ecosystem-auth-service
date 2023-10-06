@@ -240,3 +240,62 @@ components:
               message:
                 type: string
                 example: something went wrong
+
+  requestBodies:
+    login:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: user@aerpace.in
+              password:
+                type: string
+                example: aerpace@123
+              app:
+                type: string
+                example: ADMIN_PORTAL
+    forgotPassword: 
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: user@aerpace.in
+    resetPassword:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              new_password:
+                type: string
+                example: newpassword@123
+    refresh:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              refresh_token:
+                type: string
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4    
+    temporaryPasswordReset: 
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              new_password:
+                type: string
+                example: newpassword@123
+  
