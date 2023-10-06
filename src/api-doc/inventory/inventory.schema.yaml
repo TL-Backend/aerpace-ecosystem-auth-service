@@ -117,9 +117,7 @@ components:
                 type: object
                 properties:
                   response_file_url:
-                    type: object
-                    items:
-                      $ref: "#/components/schemas/importCsv"
+                    $ref: "#/components/schemas/importCsv"
               message:
                 type: string
                 example: "data fetched successfully"
@@ -213,7 +211,11 @@ components:
     importCsv:  
       required: true
       content:
-        multipart/form-data::
-          # schema:
-          #   type: form-data
-          example: sample.csv
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              csv_file:
+                description: user should send a csv format file
+            required:
+              - csvFile
