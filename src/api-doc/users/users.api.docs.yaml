@@ -34,6 +34,8 @@ paths:
           $ref: "#/components/responses/listUserSuccess"
         401:
           $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
         400:
           $ref: "#/components/responses/somethingWentWrong"
         500:
@@ -85,6 +87,8 @@ paths:
           $ref: "#/components/responses/addUserSuccess"
         401:
           $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
         400:
           $ref: "#/components/responses/somethingWentWrong"
         500:
@@ -114,6 +118,8 @@ paths:
           $ref: "#/components/responses/editUserSuccess"
         401:
           $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
         400:
           $ref: "#/components/responses/somethingWentWrong"
         500:
