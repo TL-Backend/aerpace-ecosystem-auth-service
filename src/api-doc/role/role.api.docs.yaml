@@ -1,0 +1,37 @@
+paths:
+  /role:
+    get:
+      tags:
+        - "Roles"
+      summary: Get list of roles
+      parameters:
+        - name: "search"
+          in: "query"
+          required: false
+          type: "string"
+      responses:
+        200:
+          $ref: "#/components/responses/listRolesSuccess"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+    post:
+      tags:
+        - "Roles"
+      summary: To create new role
+      requestBody:
+        $ref: "#/components/requestBodies/addRoleRequestBody"
+      responses:
+        200:
+          $ref: "#/components/responses/listRolesSuccess"
+        400:
+          $ref: "#/components/responses/roleExistsWithName"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
