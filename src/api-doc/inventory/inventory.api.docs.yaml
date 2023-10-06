@@ -1,17 +1,81 @@
 paths:
-  /role:
+  /inventory:
     get:
       tags:
-        - "Inventory"
+        - INVENTORY
       summary: Get list of Inventory
       parameters:
-        - name: "search"
-          in: "query"
+        - name: status
+          in: query
           required: false
-          type: "string"
+          schema:
+            type: string
+            example: ASSIGNED
+        - authorization: id token
+          in: headers
+          description: Id token to be provided to access
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
       responses:
         200:
           $ref: "#/components/responses/listInventoryResponse"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+  /inventory/csv:
+    get:
+      tags:
+        - INVENTORY
+      summary: user can upload the csv file
+      parameters:
+        - authorization: id token
+          in: headers
+          description: Id token to be provided to access
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
+      requestBody:
+        $ref: "#/components/requestBodies/importCsv"
+      responses:
+        200:
+          $ref: "#/components/responses/importCsvSuccess"
+        400:
+          $ref: "#/components/responses/somethingWentWrong"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+  /inventory/csv-history:
+    get:
+      tags:
+        - INVENTORY
+      summary: list the import history
+      parameters:
+        - authorization: id token
+          in: headers
+          description: Id token to be provided to access
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
+        - name: page_limit
+          in: query
+          schema:
+            type: string
+            example: 2
+        - name: page_number
+          in: query
+          schema:
+            type: string
+            example: 10
+      responses:
+        200:
+          $ref: "#/components/responses/importCsvHistory"
         401:
           $ref: "#/components/responses/unauthorizedRequest"
         403:
