@@ -1,0 +1,163 @@
+components:
+  schemas:
+    roles:
+      description: "Roles data"
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        role_name:
+          type: string
+          example: "Role manager"
+        permission_list:
+          type: array
+          example: ["USERS#ROLES_TAB#TAB_LIST_VIEW"]
+        permission_tree:
+          type: array
+          items:
+            $ref: "#/components/schemas/permissionTree"
+        created_at:
+          type: string
+          format: date-time
+          example: 2023-06-14 15:19:28.836+05:30
+        updated_at:
+          type: string
+          format: date-time
+          example: 2023-06-14 15:19:28.836+05:30
+
+    permissionTree:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Users"
+        pages:
+          type: array
+          example:
+            [
+              {
+                "name": "Roles",
+                "pages": [],
+                "features":
+                  [
+                    {
+                      "id": 4,
+                      "name": "List Roles",
+                      "page_id": 3,
+                      "identifier": "USERS#ROLES_TAB#TAB_LIST_VIEW",
+                    },
+                  ],
+                "identifier": "USERS#ROLES_TAB",
+              },
+            ]
+        features:
+          type: array
+          example: []
+        identifier:
+          type: string
+          example: "USERS"
+
+  responses:
+    listRolesSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/roles"
+              message:
+                type: string
+                example: "Roles fetched successfully"
+
+    roleExistsWithName:
+      description: "Role Name already exists"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Name already exists"
+
+    unauthorizedRequest:
+      description: "Unauthorized request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 401
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+    forbiddenRequest:
+      description: "Forbidden request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 403
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+    internalError:
+      description: "Internal Server Error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+
+  requestBodies:
+    addRoleRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              role_name:
+                type: string
+                example: "Role manager"
+              permissions:
+                type: array
+                example:
+                  ["USERS#ROLES_TAB#TAB_LIST_VIEW", "USERS#ROLES_TAB#ADD_ROLE"]
