@@ -135,7 +135,7 @@ components:
                     example: 7
               message:
                 type: string
-                example: "users fetched successfully"
+                example: "User fetched successfully"
     addUserSuccess:
       description: "success"
       content:
@@ -151,7 +151,7 @@ components:
                 $ref: "#/components/schemas/addUser"
               message:
                 type: string
-                example: "users created successfully"   
+                example: "User created successfully"   
     editUserSuccess:
       description: "success"
       content:
@@ -167,7 +167,7 @@ components:
                 $ref: "#/components/schemas/editUser"
               message:
                 type: string
-                example: "users updated successfully"  
+                example: "User updated successfully"  
 
     internalError:
       description: "Internal server error"
@@ -184,7 +184,7 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Internal server error"
+                example: "Something went wrong"
     forbiddenRequest:
       description: "Forbidden request"
       content:
@@ -232,7 +232,7 @@ components:
                 example: 400
               message:
                 type: string
-                example: something went wrong
+                example: Something went wrong
     UnauthorizedSomethingWentWrong:
       description: "Unauthorized request"
       content:
@@ -248,7 +248,7 @@ components:
                 example: 401
               message:
                 type: string
-                example: something went wrong
+                example: Something went wrong
               
   requestBodies:
     editUser:
