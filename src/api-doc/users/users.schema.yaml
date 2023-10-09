@@ -1,6 +1,6 @@
 components:
   schemas:
-    role:
+    userRole:
       description: "role details"
       type: object
       properties:
@@ -39,7 +39,7 @@ components:
           type: string
           example: andhra pradesh
         role:
-          $ref: "#/components/schemas/role"
+          $ref: "#/components/schemas/userRole"
     addUser:
       description: "add user profile object"
       type: object
@@ -202,7 +202,7 @@ components:
                 type: string
                 example: "Something went wrong"
     userNotFound:
-      description: "Internal server error"
+      description: "Data not found"
       content:
         application/json:
           schema:
@@ -218,7 +218,7 @@ components:
                 type: string
                 example: User not found
     somethingWentWrong:
-      description: "Internal server error"
+      description: "Bad request"
       content:
         application/json:
           schema:
@@ -234,7 +234,7 @@ components:
                 type: string
                 example: something went wrong
     UnauthorizedSomethingWentWrong:
-      description: "Internal server error"
+      description: "Unauthorized request"
       content:
         application/json:
           schema:

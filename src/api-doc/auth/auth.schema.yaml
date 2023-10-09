@@ -31,7 +31,6 @@ components:
         first_time_login:
           type: integer
           example: 0
-
   responses:
     loginSuccess:
       description: "Success"
@@ -89,7 +88,6 @@ components:
               message:
                 type: string
                 example: Email required, Password required, App type required
-
     forgotPasswordSuccess:
       description: "Success"
       content:
@@ -122,9 +120,8 @@ components:
               message:
                 type: string
                 example: Email required
-
     resetPasswordSuccess:
-      description: "Bad request"
+      description: "Success"
       content:
         application/json:
           schema:
@@ -155,7 +152,6 @@ components:
               message:
                 type: string
                 example: password required
-
     refreshSuccess:
       description: "Success"
       content:
@@ -175,7 +171,6 @@ components:
               message:
                 type: string
                 example: Access token refreshed successfully
-
     internalError:
       description: "Internal server error"
       content:
@@ -191,9 +186,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Internal server error"
+                example: "Something went wrong"
     userNotFound:
-      description: "Internal server error"
+      description: "Data not found"
       content:
         application/json:
           schema:
@@ -209,7 +204,7 @@ components:
                 type: string
                 example: User not found
     somethingWentWrong:
-      description: "Internal server error"
+      description: "Bad request"
       content:
         application/json:
           schema:
@@ -225,7 +220,7 @@ components:
                 type: string
                 example: something went wrong
     UnauthorizedSomethingWentWrong:
-      description: "Internal server error"
+      description: "Unauthorized request"
       content:
         application/json:
           schema:
