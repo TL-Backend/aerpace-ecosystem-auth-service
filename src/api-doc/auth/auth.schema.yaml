@@ -1,6 +1,6 @@
 components:
   schemas:
-    profile:
+    userProfile:
       description: "profile"
       type: object
       properties:
@@ -52,7 +52,7 @@ components:
                     type: string
                     example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
                   profile:
-                    $ref: "#/components/schemas/profile"
+                    $ref: "#/components/schemas/userProfile"
               message:
                 type: string
                 example: "Login successful"
@@ -218,7 +218,7 @@ components:
                 example: 400
               message:
                 type: string
-                example: something went wrong
+                example: "Something went wrong"
     UnauthorizedSomethingWentWrong:
       description: "Unauthorized request"
       content:
@@ -234,7 +234,7 @@ components:
                 example: 401
               message:
                 type: string
-                example: something went wrong
+                example: "Something went wrong"
 
   requestBodies:
     login:

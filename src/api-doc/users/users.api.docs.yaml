@@ -23,7 +23,7 @@ paths:
           schema:
             type: integer
             example: 10
-        - authorization: id token
+        - name: Authorization
           in: headers
           description: Id token to be provided to access
           schema:
@@ -43,7 +43,7 @@ paths:
         - USERS
       summary:
       parameters:
-        - authorization: id token
+        - name: Authorization
           in: headers
           description: Id token to be provided to access
           schema:
@@ -74,7 +74,7 @@ paths:
           schema:
             type: string
             example: aditya
-        - authorization: id token
+        - name: Authorization
           in: headers
           description: Id token to be provided to access
           schema:

@@ -11,7 +11,7 @@ paths:
           schema:
             type: string
             example: ASSIGNED
-        - authorization: id token
+        - name: Authorization
           in: headers
           description: Id token to be provided to access
           schema:
@@ -32,7 +32,7 @@ paths:
         - INVENTORY
       summary: user can upload the csv file
       parameters:
-        - authorization: id token
+        - name: Authorization
           in: headers
           description: Id token to be provided to access
           schema:
@@ -44,7 +44,7 @@ paths:
         200:
           $ref: "#/components/responses/importCsvSuccess"
         400:
-          $ref: "#/components/responses/somethingWentWrong"
+          $ref: "#/components/responses/csvSomethingWentWrong"
         401:
           $ref: "#/components/responses/unauthorizedRequest"
         403:
@@ -57,7 +57,7 @@ paths:
         - INVENTORY
       summary: list the import history
       parameters:
-        - authorization: id token
+        - name: Authorization
           in: headers
           description: Id token to be provided to access
           schema:

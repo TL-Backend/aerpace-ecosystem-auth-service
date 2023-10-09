@@ -5,6 +5,12 @@ paths:
         - "Roles"
       summary: Get list of roles
       parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
         - name: "search"
           in: "query"
           required: false
@@ -22,6 +28,13 @@ paths:
       tags:
         - "Roles"
       summary: To create new role
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
       requestBody:
         $ref: "#/components/requestBodies/addRoleRequestBody"
       responses:

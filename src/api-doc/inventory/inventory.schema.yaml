@@ -1,6 +1,6 @@
 components:
   schemas:
-    distributions:
+    inventoryDistributions:
       description: "distributions data"
       type: object
       properties:
@@ -42,7 +42,7 @@ components:
         status:
           type: string
           example: FAILED
-    devices:
+    inventoryDevices:
       description: "devices data"
       type: object
       properties:
@@ -68,7 +68,7 @@ components:
           type: string
           example: red
         distributions:
-          $ref: "#/components/schemas/distributions"
+          $ref: "#/components/schemas/inventoryDistributions"
   
   responses:
     listInventoryResponse:
@@ -87,7 +87,7 @@ components:
                   devices:
                     type: array
                     items:
-                      $ref: "#/components/schemas/devices"
+                      $ref: "#/components/schemas/inventoryDevices"
                   total_count:
                     type: integer
                     example: 50
@@ -102,7 +102,7 @@ components:
                     example: 7
               message:
                 type: string
-                example: "data fetched successfully"
+                example: "Data fetched successfully"
     importCsvSuccess:
       description: "Success"
       content:
@@ -170,8 +170,8 @@ components:
               message:
                 type: string
                 example: "Something went wrong"
-    somethingWentWrong:
-      description: "Internal server error"
+    csvSomethingWentWrong:
+      description: "Bad request"
       content:
         application/json:
           schema:
@@ -185,7 +185,7 @@ components:
                 example: 400
               message:
                 type: string
-                example: something went wrong
+                example: process failed / process partially completed
     forbiddenRequest:
       description: "Forbidden request"
       content:
