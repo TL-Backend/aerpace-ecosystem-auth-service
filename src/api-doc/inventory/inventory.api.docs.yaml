@@ -27,7 +27,7 @@ paths:
         500:
           $ref: "#/components/responses/internalError"
   /inventory/csv:
-    get:
+    post:
       tags:
         - INVENTORY
       summary: user can upload the csv file
