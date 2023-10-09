@@ -121,6 +121,18 @@ components:
                     type: array
                     items:
                       $ref: "#/components/schemas/listUser"
+                  total_count:
+                    type: integer
+                    example: 50
+                  page_limit:
+                    type: integer
+                    example: 10
+                  page_number:
+                    type: integer
+                    example: 1
+                  total_pages:
+                    type: integer
+                    example: 7
               message:
                 type: string
                 example: "users fetched successfully"

@@ -135,9 +135,21 @@ components:
                 type: object
                 properties:
                   import_history:
-                    type: object
+                    type: array
                     items:
                       $ref: "#/components/schemas/importCsvHistory"
+                  total_count:
+                    type: integer
+                    example: 50
+                  page_limit:
+                    type: integer
+                    example: 10
+                  page_number:
+                    type: integer
+                    example: 1
+                  total_pages:
+                    type: integer
+                    example: 7
               message:
                 type: string
                 example: "Inventory import history fetched successfully"
