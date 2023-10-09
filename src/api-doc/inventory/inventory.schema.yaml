@@ -1,0 +1,221 @@
+components:
+  schemas:
+    distributions:
+      description: "distributions data"
+      type: object
+      properties:
+        id:
+          type: string
+          example: dr_1
+        name:
+          type: string
+          example: lakshmi PVT LTD
+    importCsv:
+      description: "import csv response data"
+      type: object
+      properties:
+        response_file_url:
+          type: string
+          example: "https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv"
+    importCsvHistory:
+      description: "import csv history data"
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        file_name:
+          type: string
+          example: input_sample.csv
+        input_file:
+          type: string
+          example: "https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv"
+        response_file:
+          type: string
+          example: "https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv"
+        uploaded_by:
+          type: string
+          example: aditya
+        uploaded_at:
+          type: string
+          example: 2023-10-06T12:02:13+00:00
+        status:
+          type: string
+          example: FAILED
+    devices:
+      description: "devices data"
+      type: object
+      properties:
+        data_count:
+          type: string
+          example: "1"
+        name:
+          type: string
+          example: "car"
+        model_name:
+          type: string
+          example: nexon
+        variant_name:
+          type: string
+          example: EV
+        version_name:
+          type: string
+          example: 2023
+        mac_number:
+          type: string
+          example: 00-b0-d0-63-c2-90
+        color:
+          type: string
+          example: red
+        distributions:
+          $ref: "#/components/schemas/distributions"
+  
+  responses:
+    listInventoryResponse:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/devices"
+                  total_count:
+                    type: integer
+                    example: 50
+                  page_limit:
+                    type: integer
+                    example: 10
+                  page_number:
+                    type: integer
+                    example: 1
+                  total_pages:
+                    type: integer
+                    example: 7
+              message:
+                type: string
+                example: "data fetched successfully"
+    importCsvSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  response_file_url:
+                    $ref: "#/components/schemas/importCsv"
+              message:
+                type: string
+                example: "data fetched successfully"
+    importCsvHistory:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  import_history:
+                    type: object
+                    items:
+                      $ref: "#/components/schemas/importCsvHistory"
+              message:
+                type: string
+                example: "Inventory import history fetched successfully"
+
+    unauthorizedRequest:
+      description: "Unauthorized request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 401
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+    somethingWentWrong:
+      description: "Internal server error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: something went wrong
+    forbiddenRequest:
+      description: "Forbidden request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 403
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+    internalError:
+      description: "Internal Server Error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+          
+  requestBodies:
+    importCsv:  
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              csv_file:
+                description: user should send a csv format file
+            required:
+              - csvFile
