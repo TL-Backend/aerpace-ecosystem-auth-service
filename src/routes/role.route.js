@@ -1,6 +1,8 @@
 const {
   listRoles,
   createRole,
+  deleteRole,
+  editRole,
 } = require('../controllers/role/role.controller');
 const {
   verifyIdToken,
@@ -19,6 +21,8 @@ module.exports = function (app) {
       permissions.LIST_ROLES,
       permissions.ADD_USER,
       permissions.EDIT_USER,
+      permissions.EDIT_ROLE,
+      permissions.DELETE_ROLE,
     ]),
     listRoles,
   );
@@ -27,5 +31,17 @@ module.exports = function (app) {
     verifyIdToken,
     checkUserPermissionsAny([permissions.ADD_ROLE]),
     createRole,
+  );
+  app.delete(
+    '/roles/:id',
+    verifyIdToken,
+    checkUserPermissionsAny([permissions.DELETE_ROLE]),
+    deleteRole,
+  );
+  app.patch(
+    '/roles/:id',
+    verifyIdToken,
+    checkUserPermissionsAny([permissions.EDIT_ROLE]),
+    editRole,
   );
 };
