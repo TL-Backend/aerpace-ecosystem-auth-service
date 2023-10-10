@@ -48,7 +48,7 @@ paths:
           $ref: "#/components/responses/forbiddenRequest"
         500:
           $ref: "#/components/responses/internalError"
-  /role:id:
+  /role/:id:
     delete:
       tags:
         - "Roles"
