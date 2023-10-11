@@ -86,7 +86,6 @@ components:
               message:
                 type: string
                 example: "Roles fetched successfully"
-          
     deleteRolesSuccess:
       description: "Success"
       content:
@@ -102,8 +101,7 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Role deleted successfully"    
-
+                example: "Role deleted successfully"
     editRolesSuccess:
       description: "Success"
       content:
@@ -119,58 +117,77 @@ components:
                 $ref: "#/components/schemas/editRoles"
               message:
                 type: string
-                example: "Role edited successfully"    
+                example: "Role edited successfully"
 
-    roleExistsWithName:
-      description: "Role Name already exists"
+    addRoleBadRequest:
+      description: "Bad Request"
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                example: 400
-              data:
-                type: object
-                example: {}
-              message:
-                type: string
-                example: "Name already exists"
-
+          examples:
+            example1:
+              summary: Feature do not exists example
+              value:
+                code: 400
+                data: {}
+                message: "Features do not exist, please send a proper set of features"
+            example2:
+              summary: Name already exists example
+              value:
+                code: 400
+                data: {}
+                message: "Role already exists with this name, please try with new name"
+            example3:
+              summary: Failed to fetch master permission example
+              value:
+                code: 400
+                data: {}
+                message: "failed to fetch master permission tree"
     deleteRoleBadRequest:
-      description: "Role not found"
+      description: "Bad request"
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                example: 400
-              data:
-                type: object
-                example: {}
-              message:
-                type: string
-                example: "Role not found / Role is assigned to a user, connot perform delete operation when role is assigned"
-
+          examples:
+            example1:
+              summary: Role already assigned example
+              value:
+                code: 400
+                data: {}
+                message: "Role is assigned to a user, connot perform delete operation when role is assigned"
+            example2:
+              summary: Role not found example
+              value:
+                code: 400
+                data: {}
+                message: "Role not found"
     editRoleBadRequest:
-      description: "Role not found"
+      description: "Bad request"
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                example: 400
-              data:
-                type: object
-                example: {}
-              message:
-                type: string
-                example: "Features do not exist, please send a proper set of features / Role not found / Invalid set permissions"
+          examples:
+            example1:
+              summary: Feature do not exists example
+              value:
+                code: 400
+                data: {}
+                message: "Features do not exist, please send a proper set of features"
+            example2:
+              summary: Name already exists example
+              value:
+                code: 400
+                data: {}
+                message: "Role already exists with this name, please try with new name"
+            example3:
+              summary: Failed to fetch master permission example
+              value:
+                code: 400
+                data: {}
+                message: "failed to fetch master permission tree"
+            example4:
+              summary: Role not found example
+              value:
+                code: 400
+                data: {}
+                message: "Role not found"
 
     unauthorizedRequest:
       description: "Unauthorized request"

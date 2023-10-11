@@ -41,7 +41,7 @@ paths:
         200:
           $ref: "#/components/responses/listRolesSuccess"
         400:
-          $ref: "#/components/responses/roleExistsWithName"
+          $ref: "#/components/responses/addRoleBadRequest"
         401:
           $ref: "#/components/responses/unauthorizedRequest"
         403:
