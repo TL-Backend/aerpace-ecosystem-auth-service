@@ -25,6 +25,13 @@ components:
           type: string
           format: date-time
           example: 2023-06-14 15:19:28.836+05:30
+    editRoles:
+      description: "Roles data"
+      type: object
+      properties:
+        id:
+          type: string
+          example: "r_1"
 
     permissionTree:
       type: object
@@ -79,9 +86,8 @@ components:
               message:
                 type: string
                 example: "Roles fetched successfully"
-
-    roleExistsWithName:
-      description: "Role Name already exists"
+    deleteRolesSuccess:
+      description: "Success"
       content:
         application/json:
           schema:
@@ -89,13 +95,99 @@ components:
             properties:
               code:
                 type: integer
-                example: 400
+                example: 200
               data:
                 type: object
                 example: {}
               message:
                 type: string
-                example: "Name already exists"
+                example: "Role deleted successfully"
+    editRolesSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                $ref: "#/components/schemas/editRoles"
+              message:
+                type: string
+                example: "Role edited successfully"
+
+    addRoleBadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Feature do not exists
+              value:
+                code: 400
+                data: {}
+                message: "Features do not exist, please send a proper set of features"
+            example2:
+              summary: 400 - Name already exists
+              value:
+                code: 400
+                data: {}
+                message: "Role already exists with this name, please try with new name"
+            example3:
+              summary: 400 - Failed to fetch master permission
+              value:
+                code: 400
+                data: {}
+                message: "failed to fetch master permission tree"
+    deleteRoleBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Role already assigned
+              value:
+                code: 400
+                data: {}
+                message: "Role is assigned to a user, connot perform delete operation when role is assigned"
+            example2:
+              summary: 400 - Role not found
+              value:
+                code: 400
+                data: {}
+                message: "Role not found"
+    editRoleBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Feature do not exists
+              value:
+                code: 400
+                data: {}
+                message: "Features do not exist, please send a proper set of features"
+            example2:
+              summary: 400 - Name already exists
+              value:
+                code: 400
+                data: {}
+                message: "Role already exists with this name, please try with new name"
+            example3:
+              summary: 400 - Failed to fetch master permission
+              value:
+                code: 400
+                data: {}
+                message: "failed to fetch master permission tree"
+            example4:
+              summary: 400 - Role not found
+              value:
+                code: 400
+                data: {}
+                message: "Role not found"
 
     unauthorizedRequest:
       description: "Unauthorized request"
