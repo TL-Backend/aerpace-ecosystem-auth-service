@@ -125,19 +125,19 @@ components:
         application/json:
           examples:
             example1:
-              summary: Feature do not exists example
+              summary: 400 - Feature do not exists
               value:
                 code: 400
                 data: {}
                 message: "Features do not exist, please send a proper set of features"
             example2:
-              summary: Name already exists example
+              summary: 400 - Name already exists
               value:
                 code: 400
                 data: {}
                 message: "Role already exists with this name, please try with new name"
             example3:
-              summary: Failed to fetch master permission example
+              summary: 400 - Failed to fetch master permission
               value:
                 code: 400
                 data: {}
@@ -148,13 +148,13 @@ components:
         application/json:
           examples:
             example1:
-              summary: Role already assigned example
+              summary: 400 - Role already assigned
               value:
                 code: 400
                 data: {}
                 message: "Role is assigned to a user, connot perform delete operation when role is assigned"
             example2:
-              summary: Role not found example
+              summary: 400 - Role not found
               value:
                 code: 400
                 data: {}
@@ -165,25 +165,25 @@ components:
         application/json:
           examples:
             example1:
-              summary: Feature do not exists example
+              summary: 400 - Feature do not exists
               value:
                 code: 400
                 data: {}
                 message: "Features do not exist, please send a proper set of features"
             example2:
-              summary: Name already exists example
+              summary: 400 - Name already exists
               value:
                 code: 400
                 data: {}
                 message: "Role already exists with this name, please try with new name"
             example3:
-              summary: Failed to fetch master permission example
+              summary: 400 - Failed to fetch master permission
               value:
                 code: 400
                 data: {}
                 message: "failed to fetch master permission tree"
             example4:
-              summary: Role not found example
+              summary: 400 - Role not found
               value:
                 code: 400
                 data: {}
