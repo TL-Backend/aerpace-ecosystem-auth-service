@@ -174,18 +174,19 @@ components:
       description: "Bad request"
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                example: {}
-              code:
-                type: integer
-                example: 400
-              message:
-                type: string
-                example: process failed / process partially completed
+          examples:
+            example1:
+              summary: Process Failed example
+              value:
+                code: 400
+                data: {}
+                message: "process failed"
+            example2:
+              summary: Process completed example
+              value:
+                code: 400
+                data: {}
+                message: "Process partially completed"
     forbiddenRequest:
       description: "Forbidden request"
       content:
