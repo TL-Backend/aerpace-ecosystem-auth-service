@@ -1,5 +1,5 @@
 paths:
-  /role:
+  /roles:
     get:
       tags:
         - "Roles"
@@ -48,7 +48,7 @@ paths:
           $ref: "#/components/responses/forbiddenRequest"
         500:
           $ref: "#/components/responses/internalError"
-  /role/:id:
+  /roles/:id:
     delete:
       tags:
         - "Roles"

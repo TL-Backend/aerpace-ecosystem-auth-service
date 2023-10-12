@@ -1,5 +1,5 @@
 paths:
-  /user:
+  /users:
     get:
       tags:
         - USERS
@@ -62,7 +62,7 @@ paths:
           $ref: "#/components/responses/somethingWentWrong"
         500:
           $ref: "#/components/responses/internalError"
-  /user/:id:
+  /users/:id:
     patch:
       tags:
         - USERS
