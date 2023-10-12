@@ -11,7 +11,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'http://13.234.106.8:7000/api/v1/',
+      url: 'https://dev.api.aerpace.tilicho.in/api/v1/',
       description: 'Base URl',
     },
   ],
