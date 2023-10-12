@@ -176,18 +176,17 @@ components:
         application/json:
           examples:
             example1:
-              summary: Process Failed example
+              summary: 400 - Process failed
               value:
                 code: 400
                 data: {}
                 message: "process failed"
             example2:
-              summary: Process completed example
+              summary: 400 - Process partially completed
               value:
                 code: 400
                 data: {}
                 message: "Process partially completed"
-                
     forbiddenRequest:
       description: "Forbidden request"
       content:
