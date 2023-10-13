@@ -65,6 +65,12 @@ components:
           type: string
           example: "USERS"
 
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+      
   responses:
     listRolesSuccess:
       description: "Success"
@@ -188,6 +194,12 @@ components:
                 code: 400
                 data: {}
                 message: "Role not found"
+            example5:
+              summary: 400 - Nothing to update
+              value:
+                code: 400
+                data: {}
+                message: "Nothing to update"
 
     unauthorizedRequest:
       description: "Unauthorized request"
@@ -198,7 +210,6 @@ components:
             properties:
               code:
                 type: integer
-                example: 401
               data:
                 type: object
                 example: {}
@@ -214,13 +225,24 @@ components:
             properties:
               code:
                 type: integer
-                example: 403
               data:
                 type: object
-                example: {}
               message:
                 type: string
                 example: "Something went wrong"
+          examples:
+            example1:
+              summary: 403 - Access Denied
+              value:
+                code: 403
+                data: {}
+                message: "Access Denied"
+            example2:
+              summary: 403 - Something went wrong
+              value:
+                code: 403
+                data: {}
+                message: "Something went wrong"
     internalError:
       description: "Internal Server Error"
       content:

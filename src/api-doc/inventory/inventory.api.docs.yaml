@@ -1,6 +1,8 @@
 paths:
   /inventory:
     get:
+      security:
+          - Authorization: []
       tags:
         - INVENTORY
       summary: Get list of Inventory
@@ -28,6 +30,8 @@ paths:
           $ref: "#/components/responses/internalError"
   /inventory/csv:
     post:
+      security:
+          - Authorization: []
       tags:
         - INVENTORY
       summary: user can upload the csv file
@@ -53,6 +57,8 @@ paths:
           $ref: "#/components/responses/internalError"
   /inventory/csv-history:
     get:
+      security:
+          - Authorization: []
       tags:
         - INVENTORY
       summary: list the import history

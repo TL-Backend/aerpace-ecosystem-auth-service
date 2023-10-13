@@ -77,6 +77,8 @@ paths:
 
   /auth/temporary-password-reset:
     post:
+      security:
+          - Authorization: []
       tags:
         - AUTH
       summary: When user logins for the first time he can change his temporary password
@@ -104,6 +106,8 @@ paths:
           $ref: "#/components/responses/resetPasswordSuccess"
         400:
           $ref: "#/components/responses/somethingWentWrong"
+        403: 
+          $ref: "#/components/responses/authForbiddenRequest"
         404:
           $ref: "#/components/responses/userNotFound"
         500:

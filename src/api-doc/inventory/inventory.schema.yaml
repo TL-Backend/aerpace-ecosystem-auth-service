@@ -69,6 +69,11 @@ components:
           example: red
         distributions:
           $ref: "#/components/schemas/inventoryDistributions"
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
   
   responses:
     listInventoryResponse:
@@ -196,13 +201,24 @@ components:
             properties:
               code:
                 type: integer
-                example: 403
               data:
                 type: object
-                example: {}
               message:
                 type: string
                 example: "Something went wrong"
+          examples:
+            example1:
+              summary: 403 - Access Denied
+              value:
+                code: 403
+                data: {}
+                message: "Access Denied"
+            example2:
+              summary: 403 - Something went wrong
+              value:
+                code: 403
+                data: {}
+                message: "Something went wrong"
     internalError:
       description: "Internal Server Error"
       content:

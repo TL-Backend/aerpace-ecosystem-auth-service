@@ -1,6 +1,8 @@
 paths:
   /users:
     get:
+      security:
+          - Authorization: []
       tags:
         - USERS
       summary: All users will be listed
@@ -39,6 +41,8 @@ paths:
         500:
           $ref: "#/components/responses/internalError"
     post:
+      security:
+          - Authorization: []
       tags:
         - USERS
       summary:
@@ -64,6 +68,8 @@ paths:
           $ref: "#/components/responses/internalError"
   /users/:id:
     patch:
+      security:
+          - Authorization: []
       tags:
         - USERS
       summary:

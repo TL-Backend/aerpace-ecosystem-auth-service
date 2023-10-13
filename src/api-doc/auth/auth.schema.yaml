@@ -31,6 +31,13 @@ components:
         first_time_login:
           type: integer
           example: 0
+  
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+      
   responses:
     loginSuccess:
       description: "Success"
@@ -88,6 +95,22 @@ components:
               message:
                 type: string
                 example: Email required, Password required, App type required
+    authForbiddenRequest:
+      description: "Forbidden request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 403
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
     forgotPasswordSuccess:
       description: "Success"
       content:
