@@ -5,32 +5,43 @@ paths:
           - Authorization: []
       tags:
         - USERS
-      summary: All users will be listed
+      summary: All the active users will be listed.
       parameters:
         - name: search
           in: query
-          description: Search will be applied to first name and last name
+          description: Search will be applied to first name, last name, role name, email, phone number, location.
           schema:
             type: string
             example: aditya
+        - name: role
+          in: query
+          description: Filter will be applied based on the role selected.
+          schema:
+            type: string
+            example: Admin 
+        - name: location
+          in: query
+          description: Filter will be applied based on the location selected.
+          schema:
+            type: string
+            example: Andhra Pradesh
         - name: page_number
           in: query
-          description: Number of the page to be shown
+          description: Number of the page to be shown.
           schema:
             type: integer
             example: 1
         - name: page_limit
           in: query
-          description: Limit of items to per page
+          description: Limit of items per page.
           schema:
             type: integer
             example: 10
         - name: Authorization
           in: headers
-          description: Id token to be provided to access
+          description: Id token to be provided to access.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
       responses:
         200:
           $ref: "#/components/responses/listUserSuccess"
@@ -45,14 +56,13 @@ paths:
           - Authorization: []
       tags:
         - USERS
-      summary:
+      summary: To create a new user with valid email.
       parameters:
         - name: Authorization
           in: headers
           description: Id token to be provided to access
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
       requestBody:
         $ref: "#/components/requestBodies/addUser"
       responses:
@@ -72,20 +82,19 @@ paths:
           - Authorization: []
       tags:
         - USERS
-      summary:
+      summary: To update user details and his role.
       parameters:
         - name: id
           in: path
-          description: User Id to be provided to edit that particular user details
+          description: User Id to be provided to edit that particular user details.
           schema:
             type: string
             example: aditya
         - name: Authorization
           in: headers
-          description: Id token to be provided to access
+          description: Id token to be provided to access.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
       requestBody:
         $ref: "#/components/requestBodies/editUser"
       responses:

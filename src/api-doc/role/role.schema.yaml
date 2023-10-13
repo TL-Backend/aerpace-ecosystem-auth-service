@@ -70,7 +70,7 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      
+
   responses:
     listRolesSuccess:
       description: "Success"
@@ -137,13 +137,13 @@ components:
                 data: {}
                 message: "Features do not exist, please send a proper set of features"
             example2:
-              summary: 400 - Name already exists
+              summary: 400 - Role already exists with same name
               value:
                 code: 400
                 data: {}
                 message: "Role already exists with this name, please try with new name"
             example3:
-              summary: 400 - Failed to fetch master permission
+              summary: 400 - Failed to fetch master permissions
               value:
                 code: 400
                 data: {}
@@ -154,11 +154,11 @@ components:
         application/json:
           examples:
             example1:
-              summary: 400 - Role already assigned
+              summary: 400 - Cannot delete roles that are in use.
               value:
                 code: 400
                 data: {}
-                message: "Role is assigned to a user, connot perform delete operation when role is assigned"
+                message: "Role is assigned to a user, cannot perform delete operation when role is assigned"
             example2:
               summary: 400 - Role not found
               value:
@@ -177,7 +177,7 @@ components:
                 data: {}
                 message: "Features do not exist, please send a proper set of features"
             example2:
-              summary: 400 - Name already exists
+              summary: 400 - Role already exists with same name
               value:
                 code: 400
                 data: {}

@@ -3,7 +3,7 @@ paths:
     post:
       tags:
         - AUTH
-      summary: user can login using email and password credentials
+      summary: User can login using email and password credentials.
       requestBody:
         $ref: "#/components/requestBodies/login"
       responses:
@@ -20,7 +20,7 @@ paths:
     post:
       tags:
         - AUTH
-      summary: user can reset his password when he forgots his, this will sent reset link to his mail
+      summary: User can reset his password when he forgets it, this will send a reset link to his email.
       requestBody:
         $ref: "#/components/requestBodies/forgotPassword"  
       responses:
@@ -37,14 +37,14 @@ paths:
     post:
       tags:
         - AUTH
-      summary: user can change the password by clicking on the reset link sent to his mail
+      summary: User can change the password by clicking on the reset link sent to his mail.
       requestBody:
         $ref: "#/components/requestBodies/resetPassword"  
       parameters:
         - name: uuid
           in: path
           required: true
-          description: uuid to be provided which is recieved by user through mail
+          description: uuid to be provided which is received by user via mail.
           schema:
             type: string
             example: 2d1db902-2f44-4c90-9a3e-b9319755e8cd
@@ -62,7 +62,7 @@ paths:
     post:
       tags:
         - AUTH
-      summary: when id token expires, new id token is generated with a valid refresh token
+      summary: When id token expires, new id token will be generated with a valid refresh token.
       requestBody:
         $ref: "#/components/requestBodies/refresh"  
       responses:
@@ -81,7 +81,7 @@ paths:
           - Authorization: []
       tags:
         - AUTH
-      summary: When user logins for the first time he can change his temporary password
+      summary: When user logins for the first time he can change his temporary password.
       requestBody:
         $ref: "#/components/requestBodies/temporaryPasswordReset"  
         required: true
@@ -92,15 +92,14 @@ paths:
               properties:
                 new_password:
                   type: string
-                  example: newpassword@123
+                  example: newPassword@123
       parameters:
         - name: authorization
           in: headers
           required: true
-          description: Id token to be provided to change the temporary password
+          description: Id token to be provided to change the temporary password.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInVzZXJfdHlwZSI6IlVTRVIiLCJyb2xlX25hbWUiOm51bGwsInJvbGVfaWQiOiJyXzIiLCJ0b2tlbl90eXBlIjoiSURfVE9LRU4iLCJpYXQiOjE2OTU4ODMzMzQsImV4cCI6MTY5NTg4MzM2NH0.4yjUiuZ3Y-UfN1cZhCr56Erf0v4alwzseb6zmxCxffE
       responses:
         200:
           $ref: "#/components/responses/resetPasswordSuccess"

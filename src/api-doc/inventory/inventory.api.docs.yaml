@@ -5,20 +5,66 @@ paths:
           - Authorization: []
       tags:
         - INVENTORY
-      summary: Get list of Inventory
+      summary: Get list of Inventory.
       parameters:
-        - name: status
+        - name: search
           in: query
+          description: Search will be applied to mac address, model, variant, version, color, distribution.
+          schema:
+            type: string
+            example: Blue      
+        - name: version_id
+          in: query
+          description: To Apply filter based upon model, variant and version.
           required: false
           schema:
             type: string
-            example: ASSIGNED
-        - name: Authorization
-          in: headers
-          description: Id token to be provided to access
+            example: 1,2
+        - name: color
+          in: query
+          description: To Apply filter based on color.
+          required: false
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
+            example: red
+        - name: distribution
+          in: query
+          description: To Apply filter based on distribution.
+          required: false
+          schema:
+            type: string
+            example: t'challa PVT LTD
+        - name: status
+          in: query
+          required: false
+          description: To either get all the device which are assigned to a distribution or get devices that are not assigned to any.
+          schema:
+            type: string
+            example: ASSIGNED
+        - name: distribution_id
+          in: query
+          description: To get devices assigned to a distribution.
+          required: false
+          schema:
+            type: string
+            example: dr_1
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+        - name: page_number
+          in: query
+          description: Number of the page to be shown.
+          schema:
+            type: integer
+            example: 1
+        - name: page_limit
+          in: query
+          description: Limit of items per page.
+          schema:
+            type: integer
+            example: 10
       responses:
         200:
           $ref: "#/components/responses/listInventoryResponse"
@@ -34,14 +80,13 @@ paths:
           - Authorization: []
       tags:
         - INVENTORY
-      summary: user can upload the csv file
+      summary: To add devices using CSV file.
       parameters:
         - name: Authorization
           in: headers
-          description: Id token to be provided to access
+          description: Id token to be provided to access.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
       requestBody:
         $ref: "#/components/requestBodies/importCsv"
       responses:
@@ -61,23 +106,24 @@ paths:
           - Authorization: []
       tags:
         - INVENTORY
-      summary: list the import history
+      summary: List the CSV import history.
       parameters:
         - name: Authorization
           in: headers
-          description: Id token to be provided to access
+          description: Id token to be provided to access.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
-        - name: page_limit
-          in: query
-          schema:
-            type: string
-            example: 2
         - name: page_number
           in: query
+          description: Number of the page to be shown.
           schema:
-            type: string
+            type: integer
+            example: 1
+        - name: page_limit
+          in: query
+          description: Limit of items per page.
+          schema:
+            type: integer
             example: 10
       responses:
         200:
