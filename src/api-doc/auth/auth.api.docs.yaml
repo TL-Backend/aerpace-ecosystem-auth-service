@@ -97,7 +97,7 @@ paths:
         - name: authorization
           in: headers
           required: true
-          description: Id token to be provided to change the temporary password
+          description: Id token to be provided to change the temporary password.
           schema:
             type: string
       responses:

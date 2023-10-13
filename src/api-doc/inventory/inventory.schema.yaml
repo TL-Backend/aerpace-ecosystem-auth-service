@@ -245,6 +245,6 @@ components:
             type: object
             properties:
               csv_file:
-                description: user should send a csv format file
+                description: User should send a csv format file.
             required:
               - csvFile

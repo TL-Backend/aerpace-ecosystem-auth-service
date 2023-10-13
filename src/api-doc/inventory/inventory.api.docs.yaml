@@ -29,7 +29,7 @@ paths:
             example: red
         - name: distribution
           in: query
-          description: To Apply filter based distribution.
+          description: To Apply filter based on distribution.
           required: false
           schema:
             type: string
@@ -37,6 +37,7 @@ paths:
         - name: status
           in: query
           required: false
+          description: To either get all the device which are assigned to a distribution or get devices that are not assigned to any.
           schema:
             type: string
             example: ASSIGNED
@@ -60,7 +61,7 @@ paths:
             example: 1
         - name: page_limit
           in: query
-          description: Limit of items to per page.
+          description: Limit of items per page.
           schema:
             type: integer
             example: 10
@@ -112,15 +113,17 @@ paths:
           description: Id token to be provided to access.
           schema:
             type: string
-        - name: page_limit
-          in: query
-          schema:
-            type: string
-            example: 2
         - name: page_number
           in: query
+          description: Number of the page to be shown.
           schema:
-            type: string
+            type: integer
+            example: 1
+        - name: page_limit
+          in: query
+          description: Limit of items per page.
+          schema:
+            type: integer
             example: 10
       responses:
         200:
