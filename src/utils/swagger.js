@@ -1,6 +1,8 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerValidation = require('express-ajv-swagger-validation');
 
+const swaggerURL  = process.env.AERPACE_URL
+
 const swaggerDefinition = {
   openapi: '3.1.0',
   components: {},
@@ -11,7 +13,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'https://dev.api.aerpace.tilicho.in/api/v1/',
+      url: `${swaggerURL}`,
       description: 'Base URl',
     },
   ],
