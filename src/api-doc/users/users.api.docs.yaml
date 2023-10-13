@@ -59,7 +59,7 @@ paths:
         403:
           $ref: "#/components/responses/forbiddenRequest"
         400:
-          $ref: "#/components/responses/somethingWentWrong"
+          $ref: "#/components/responses/addUserSomethingWentWrong"
         500:
           $ref: "#/components/responses/internalError"
   /users/:id:
@@ -90,6 +90,6 @@ paths:
         403:
           $ref: "#/components/responses/forbiddenRequest"
         400:
-          $ref: "#/components/responses/somethingWentWrong"
+          $ref: "#/components/responses/editUserSomethingWentWrong"
         500:
           $ref: "#/components/responses/internalError"
