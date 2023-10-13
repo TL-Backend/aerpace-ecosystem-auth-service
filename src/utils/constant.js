@@ -1,5 +1,3 @@
-const { DELETE } = require("sequelize/types/query-types");
-
 exports.dbTables = {
   ROLES_TABLE: 'aergov_roles',
   USER_ROLES_TABLE: 'aergov_user_roles',
