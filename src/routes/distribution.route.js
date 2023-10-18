@@ -24,7 +24,7 @@ module.exports = function (app) {
   app.get(
     '/distribution',
     verifyIdToken,
-    checkUserPermissionsAny([permissions.LIST_DISTRIBUTIONS]),
+    checkUserPermissionsAny([permissions.VIEW_LIST_DISTRIBUTIONS]),
     listDistribution,
   );
   app.patch(

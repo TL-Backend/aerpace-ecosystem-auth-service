@@ -65,6 +65,12 @@ components:
           type: string
           example: "USERS"
 
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+
   responses:
     listRolesSuccess:
       description: "Success"
@@ -131,13 +137,13 @@ components:
                 data: {}
                 message: "Features do not exist, please send a proper set of features"
             example2:
-              summary: 400 - Name already exists
+              summary: 400 - Role already exists with same name
               value:
                 code: 400
                 data: {}
                 message: "Role already exists with this name, please try with new name"
             example3:
-              summary: 400 - Failed to fetch master permission
+              summary: 400 - Failed to fetch master permissions
               value:
                 code: 400
                 data: {}
@@ -148,11 +154,11 @@ components:
         application/json:
           examples:
             example1:
-              summary: 400 - Role already assigned
+              summary: 400 - Cannot delete roles that are in use.
               value:
                 code: 400
                 data: {}
-                message: "Role is assigned to a user, connot perform delete operation when role is assigned"
+                message: "Role is assigned to a user, cannot perform delete operation when role is assigned"
             example2:
               summary: 400 - Role not found
               value:
@@ -171,7 +177,7 @@ components:
                 data: {}
                 message: "Features do not exist, please send a proper set of features"
             example2:
-              summary: 400 - Name already exists
+              summary: 400 - Role already exists with same name
               value:
                 code: 400
                 data: {}
@@ -188,6 +194,12 @@ components:
                 code: 400
                 data: {}
                 message: "Role not found"
+            example5:
+              summary: 400 - Nothing to update
+              value:
+                code: 400
+                data: {}
+                message: "Nothing to update"
 
     unauthorizedRequest:
       description: "Unauthorized request"
@@ -198,7 +210,6 @@ components:
             properties:
               code:
                 type: integer
-                example: 401
               data:
                 type: object
                 example: {}
@@ -214,13 +225,24 @@ components:
             properties:
               code:
                 type: integer
-                example: 403
               data:
                 type: object
-                example: {}
               message:
                 type: string
                 example: "Something went wrong"
+          examples:
+            example1:
+              summary: 403 - Access Denied
+              value:
+                code: 403
+                data: {}
+                message: "Access Denied"
+            example2:
+              summary: 403 - Something went wrong
+              value:
+                code: 403
+                data: {}
+                message: "Something went wrong"
     internalError:
       description: "Internal Server Error"
       content:

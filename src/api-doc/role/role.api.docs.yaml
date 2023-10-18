@@ -1,20 +1,24 @@
 paths:
   /roles:
     get:
+      security:
+        - Authorization: []
       tags:
         - "Roles"
-      summary: Get list of roles
+      summary: Get the list of roles.
       parameters:
         - name: Authorization
           in: headers
-          description: Id token to be provided to access
+          description: Id token to be provided to access.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
-        - name: "search"
+        - name: search
+          description: Search will be applied to role name.
           in: "query"
           required: false
-          type: "string"
+          schema:
+            type: string
+            example: Admin
       responses:
         200:
           $ref: "#/components/responses/listRolesSuccess"
@@ -25,16 +29,17 @@ paths:
         500:
           $ref: "#/components/responses/internalError"
     post:
+      security:
+        - Authorization: []
       tags:
         - "Roles"
-      summary: To create new role
+      summary: To create a new role.
       parameters:
         - name: Authorization
           in: headers
-          description: Id token to be provided to access
+          description: Id token to be provided to access.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
       requestBody:
         $ref: "#/components/requestBodies/addRoleRequestBody"
       responses:
@@ -50,19 +55,20 @@ paths:
           $ref: "#/components/responses/internalError"
   /roles/:id:
     delete:
+      security:
+        - Authorization: []
       tags:
         - "Roles"
-      summary: To create new role
+      summary: To delete a new role.
       parameters:
         - name: Authorization
           in: headers
-          description: Id token to be provided to access
+          description: Id token to be provided to access.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
         - name: id
           in: path
-          description: role id to be provided to delete a particular role
+          description: Role id to be provided to delete a particular role.
           schema:
             type: string
             example: r_1
@@ -78,25 +84,26 @@ paths:
         500:
           $ref: "#/components/responses/internalError"
     patch:
+      security:
+        - Authorization: []
       tags:
         - "Roles"
-      summary: To edit new role
+      summary: To edit a role.
       parameters:
         - name: Authorization
           in: headers
-          description: Id token to be provided to access
+          description: Id token to be provided to access.
           schema:
             type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
         - name: id
           in: path
-          description: role id to be provided to edit a particular role
+          description: Role id is to be provided to edit a particular role.
           schema:
             type: string
             example: r_1
       responses:
         200:
-          $ref: "#/components/responses/deleteRolesSuccess"
+          $ref: "#/components/responses/editRolesSuccess"
         400:
           $ref: "#/components/responses/editRoleBadRequest"
         401:
