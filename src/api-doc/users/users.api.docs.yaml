@@ -2,7 +2,7 @@ paths:
   /users:
     get:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - USERS
       summary: All the active users will be listed.
@@ -18,7 +18,7 @@ paths:
           description: Filter will be applied based on the role selected.
           schema:
             type: string
-            example: Admin 
+            example: Admin
         - name: location
           in: query
           description: Filter will be applied based on the location selected.
@@ -44,16 +44,16 @@ paths:
             type: string
       responses:
         200:
-          $ref: "#/components/responses/listUserSuccess"
+          $ref: '#/components/responses/listUserSuccess'
         401:
-          $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+          $ref: '#/components/responses/UnauthorizedSomethingWentWrong'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
     post:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - USERS
       summary: To create a new user with valid email.
@@ -64,22 +64,22 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: "#/components/requestBodies/addUser"
+        $ref: '#/components/requestBodies/addUser'
       responses:
         200:
-          $ref: "#/components/responses/addUserSuccess"
+          $ref: '#/components/responses/addUserSuccess'
         401:
-          $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+          $ref: '#/components/responses/UnauthorizedSomethingWentWrong'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: "#/components/responses/addUserSomethingWentWrong"
+          $ref: '#/components/responses/addUserSomethingWentWrong'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /users/:id:
     patch:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - USERS
       summary: To update user details and his role.
@@ -96,15 +96,15 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: "#/components/requestBodies/editUser"
+        $ref: '#/components/requestBodies/editUser'
       responses:
         200:
-          $ref: "#/components/responses/editUserSuccess"
+          $ref: '#/components/responses/editUserSuccess'
         401:
-          $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+          $ref: '#/components/responses/UnauthorizedSomethingWentWrong'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: "#/components/responses/editUserSomethingWentWrong"
+          $ref: '#/components/responses/editUserSomethingWentWrong'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'

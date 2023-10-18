@@ -1,7 +1,7 @@
 components:
   schemas:
     inventoryDistributions:
-      description: "distributions data"
+      description: 'distributions data'
       type: object
       properties:
         id:
@@ -11,14 +11,14 @@ components:
           type: string
           example: lakshmi PVT LTD
     importCsv:
-      description: "import csv response data"
+      description: 'import csv response data'
       type: object
       properties:
         response_file_url:
           type: string
-          example: "https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv"
+          example: 'https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv'
     importCsvHistory:
-      description: "import csv history data"
+      description: 'import csv history data'
       type: object
       properties:
         id:
@@ -29,10 +29,10 @@ components:
           example: input_sample.csv
         input_file:
           type: string
-          example: "https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv"
+          example: 'https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv'
         response_file:
           type: string
-          example: "https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv"
+          example: 'https://aerpace-ecosystem-inventory-csv-files.s3.ap-south-1.amazonaws.com/response-csv-files/2023-10-06-12-06-02-input_sample.csv'
         uploaded_by:
           type: string
           example: aditya
@@ -43,15 +43,15 @@ components:
           type: string
           example: FAILED
     inventoryDevices:
-      description: "devices data"
+      description: 'devices data'
       type: object
       properties:
         data_count:
           type: string
-          example: "1"
+          example: '1'
         name:
           type: string
-          example: "car"
+          example: 'car'
         model_name:
           type: string
           example: nexon
@@ -68,16 +68,16 @@ components:
           type: string
           example: red
         distributions:
-          $ref: "#/components/schemas/inventoryDistributions"
+          $ref: '#/components/schemas/inventoryDistributions'
   securitySchemes:
     Authorization:
       type: apiKey
       in: header
       name: Authorization
-  
+
   responses:
     listInventoryResponse:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -92,7 +92,7 @@ components:
                   devices:
                     type: array
                     items:
-                      $ref: "#/components/schemas/inventoryDevices"
+                      $ref: '#/components/schemas/inventoryDevices'
                   total_count:
                     type: integer
                     example: 50
@@ -107,9 +107,9 @@ components:
                     example: 7
               message:
                 type: string
-                example: "Data fetched successfully"
+                example: 'Data fetched successfully'
     importCsvSuccess:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -122,12 +122,12 @@ components:
                 type: object
                 properties:
                   response_file_url:
-                    $ref: "#/components/schemas/importCsv"
+                    $ref: '#/components/schemas/importCsv'
               message:
                 type: string
-                example: "data fetched successfully"
+                example: 'data fetched successfully'
     importCsvHistory:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -142,7 +142,7 @@ components:
                   import_history:
                     type: array
                     items:
-                      $ref: "#/components/schemas/importCsvHistory"
+                      $ref: '#/components/schemas/importCsvHistory'
                   total_count:
                     type: integer
                     example: 50
@@ -157,10 +157,10 @@ components:
                     example: 7
               message:
                 type: string
-                example: "Inventory import history fetched successfully"
+                example: 'Inventory import history fetched successfully'
 
     unauthorizedRequest:
-      description: "Unauthorized request"
+      description: 'Unauthorized request'
       content:
         application/json:
           schema:
@@ -174,9 +174,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
     csvSomethingWentWrong:
-      description: "Bad request"
+      description: 'Bad request'
       content:
         application/json:
           examples:
@@ -185,15 +185,15 @@ components:
               value:
                 code: 400
                 data: {}
-                message: "process failed"
+                message: 'process failed'
             example2:
               summary: 400 - Process partially completed
               value:
                 code: 400
                 data: {}
-                message: "Process partially completed"
+                message: 'Process partially completed'
     forbiddenRequest:
-      description: "Forbidden request"
+      description: 'Forbidden request'
       content:
         application/json:
           schema:
@@ -205,22 +205,22 @@ components:
                 type: object
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
           examples:
             example1:
               summary: 403 - Access Denied
               value:
                 code: 403
                 data: {}
-                message: "Access Denied"
+                message: 'Access Denied'
             example2:
               summary: 403 - Something went wrong
               value:
                 code: 403
                 data: {}
-                message: "Something went wrong"
+                message: 'Something went wrong'
     internalError:
-      description: "Internal Server Error"
+      description: 'Internal Server Error'
       content:
         application/json:
           schema:
@@ -234,10 +234,10 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Something went wrong"
-          
+                example: 'Something went wrong'
+
   requestBodies:
-    importCsv:  
+    importCsv:
       required: true
       content:
         multipart/form-data:

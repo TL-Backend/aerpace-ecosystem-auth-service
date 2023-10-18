@@ -53,6 +53,6 @@ module.exports = function (app) {
       permissions.UNASSIGN_DEVICES,
       permissions.EDIT_DISTRIBUTION,
     ]),
-    getDistributionDetails
+    getDistributionDetails,
   );
 };
