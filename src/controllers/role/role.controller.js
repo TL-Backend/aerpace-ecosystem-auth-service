@@ -13,7 +13,7 @@ const {
 } = require('../../APIRequest/request');
 const { roleUrls } = require('./role.url');
 
-const rbacConfig = require('../../middleware/authorization/rbac.config');
+const { updateRBAC } = require('../../middleware/authorization/authorization');
 
 const rolesEndPoint = process.env.ROLES_URL;
 
@@ -74,6 +74,8 @@ exports.createRole = async (req, res, next) => {
       });
     }
 
+    await updateRBAC();
+
     const {
       message: responseMessage,
       data: responseData,
@@ -115,13 +117,13 @@ exports.editRole = async (req, res, next) => {
       });
     }
 
+    await updateRBAC();
+
     const {
       message: responseMessage,
       data: responseData,
       code: responseCode,
     } = data;
-
-    await rbacConfig();
 
     return successResponse({
       data: responseData,
@@ -163,7 +165,7 @@ exports.deleteRole = async (req, res, next) => {
       code: responseCode,
     } = data;
 
-    await rbacConfig();
+    await updateRBAC();
 
     return successResponse({
       data: responseData,
