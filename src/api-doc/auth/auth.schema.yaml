@@ -1,7 +1,7 @@
 components:
   schemas:
     userProfile:
-      description: "profile"
+      description: 'profile'
       type: object
       properties:
         first_name:
@@ -31,16 +31,16 @@ components:
         first_time_login:
           type: integer
           example: 0
-  
+
   securitySchemes:
     Authorization:
       type: apiKey
       in: header
       name: Authorization
-      
+
   responses:
     loginSuccess:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -54,17 +54,17 @@ components:
                 properties:
                   id_token:
                     type: string
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98'
                   refresh_token:
                     type: string
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98'
                   profile:
-                    $ref: "#/components/schemas/userProfile"
+                    $ref: '#/components/schemas/userProfile'
               message:
                 type: string
-                example: "Login successful"
+                example: 'Login successful'
     loginUnauthorizedRequest:
-      description: "Unauthorized"
+      description: 'Unauthorized'
       content:
         application/json:
           schema:
@@ -78,9 +78,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Invalid credentials"
+                example: 'Invalid credentials'
     loginBadRequest:
-      description: "Bad request"
+      description: 'Bad request'
       content:
         application/json:
           schema:
@@ -96,7 +96,7 @@ components:
                 type: string
                 example: Email required, Password required, App type required
     authForbiddenRequest:
-      description: "Forbidden request"
+      description: 'Forbidden request'
       content:
         application/json:
           schema:
@@ -110,9 +110,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
     forgotPasswordSuccess:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -128,7 +128,7 @@ components:
                 type: string
                 example: Link to reset password is sent to your email
     forgotPasswordBadRequest:
-      description: "Bad request"
+      description: 'Bad request'
       content:
         application/json:
           schema:
@@ -144,7 +144,7 @@ components:
                 type: string
                 example: Email required
     resetPasswordSuccess:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -160,7 +160,7 @@ components:
                 type: string
                 example: Password changed successfully
     resetPasswordBadRequest:
-      description: "Bad request"
+      description: 'Bad request'
       content:
         application/json:
           schema:
@@ -176,7 +176,7 @@ components:
                 type: string
                 example: password required
     refreshSuccess:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -187,7 +187,7 @@ components:
                 properties:
                   id_token:
                     type: string
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98'
               code:
                 type: integer
                 example: 200
@@ -195,7 +195,7 @@ components:
                 type: string
                 example: Access token refreshed successfully
     internalError:
-      description: "Internal server error"
+      description: 'Internal server error'
       content:
         application/json:
           schema:
@@ -209,9 +209,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
     userNotFound:
-      description: "Data not found"
+      description: 'Data not found'
       content:
         application/json:
           schema:
@@ -227,7 +227,7 @@ components:
                 type: string
                 example: User not found
     somethingWentWrong:
-      description: "Bad request"
+      description: 'Bad request'
       content:
         application/json:
           schema:
@@ -241,9 +241,9 @@ components:
                 example: 400
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
     UnauthorizedSomethingWentWrong:
-      description: "Unauthorized request"
+      description: 'Unauthorized request'
       content:
         application/json:
           schema:
@@ -257,7 +257,7 @@ components:
                 example: 401
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
 
   requestBodies:
     login:
@@ -276,7 +276,7 @@ components:
               app:
                 type: string
                 example: ADMIN_PORTAL
-    forgotPassword: 
+    forgotPassword:
       required: true
       content:
         application/json:
@@ -305,8 +305,8 @@ components:
             properties:
               refresh_token:
                 type: string
-                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4    
-    temporaryPasswordReset: 
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
+    temporaryPasswordReset:
       required: true
       content:
         application/json:
@@ -316,4 +316,3 @@ components:
               new_password:
                 type: string
                 example: newpassword@123
-  

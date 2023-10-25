@@ -32,14 +32,12 @@ exports.updateRBAC = async () => {
 exports.checkUserPermissionsAny =
   (apiPermissions) => async (req, res, next) => {
     try {
-
       const roleFetch = await sequelize.query(fetchRoleNameOfUserQuery, {
         replacements: { user_id: req.claims.userId },
         raw: true,
       });
 
       const role = roleFetch[0][0].role_name;
-
       // To check whether the user or admin has the required permission
       let hasPermission = false;
 

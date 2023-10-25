@@ -1,22 +1,22 @@
 components:
   schemas:
     roles:
-      description: "Roles data"
+      description: 'Roles data'
       type: object
       properties:
         id:
           type: string
-          example: "1"
+          example: '1'
         role_name:
           type: string
-          example: "Role manager"
+          example: 'Role manager'
         permission_list:
           type: array
-          example: ["USERS#ROLES_TAB#TAB_LIST_VIEW"]
+          example: ['USERS#ROLES_TAB#TAB_LIST_VIEW']
         permission_tree:
           type: array
           items:
-            $ref: "#/components/schemas/permissionTree"
+            $ref: '#/components/schemas/permissionTree'
         created_at:
           type: string
           format: date-time
@@ -26,36 +26,36 @@ components:
           format: date-time
           example: 2023-06-14 15:19:28.836+05:30
     editRoles:
-      description: "Roles data"
+      description: 'Roles data'
       type: object
       properties:
         id:
           type: string
-          example: "r_1"
+          example: 'r_1'
 
     permissionTree:
       type: object
       properties:
         name:
           type: string
-          example: "Users"
+          example: 'Users'
         pages:
           type: array
           example:
             [
               {
-                "name": "Roles",
-                "pages": [],
-                "features":
+                'name': 'Roles',
+                'pages': [],
+                'features':
                   [
                     {
-                      "id": 4,
-                      "name": "List Roles",
-                      "page_id": 3,
-                      "identifier": "USERS#ROLES_TAB#TAB_LIST_VIEW",
+                      'id': 4,
+                      'name': 'List Roles',
+                      'page_id': 3,
+                      'identifier': 'USERS#ROLES_TAB#TAB_LIST_VIEW',
                     },
                   ],
-                "identifier": "USERS#ROLES_TAB",
+                'identifier': 'USERS#ROLES_TAB',
               },
             ]
         features:
@@ -63,7 +63,7 @@ components:
           example: []
         identifier:
           type: string
-          example: "USERS"
+          example: 'USERS'
 
   securitySchemes:
     Authorization:
@@ -73,7 +73,7 @@ components:
 
   responses:
     listRolesSuccess:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -88,12 +88,12 @@ components:
                   roles:
                     type: array
                     items:
-                      $ref: "#/components/schemas/roles"
+                      $ref: '#/components/schemas/roles'
               message:
                 type: string
-                example: "Roles fetched successfully"
+                example: 'Roles fetched successfully'
     deleteRolesSuccess:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -107,9 +107,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Role deleted successfully"
+                example: 'Role deleted successfully'
     editRolesSuccess:
-      description: "Success"
+      description: 'Success'
       content:
         application/json:
           schema:
@@ -120,13 +120,13 @@ components:
                 example: 200
               data:
                 type: object
-                $ref: "#/components/schemas/editRoles"
+                $ref: '#/components/schemas/editRoles'
               message:
                 type: string
-                example: "Role edited successfully"
+                example: 'Role edited successfully'
 
     addRoleBadRequest:
-      description: "Bad Request"
+      description: 'Bad Request'
       content:
         application/json:
           examples:
@@ -135,21 +135,21 @@ components:
               value:
                 code: 400
                 data: {}
-                message: "Features do not exist, please send a proper set of features"
+                message: 'Features do not exist, please send a proper set of features'
             example2:
               summary: 400 - Role already exists with same name
               value:
                 code: 400
                 data: {}
-                message: "Role already exists with this name, please try with new name"
+                message: 'Role already exists with this name, please try with new name'
             example3:
               summary: 400 - Failed to fetch master permissions
               value:
                 code: 400
                 data: {}
-                message: "failed to fetch master permission tree"
+                message: 'failed to fetch master permission tree'
     deleteRoleBadRequest:
-      description: "Bad request"
+      description: 'Bad request'
       content:
         application/json:
           examples:
@@ -158,15 +158,15 @@ components:
               value:
                 code: 400
                 data: {}
-                message: "Role is assigned to a user, cannot perform delete operation when role is assigned"
+                message: 'Role is assigned to a user, cannot perform delete operation when role is assigned'
             example2:
               summary: 400 - Role not found
               value:
                 code: 400
                 data: {}
-                message: "Role not found"
+                message: 'Role not found'
     editRoleBadRequest:
-      description: "Bad request"
+      description: 'Bad request'
       content:
         application/json:
           examples:
@@ -175,34 +175,34 @@ components:
               value:
                 code: 400
                 data: {}
-                message: "Features do not exist, please send a proper set of features"
+                message: 'Features do not exist, please send a proper set of features'
             example2:
               summary: 400 - Role already exists with same name
               value:
                 code: 400
                 data: {}
-                message: "Role already exists with this name, please try with new name"
+                message: 'Role already exists with this name, please try with new name'
             example3:
               summary: 400 - Failed to fetch master permission
               value:
                 code: 400
                 data: {}
-                message: "failed to fetch master permission tree"
+                message: 'failed to fetch master permission tree'
             example4:
               summary: 400 - Role not found
               value:
                 code: 400
                 data: {}
-                message: "Role not found"
+                message: 'Role not found'
             example5:
               summary: 400 - Nothing to update
               value:
                 code: 400
                 data: {}
-                message: "Nothing to update"
+                message: 'Nothing to update'
 
     unauthorizedRequest:
-      description: "Unauthorized request"
+      description: 'Unauthorized request'
       content:
         application/json:
           schema:
@@ -215,9 +215,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
     forbiddenRequest:
-      description: "Forbidden request"
+      description: 'Forbidden request'
       content:
         application/json:
           schema:
@@ -229,22 +229,22 @@ components:
                 type: object
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
           examples:
             example1:
               summary: 403 - Access Denied
               value:
                 code: 403
                 data: {}
-                message: "Access Denied"
+                message: 'Access Denied'
             example2:
               summary: 403 - Something went wrong
               value:
                 code: 403
                 data: {}
-                message: "Something went wrong"
+                message: 'Something went wrong'
     internalError:
-      description: "Internal Server Error"
+      description: 'Internal Server Error'
       content:
         application/json:
           schema:
@@ -258,7 +258,7 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
 
   requestBodies:
     addRoleRequestBody:
@@ -270,8 +270,8 @@ components:
             properties:
               role_name:
                 type: string
-                example: "Role manager"
+                example: 'Role manager'
               permissions:
                 type: array
                 example:
-                  ["USERS#ROLES_TAB#TAB_LIST_VIEW", "USERS#ROLES_TAB#ADD_ROLE"]
+                  ['USERS#ROLES_TAB#TAB_LIST_VIEW', 'USERS#ROLES_TAB#ADD_ROLE']

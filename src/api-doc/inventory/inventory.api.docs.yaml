@@ -2,7 +2,7 @@ paths:
   /inventory:
     get:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - INVENTORY
       summary: Get list of Inventory.
@@ -12,7 +12,7 @@ paths:
           description: Search will be applied to mac address, model, variant, version, color, distribution.
           schema:
             type: string
-            example: Blue      
+            example: Blue
         - name: version_id
           in: query
           description: To Apply filter based upon model, variant and version.
@@ -67,17 +67,17 @@ paths:
             example: 10
       responses:
         200:
-          $ref: "#/components/responses/listInventoryResponse"
+          $ref: '#/components/responses/listInventoryResponse'
         401:
-          $ref: "#/components/responses/unauthorizedRequest"
+          $ref: '#/components/responses/unauthorizedRequest'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /inventory/csv:
     post:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - INVENTORY
       summary: To add devices using CSV file.
@@ -88,22 +88,22 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: "#/components/requestBodies/importCsv"
+        $ref: '#/components/requestBodies/importCsv'
       responses:
         200:
-          $ref: "#/components/responses/importCsvSuccess"
+          $ref: '#/components/responses/importCsvSuccess'
         400:
-          $ref: "#/components/responses/csvSomethingWentWrong"
+          $ref: '#/components/responses/csvSomethingWentWrong'
         401:
-          $ref: "#/components/responses/unauthorizedRequest"
+          $ref: '#/components/responses/unauthorizedRequest'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /inventory/csv-history:
     get:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - INVENTORY
       summary: List the CSV import history.
@@ -127,10 +127,10 @@ paths:
             example: 10
       responses:
         200:
-          $ref: "#/components/responses/importCsvHistory"
+          $ref: '#/components/responses/importCsvHistory'
         401:
-          $ref: "#/components/responses/unauthorizedRequest"
+          $ref: '#/components/responses/unauthorizedRequest'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'

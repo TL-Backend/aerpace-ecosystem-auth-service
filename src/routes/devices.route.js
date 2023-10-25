@@ -1,0 +1,47 @@
+const {
+  listDevicesTypes,
+  getDevicesList,
+  getPersonalityDetails,
+  editDevices,
+  createDeviceLevel,
+} = require('../controllers/devices/device.controller');
+const {
+  verifyIdToken,
+} = require('../middleware/authentication/authentication');
+const {
+  checkUserPermissionsAny,
+} = require('../middleware/authorization/authorization');
+const { permissions } = require('../utils/constant');
+
+module.exports = function (app) {
+  app.get(
+    '/devices/types',
+    verifyIdToken,
+    checkUserPermissionsAny([permissions.VIEW_LIST_CAR_TYPES]),
+    listDevicesTypes,
+  );
+  app.get(
+    '/devices/personality',
+    verifyIdToken,
+    checkUserPermissionsAny([permissions.VIEW_PERSONALITY_PRIVILEGES]),
+    getPersonalityDetails,
+  );
+  app.patch(
+    '/devices',
+    verifyIdToken,
+    checkUserPermissionsAny([permissions.EDIT_CAR]),
+    editDevices,
+  );
+  app.post(
+    '/devices/device-level',
+    verifyIdToken,
+    checkUserPermissionsAny([permissions.ADD_CAR]),
+    createDeviceLevel,
+  );
+  app.get(
+    '/devices/:device_type',
+    verifyIdToken,
+    checkUserPermissionsAny([permissions.VIEW_LIST_CAR]),
+    getDevicesList,
+  );
+};
