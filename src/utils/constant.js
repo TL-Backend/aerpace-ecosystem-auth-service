@@ -1,6 +1,7 @@
 exports.dbTables = {
   ROLES_TABLE: 'aergov_roles',
   USER_ROLES_TABLE: 'aergov_user_roles',
+  USERS_TABLE: `aergov_users`,
 };
 
 exports.successResponses = {
