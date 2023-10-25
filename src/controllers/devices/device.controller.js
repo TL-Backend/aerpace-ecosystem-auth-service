@@ -50,11 +50,11 @@ exports.listDevicesTypes = async (req, res, next) => {
 
 exports.getDevicesList = async (req, res, next) => {
   try {
-    console.log(`${deviceEndPoint}/${deviceUrl.GET_DEVICES_LIST}`);
+    const { device_type } = req.params;
     const { message, data, success, errorCode } = await getAsync({
-      uri: `${deviceEndPoint}/${deviceUrl.GET_DEVICES_LIST}`,
+      uri: `${deviceEndPoint}/${device_type}`,
       body: req.body,
-      query: req.query,
+      params: req.query,
     });
 
     if (!success) {
