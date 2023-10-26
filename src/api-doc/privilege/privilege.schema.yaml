@@ -90,7 +90,7 @@ components:
         category:
           type: string
           example: "AC"
-        category_id:
+        actions:
           type: array
           items:
             $ref: "#/components/schemas/privilegesActionsObject"
@@ -98,7 +98,7 @@ components:
       description: "privileges action object"
       type: object
       properties:
-        action_id:
+        id:
           id: integer
           example: 2
         action_name:
@@ -142,7 +142,7 @@ components:
                     example: ["OWNER"]
               message:
                 type: string
-                example: "data fetched successful"
+                example: "privileges were added to a personality successfully"
     addPersonalityPrivilegesBadRequest:
       description: "Bad Request"
       content:
@@ -190,7 +190,6 @@ components:
                 code: 400
                 data: {}
                 message: "privileged should be present and it must be an object"
-                Invalid personality: ${value} is sent in privileges
             example6:
               summary: 400 - Invalid personality
               value:
@@ -246,7 +245,7 @@ components:
                 example: "invalid version and it should be starting with ver_1"
           examples:
             example1:
-              summary: 400 - Invalid device Id
+              summary: 400 - Invalid version
               value:
                 code: 400
                 data: {}
@@ -322,6 +321,12 @@ components:
                 code: 400
                 data: {}
                 message: "Invalid model or variant id"
+            example4:
+              summary: 400 - Invalid model or variant id
+              value:
+                code: 400
+                data: {}
+                message: "Invalid model id"
     unauthorizedRequest:
       description: "Unauthorized request"
       content:
@@ -381,3 +386,39 @@ components:
               message:
                 type: string
                 example: "Something went wrong"
+  requestBodies:
+    addPersonalityPrivileges:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+                example: CAR
+              model_id:
+                type: string
+                example: m_1
+              variant_id:
+                type: string
+                example: va_1
+              version_id:
+                type: string
+                example: ver_1
+              privileges:
+                type: array
+                description: An array of privileges.
+                items:
+                  type: object
+                  properties:
+                    personality:
+                      type: string
+                      example: OWNER
+                    actions:
+                      type: array
+                      description: An array of actions allowed for this privilege.
+                      items:
+                        type: integer
+                        example: 1
+                        description: The action allowed for this privilege.

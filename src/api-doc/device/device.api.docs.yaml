@@ -5,6 +5,12 @@ paths:
         - Authorization: []
       tags:
         - DEVICES
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
       summary: List devices types.
       responses:
         200:
@@ -21,7 +27,19 @@ paths:
         - Authorization: []
       tags:
         - DEVICES
-      summary: fetches devices list based on type. 
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+        - name: device_type
+          in: path
+          required: true
+          description: Type of the device to be provided.
+          schema:
+            type: string
+      summary: fetches devices list based on type.
       responses:
         200:
           $ref: "#/components/responses/listDevicesSuccess"
@@ -39,7 +57,15 @@ paths:
         - Authorization: []
       tags:
         - DEVICES
-      summary: edit the devices. 
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+      summary: edit the devices.
+      requestBody:
+        $ref: "#/components/requestBodies/editDevices"
       responses:
         200:
           $ref: "#/components/responses/editDevicesSuccess"
@@ -57,7 +83,31 @@ paths:
         - Authorization: []
       tags:
         - DEVICES
-      summary: get personality details. 
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+        - name: model_id
+          in: query
+          required: true
+          description: Model id to be provided.
+          schema:
+            type: string
+        - name: variant_id
+          in: query
+          required: true
+          description: variant id to be provided.
+          schema:
+            type: string
+        - name: version_id
+          in: query
+          required: true
+          description: version id to be provided.
+          schema:
+            type: string
+      summary: get personality details.
       responses:
         200:
           $ref: "#/components/responses/getPersonalityDetailsSuccess"
@@ -75,7 +125,15 @@ paths:
         - Authorization: []
       tags:
         - DEVICES
-      summary: create device level. 
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/addDevices"
+      summary: create device level.
       responses:
         200:
           $ref: "#/components/responses/createDeviceLevelSuccess"

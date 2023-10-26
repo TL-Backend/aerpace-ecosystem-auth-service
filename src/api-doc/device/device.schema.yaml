@@ -28,7 +28,7 @@ components:
           example: ev
         status:
           type: string
-          example: ''
+          example: 'ACTIVE'
     variantList:
       description: "variantList"
       type: object
@@ -41,7 +41,7 @@ components:
           example: ev
         status:
           type: string
-          example: ''
+          example: 'ACTIVE'
         versions:
           type: array
           items:
@@ -61,7 +61,7 @@ components:
               example: nexon
             status:
               type: string
-              example: ''
+              example: 'ACTIVE'
             variants:
               type: array
               items:
@@ -192,6 +192,61 @@ components:
               message:
                 type: string
                 example: "Unable to perform edit operation for device details"
+          examples:
+            example1:
+              summary: 400 - Invalid status
+              value:
+                code: 400
+                data: {}
+                message: "status should be present and it must be an string"
+            example2:
+              summary: 400 - Invalid type
+              value:
+                code: 400
+                data: {}
+                message: "type should be present and it must be an string"
+            example3:
+              summary: 400 - Invalid privileges
+              value:
+                code: 400
+                data: {}
+                message: "privileges should be present and it must be an string"
+            example4:
+              summary: 400 - Model missing
+              value:
+                code: 400
+                data: {}
+                message: "Model Id must be passed."
+            example5:
+              summary: 400 - Unable to perform edit operation
+              value:
+                code: 400
+                data: {}
+                message: "Unable to perform edit operation for device details."
+            example6:
+              summary: 400 - Invalid model id type
+              value:
+                code: 400
+                data: {}
+                message: "Model id should be of type string and should start with m_."
+            example7:
+              summary: 400 - Invalid Variant id type
+              value:
+                code: 400
+                data: {}
+                message: "Variant id should be of type string and should start with va_ ."
+            example8:
+              summary: 400 - Invalid version id type
+              value:
+                code: 400
+                data: {}
+                message: "Version id should be of type string and should start with ver_ ."
+            example9:
+              summary: 400 - Invalid Category id type
+              value:
+                code: 400
+                data: {}
+                message: "Category id must be present in privileges and it must be integer."
     getPersonalityDetailsSuccess:
       description: "Success"
       content:
@@ -367,4 +422,83 @@ components:
                 type: string
                 example: "Something went wrong"
 
-
+  requestBodies:
+    editDevices:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: tesla
+              status:
+                type: string
+                example: ACTIVE
+              type:
+                type: string
+                example: CAR
+              model_id:
+                type: string
+                example: m_1
+              variant_id:
+                type: string
+                example: va_1
+              version_id:
+                type: string
+                example: ver_1
+              privileges:
+                type: array
+                description: An array of privileges.
+                items:
+                  type: object
+                  properties:
+                    category_id:
+                      type: integer
+                      example: 1
+                    actions:
+                      type: array
+                      description: An array of actions allowed for this privilege.
+                      items:
+                        type: integer
+                        example: 1
+                        description: The action allowed for this privilege.
+    addDevices:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: tesla
+              status:
+                type: string
+                example: ACTIVE
+              type:
+                type: string
+                example: CAR
+              model_id:
+                type: string
+                example: m_1
+              variant_id:
+                type: string
+                example: va_1
+              privileges:
+                type: array
+                description: An array of privileges.
+                items:
+                  type: object
+                  properties:
+                    category_id:
+                      type: integer
+                      example: 1
+                    actions:
+                      type: array
+                      description: An array of actions allowed for this privilege.
+                      items:
+                        type: integer
+                        example: 1
+                        description: The action allowed for this privilege.

@@ -5,7 +5,15 @@ paths:
         - Authorization: []
       tags:
         - DEVICES
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
       summary: List devices types.
+      requestBody:
+        $ref: "#/components/requestBodies/addPersonalityPrivileges"
       responses:
         200:
           $ref: "#/components/responses/addPersonalityPrivilegesSuccess"
@@ -23,6 +31,19 @@ paths:
         - Authorization: []
       tags:
         - DEVICES
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+        - name: version_id
+          in: query
+          required: true
+          description: Version_id to be provided to fetch the device privileges/
+          schema:
+            type: string
+            example: ver_1
       summary: get device level privileges.
       responses:
         200:
@@ -43,6 +64,31 @@ paths:
         - Authorization: []
       tags:
         - DEVICES
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: true
+          description: Type of the device to be provided.
+          schema:
+            type: string
+            example: CAR
+        - name: model_id
+          in: query
+          description: When a model ID is provided, the privileges will be filtered, resulting in privileges that do not include the specific privileges associated with that particular model.
+          schema:
+            type: string
+            example: m_1
+        - name: variant_id
+          in: query
+          description: When a variant ID is provided, the privileges will be filtered, resulting in privileges that do not include the specific privileges associated with that particular variant.
+          schema:
+            type: string
+            example: va_1
       summary: List master privileges.
       responses:
         200:
