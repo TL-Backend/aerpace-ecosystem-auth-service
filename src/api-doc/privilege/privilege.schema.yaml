@@ -287,41 +287,41 @@ components:
               message:
                 type: string
                 example: "data fetched successful"
-      masterPrivilegesBadRequest:
-        description: "Bad Request"
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                code:
-                  type: integer
-                  example: 400
-                data:
-                  type: object
-                  example: {}
-                message:
-                  type: string
-                  example: "invalid device type"
-            examples:
-              example1:
-                summary: 400 - Invalid variant id, or model_id is missing
-                value:
-                  code: 400
-                  data: {}
-                  message: "Invalid variant id, or model_id is missing"
-              example2:
-                summary: 400 - Invalid device type
-                value:
-                  code: 400
-                  data: {}
-                  message: "Invalid device type"
-              example3:
-                summary: 400 - Invalid model or variant id
-                value:
-                  code: 400
-                  data: {}
-                  message: "Invalid model or variant id"
+    masterPrivilegesBadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "invalid device type"
+          examples:
+            example1:
+              summary: 400 - Invalid variant id, or model_id is missing
+              value:
+                code: 400
+                data: {}
+                message: "Invalid variant id, or model_id is missing"
+            example2:
+              summary: 400 - Invalid device type
+              value:
+                code: 400
+                data: {}
+                message: "Invalid device type"
+            example3:
+              summary: 400 - Invalid model or variant id
+              value:
+                code: 400
+                data: {}
+                message: "Invalid model or variant id"
     unauthorizedRequest:
       description: "Unauthorized request"
       content:

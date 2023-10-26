@@ -37,21 +37,21 @@ paths:
           $ref: "#/components/responses/forbiddenRequest"
         500:
           $ref: "#/components/responses/internalError"
-  # /privileges:
-  #   post:
-  #     security:
-  #       - Authorization: []
-  #     tags:
-  #       - DEVICES
-  #     summary: List master privileges.
-  #     responses:
-  #       200:
-  #         $ref: "#/components/responses/masterPrivilegesSuccess"
-  #       400: 
-  #         $ref: "#/components/responses/masterPrivilegesBadRequest"
-  #       401:
-  #         $ref: "#/components/responses/unauthorizedRequest"
-  #       403:
-  #         $ref: "#/components/responses/forbiddenRequest"
-  #       500:
-  #         $ref: "#/components/responses/internalError"
+  /privileges:
+    post:
+      security:
+        - Authorization: []
+      tags:
+        - DEVICES
+      summary: List master privileges.
+      responses:
+        200:
+          $ref: "#/components/responses/masterPrivilegesSuccess"
+        400:
+          $ref: "#/components/responses/masterPrivilegesBadRequest"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
