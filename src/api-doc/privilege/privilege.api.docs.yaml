@@ -18,7 +18,7 @@ paths:
         500:
           $ref: "#/components/responses/internalError"
   /privileges/devices:
-    post:
+    get:
       security:
         - Authorization: []
       tags:
@@ -38,7 +38,7 @@ paths:
         500:
           $ref: "#/components/responses/internalError"
   /privileges:
-    post:
+    get:
       security:
         - Authorization: []
       tags:
