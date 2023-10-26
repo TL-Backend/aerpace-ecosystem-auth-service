@@ -1,0 +1,370 @@
+components:
+  schemas:
+    listDeviceTypes:
+      description: "listDeviceTypes"
+      type: object
+      properties:
+        type:
+          type: string
+          example: CAR
+        model_count:
+          type: integer
+          example: 3
+        version_count:
+          type: integer
+          example: 3
+        variant_count:
+          type: integer
+          example: 3
+    versionList:
+      description: "variantList"
+      type: object
+      properties:
+        id:
+          type: string
+          example: m_1
+        name:
+          type: string
+          example: ev
+        status:
+          type: string
+          example: ''
+    variantList:
+      description: "variantList"
+      type: object
+      properties:
+        id:
+          type: string
+          example: m_1
+        name:
+          type: string
+          example: ev
+        status:
+          type: string
+          example: ''
+        versions:
+          type: array
+          items:
+            $ref: "#/components/schemas/versionList"
+    listDevices:
+      description: "list device based on type"
+      type: object
+      properties:
+        model:
+          type: object
+          properties:
+            id:
+              type: string
+              example: m_1
+            name:
+              type: string
+              example: nexon
+            status:
+              type: string
+              example: ''
+            variants:
+              type: array
+              items:
+                $ref: "#/components/schemas/variantList"
+    getPersonalityDetails:
+      description: "personality details"
+      type: object
+      properties:
+        name:
+          type: string
+          example: OWNER
+        privileges:
+          type: object
+          properties:
+            AC_TURN_ON:
+              type: object
+              properties:
+                action_id:
+                  type: integer
+                  example: 1
+                action_name:
+                  type: string
+                  example: turn on
+                category_id:
+                  type: integer
+                  example: 1
+                effective_level:
+                  type: string
+                  example: 'version'
+                action_identifier:
+                  type: string
+                  example: 'AC_TURN_ON'
+                effective_level_id:
+                  type: string
+                  example: 'ver_2'
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+
+  responses:
+    listDeviceTypesSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  device_types:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/listDeviceTypes"
+              message:
+                type: string
+                example: "data fetched successful"
+    listDevicesSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/listDevices"
+              message:
+                type: string
+                example: "devices fetched successfully"
+    listDeviceBadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Invalid device type CAR"
+    editDevicesSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Devices edited successfully"
+    editDeviceBadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Unable to perform edit operation for device details"
+    getPersonalityDetailsSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  personalities:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/getPersonalityDetails"
+              message:
+                type: string
+                example: "Devices edited successfully"
+    getPersonalityDetailsBadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Invalid model"
+          examples:
+            example1:
+              summary: 400 - Invalid model
+              value:
+                code: 400
+                data: {}
+                message: "Invalid model"
+            example2:
+              summary: 400 - Invalid variant
+              value:
+                code: 400
+                data: {}
+                message: "Invalid variant"
+            example3:
+              summary: 400 - Invalid version
+              value:
+                code: 400
+                data: {}
+                message: "Invalid version"
+    createDeviceLevelSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  model_id:
+                    type: string
+                    example: m_1
+              message:
+                type: string
+                example: "device added successfully"
+    createDeviceLevelBadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "status should be present and it must be an string"
+          examples:
+            example1:
+              summary: 400 - Invalid model type
+              value:
+                code: 400
+                data: {}
+                message: "Model id should be of type string and should start with m_ "
+            example2:
+              summary: 400 - Invalid model type
+              value:
+                code: 400
+                data: {}
+                message: "Model id should be of type string and should start with m_ "
+            example3:
+              summary: 400 - Invalid variant type
+              value:
+                code: 400
+                data: {}
+                message: "Variant id should be of type string and should start with va_"
+            example4:
+              summary: 400 - Model id should be passed
+              value:
+                code: 400
+                data: {}
+                message: "Model Id must be passed."
+    unauthorizedRequest:
+      description: 'Unauthorized request'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 401
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: 'Something went wrong'              
+    forbiddenRequest:
+      description: "Forbidden request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              data:
+                type: object
+              message:
+                type: string
+                example: "Something went wrong"
+          examples:
+            example1:
+              summary: 403 - Access Denied
+              value:
+                code: 403
+                data: {}
+                message: "Access Denied"
+            example2:
+              summary: 403 - Something went wrong
+              value:
+                code: 403
+                data: {}
+                message: "Something went wrong"
+    internalError:
+      description: "Internal Server Error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+
+

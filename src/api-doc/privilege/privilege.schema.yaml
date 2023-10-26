@@ -1,0 +1,383 @@
+components:
+  schemas:
+    listDeviceTypes:
+      description: "listDeviceTypes"
+      type: object
+      properties:
+        type:
+          type: string
+          example: CAR
+        model_count:
+          type: integer
+          example: 3
+        version_count:
+          type: integer
+          example: 3
+        variant_count:
+          type: integer
+          example: 3'
+    getDeviceLevelPrivileges:
+      description: "get device level privileges"
+      type: object
+      properties:
+        model:
+          type: array
+          items:
+            $ref: "#/components/schemas/deviceModelObject"
+        variant:
+          type: array
+          items:
+            $ref: "#/components/schemas/deviceVariantObject"
+        version:
+          type: array
+          items:
+            $ref: "#/components/schemas/deviceVersionObject"
+    deviceModelObject:
+      description: "model object in device level privileges"
+      type: object
+      properties:
+        action_id:
+          type: integer
+          example: 2
+        action_name:
+          type: string
+          example: "TURN_OFF"
+        category_id:
+          type: integer
+          example: 2
+        category_name:
+          type: string
+          example: "TURN_ON"
+    deviceVariantObject:
+      description: "variant object in device level privileges"
+      type: object
+      properties:
+        action_id:
+          type: integer
+          example: 2
+        action_name:
+          type: string
+          example: "TURN_OFF"
+        category_id:
+          type: integer
+          example: 2
+        category_name:
+          type: string
+          example: "TURN_ON"
+    deviceVersionObject:
+      description: "version object in device level privileges"
+      type: object
+      properties:
+        action_id:
+          type: integer
+          example: 2
+        action_name:
+          type: string
+          example: "TURN_OFF"
+        category_id:
+          type: integer
+          example: 2
+        category_name:
+          type: string
+          example: "TURN_ON"
+    masterPrivileges:
+      description: "version object in device level privileges"
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        category:
+          type: string
+          example: "AC"
+        category_id:
+          type: array
+          items:
+            $ref: "#/components/schemas/privilegesActionsObject"
+    privilegesActionsObject:
+      description: "privileges action object"
+      type: object
+      properties:
+        action_id:
+          id: integer
+          example: 2
+        action_name:
+          type: string
+          example: "TURN_OFF"
+        action_identifier:
+          type: string
+          example: AC_TURN_OFF
+
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+
+  responses:
+    addPersonalityPrivilegesSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  model_id:
+                    type: object
+                    example: m_1
+                  variant_id:
+                    type: object
+                    example: va_1
+                  version_id:
+                    type: object
+                    example: ver_1
+                  effected_personalities:
+                    type: array
+                    example: ["OWNER"]
+              message:
+                type: string
+                example: "data fetched successful"
+    addPersonalityPrivilegesBadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Invalid device type"
+          examples:
+            example1:
+              summary: 400 - Invalid device type
+              value:
+                code: 400
+                data: {}
+                message: "Invalid device type"
+            example2:
+              summary: 400 - Invalid model id
+              value:
+                code: 400
+                data: {}
+                message: "model id  Id should be present which should be string and start with m_1"
+            example3:
+              summary: 400 - Invalid variant id
+              value:
+                code: 400
+                data: {}
+                message: "variant Id should be present which should be string and start with va_1"
+            example4:
+              summary: 400 - Invalid version id
+              value:
+                code: 400
+                data: {}
+                message: "version Id should be present which should be string and start with ver_1"
+            example5:
+              summary: 400 - Invalid privileges
+              value:
+                code: 400
+                data: {}
+                message: "privileged should be present and it must be an object"
+                Invalid personality: ${value} is sent in privileges
+            example6:
+              summary: 400 - Invalid personality
+              value:
+                code: 400
+                data: {}
+                message: " Invalid personality: DRIVER is sent in privileges"
+            example7:
+              summary: 400 - Invalid List of actions
+              value:
+                code: 400
+                data: {}
+                message: " List of actions should be present  for the personality DRIVER"
+            example8:
+              summary: 400 - improper list of action
+              value:
+                code: 400
+                data: {}
+                message: " Improper list of action id's were given."
+    getDeviceLevelPrivilegesSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  privileges:
+                    type: object
+                    $ref: "#/components/schemas/getDeviceLevelPrivileges"
+              message:
+                type: string
+                example: "data fetched successful"
+    getDeviceLevelPrivilegesBadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "invalid version and it should be starting with ver_1"
+          examples:
+            example1:
+              summary: 400 - Invalid device Id
+              value:
+                code: 400
+                data: {}
+                message: "invalid version and it should be starting with ver_1"
+    getDeviceLevelPrivilegesNotFound:
+      description: "Not Found"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 404
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "invalid version id"
+    masterPrivilegesSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  master_privileges:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/masterPrivileges"
+              message:
+                type: string
+                example: "data fetched successful"
+      masterPrivilegesBadRequest:
+        description: "Bad Request"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: integer
+                  example: 400
+                data:
+                  type: object
+                  example: {}
+                message:
+                  type: string
+                  example: "invalid device type"
+            examples:
+              example1:
+                summary: 400 - Invalid variant id, or model_id is missing
+                value:
+                  code: 400
+                  data: {}
+                  message: "Invalid variant id, or model_id is missing"
+              example2:
+                summary: 400 - Invalid device type
+                value:
+                  code: 400
+                  data: {}
+                  message: "Invalid device type"
+              example3:
+                summary: 400 - Invalid model or variant id
+                value:
+                  code: 400
+                  data: {}
+                  message: "Invalid model or variant id"
+    unauthorizedRequest:
+      description: "Unauthorized request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 401
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
+    forbiddenRequest:
+      description: "Forbidden request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              data:
+                type: object
+              message:
+                type: string
+                example: "Something went wrong"
+          examples:
+            example1:
+              summary: 403 - Access Denied
+              value:
+                code: 403
+                data: {}
+                message: "Access Denied"
+            example2:
+              summary: 403 - Something went wrong
+              value:
+                code: 403
+                data: {}
+                message: "Something went wrong"
+    internalError:
+      description: "Internal Server Error"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"

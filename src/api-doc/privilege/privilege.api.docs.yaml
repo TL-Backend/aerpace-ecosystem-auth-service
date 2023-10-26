@@ -1,0 +1,57 @@
+paths:
+  /privileges/personality:
+    post:
+      security:
+        - Authorization: []
+      tags:
+        - DEVICES
+      summary: List devices types.
+      responses:
+        200:
+          $ref: "#/components/responses/addPersonalityPrivilegesSuccess"
+        400: 
+          $ref: "#/components/responses/addPersonalityPrivilegesBadRequest"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+  /privileges/devices:
+    post:
+      security:
+        - Authorization: []
+      tags:
+        - DEVICES
+      summary: get device level privileges.
+      responses:
+        200:
+          $ref: "#/components/responses/getDeviceLevelPrivilegesSuccess"
+        400: 
+          $ref: "#/components/responses/getDeviceLevelPrivilegesBadRequest"
+        404: 
+          $ref: "#/components/responses/getDeviceLevelPrivilegesNotFound"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+  # /privileges:
+  #   post:
+  #     security:
+  #       - Authorization: []
+  #     tags:
+  #       - DEVICES
+  #     summary: List master privileges.
+  #     responses:
+  #       200:
+  #         $ref: "#/components/responses/masterPrivilegesSuccess"
+  #       400: 
+  #         $ref: "#/components/responses/masterPrivilegesBadRequest"
+  #       401:
+  #         $ref: "#/components/responses/unauthorizedRequest"
+  #       403:
+  #         $ref: "#/components/responses/forbiddenRequest"
+  #       500:
+  #         $ref: "#/components/responses/internalError"
