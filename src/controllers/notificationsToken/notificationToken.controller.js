@@ -5,16 +5,16 @@ const {
   errorResponse,
 } = require('../../utils/responseHandler');
 const { statusCodes } = require('../../utils/statusCode');
-const { mobileTokenUrls } = require('./mobileToken.url');
+const { notificationTokenUrls } = require('./notificationToken.url');
 
 const tokenEndpoint = process.env.MOBILE_TOKEN_URL;
 
-exports.addMobileTokenToUser = async (req, res, next) => {
+exports.addNotificationTokenUrlsToUser = async (req, res, next) => {
   try {
     const userId = req.params.user_id;
 
     const { message, data, success, errorCode } = await postAsync({
-      uri: `${tokenEndpoint}/${mobileTokenUrls.ADD_TOKEN({ userId })}`,
+      uri: `${tokenEndpoint}/${notificationTokenUrls.ADD_TOKEN({ userId })}`,
       body: req.body,
     });
 

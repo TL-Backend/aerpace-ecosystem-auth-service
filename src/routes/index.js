@@ -6,7 +6,7 @@ require('./role.route')(router);
 require('./auth.route')(router);
 require('./user.route')(router);
 require('./distribution.route')(router);
-require('./mobileToken.route')(router);
+require('./notificationToken.route')(router);
 
 module.exports = {
   router,
