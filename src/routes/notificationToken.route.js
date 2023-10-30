@@ -1,5 +1,6 @@
 const { addNotificationTokenUrlsToUser } = require("../controllers/notificationsToken/notificationToken.controller");
+const { verifyIdToken } = require("../middleware/authentication/authentication");
 
 module.exports = function (app) {
-  app.post('/token/:user_id', addNotificationTokenUrlsToUser);
+  app.post('/token', verifyIdToken, addNotificationTokenUrlsToUser);
 };

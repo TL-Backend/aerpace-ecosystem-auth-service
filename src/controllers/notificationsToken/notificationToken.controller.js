@@ -11,7 +11,7 @@ const tokenEndpoint = process.env.MOBILE_TOKEN_URL;
 
 exports.addNotificationTokenUrlsToUser = async (req, res, next) => {
   try {
-    const userId = req.params.user_id;
+    const userId = req.query.userId;
 
     const { message, data, success, errorCode } = await postAsync({
       uri: `${tokenEndpoint}/${notificationTokenUrls.ADD_TOKEN({ userId })}`,
