@@ -1,0 +1,432 @@
+components:
+  schemas:
+    listDistributions:
+      description: "list distribution object"
+      type: object
+      properties:
+        data_count:
+          type: "string"
+          example: "10"
+        id:
+          type: "string"
+          example: "dr_0"
+        name:
+          type: "string"
+          example: "aditya"
+        email:
+          type: "string"
+          example: "aditya@gmail.com"
+        address:
+          type: "string"
+          example: "visakhapatam"
+        region:
+          type: "string"
+          example: "visakhapatam"
+        phone_number:
+          type: "string"
+          example: "9109109100"
+        distributor:
+          $ref: "#/components/schemas/distributor"
+    distributor:
+      description: distibutor object
+      type: object
+      properties:
+        first_name:
+          type: "string"
+          example: "aditya"
+        last_name:
+          type: "string"
+          example: "chandra"
+        address:
+          type: "string"
+          example: "Dno: 123 , mdp"
+        state:
+          type: "string"
+          example: "pradesh"
+        pincode:
+          type: "string"
+          example: "530022"
+        phone_number:
+          type: "string"
+          example: "9109109100"
+    listDistributionFilterSchema:
+      description: distibutor object
+      type: array
+      items:
+        example: "visakhapatam"
+    listDistributionObject:
+      description: distibutor object
+      type: object
+      properties:
+        id:
+          type: "string"
+          example: "aditya"
+        name:
+          type: "string"
+          example: "aditya"
+        email:
+          type: "string"
+          example: "aditya"
+        address:
+          type: "string"
+          example: "aditya"
+        phone_number:
+          type: "string"
+          example: "aditya"
+        country_code:
+          type: "string"
+          example: "aditya"
+        distibutor:
+          $ref: "#/components/schemas/distributor"
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Authorization
+
+  responses:
+    listDistributionsSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                distributions:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/listDistributions"
+                total_count:
+                  type: integer
+                  example: 50
+                page_limit:
+                  type: integer
+                  example: 10
+                page_number:
+                  type: integer
+                  example: 1
+                total_pages:
+                  type: integer
+                  example: 7
+                filters:
+                  type: object
+                  $ref: "#/components/schemas/listDistributionFilterSchema"
+              message:
+                type: string
+                example: "Distributions fetched successfully"
+    assignDistributionsSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                distributions:
+                  type: string
+                  example: dr_1
+                failed_devices:
+                  type: array
+                  example: []
+              message:
+                type: string
+                example: "Devices Assigned to distribution T'challa PVT LTD"
+    UnassignDistributionsSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                distributions:
+                  type: string
+                  example: dr_1
+                failed_devices:
+                  type: array
+                  example: []
+              message:
+                type: string
+                example: "Devices unassigned to distribution Chandra PVT LTD successfully"
+    addDistributionsSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                distributions:
+                  $ref: "#/components/schemas/listDistributionObject"
+              message:
+                type: string
+                example: "Devices unassigned to distribution Chandra PVT LTD successfully"
+    listSingleDistribution:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                distributions:
+                  $ref: "#/components/schemas/listDistributionObject"
+              message:
+                type: string
+                example: "Distributions fetched successfully"
+    listDistributionsBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Invalid page number
+              value:
+                code: 400
+                data: {}
+                message: "Page number should be positive."
+            example2:
+              summary: 400 - Invalid page limit
+              value:
+                code: 400
+                data: {}
+                message: "Page limit should be positive."
+            example3:
+              summary: 400 - Invalid search key
+              value:
+                code: 400
+                data: {}
+                message: "Invalid search key, it should be string!"
+            example4:
+              summary: 400 - Invalid region filter
+              value:
+                code: 400
+                data: {}
+                message: "Invalid region filter, it should be a string!"
+    listSingleDistributionBadRequest: 
+      description: "Bad request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Distribution not found
+              value:
+                code: 400
+                data: {}
+                message: "Distribution not found."
+
+    AssignDistributionsBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Invalid distribution id
+              value:
+                code: 400
+                data: {}
+                message: "Distribution Id is required, it should be of type string and should start with dr_."
+            example2:
+              summary: 400 - Invalid devices list
+              value:
+                code: 400
+                data: {}
+                message: "List of devices are required."
+            example3:
+              summary: 400 - Empty devices list
+              value:
+                code: 400
+                data: {}
+                message: "Devices cannot be empty"
+            example4:
+              summary: 400 - Distributor not found
+              value:
+                code: 400
+                data: {}
+                message: "Distribution not found with id: dr_1"
+            example5:
+              summary: 400 - Failed to assign devices
+              value:
+                code: 400
+                data: {}
+                message: "Unable to assign devices with Id's: 'AD-F2-7C-54-73-55'"
+    UnassignDistributionsBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Invalid distribution id
+              value:
+                code: 400
+                data: {}
+                message: "Distribution Id is required, it should be of type string and should start with dr_."
+            example2:
+              summary: 400 - Invalid devices list
+              value:
+                code: 400
+                data: {}
+                message: "List of devices are required."
+            example3:
+              summary: 400 - Empty devices list
+              value:
+                code: 400
+                data: {}
+                message: "Devices cannot be empty"
+            example4:
+              summary: 400 - Distributor not found
+              value:
+                code: 400
+                data: {}
+                message: "Distribution not found with id: dr_1"
+            example5:
+              summary: 400 - Failed to assign devices
+              value:
+                code: 400
+                data: {}
+                message: "Unable to assign devices with Id's: 'AD-F2-7C-54-73-55'"
+    addDistributionsBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Invalid input value
+              value:
+                code: 400
+                data: {}
+                message: "first_name is mandatory."
+            example2:
+              summary: 400 - Distribution already exist
+              value:
+                code: 400
+                data: {}
+                message: "Distribution already exist with this email."
+    editDistributionBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Invalid input value
+              value:
+                code: 400
+                data: {}
+                message: "region contains invalid data."
+            example2:
+              summary: 400 - Distribution id is invalid
+              value:
+                code: 400
+                data: {}
+                message: "Provided distribution id is invalid."
+    forbiddenRequest:
+      description: "Forbidden request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              data:
+                type: object
+              message:
+                type: string
+                example: "Something went wrong"
+          examples:
+            example1:
+              summary: 403 - Access Denied
+              value:
+                code: 403
+                data: {}
+                message: "Access Denied"
+            example2:
+              summary: 403 - Something went wrong
+              value:
+                code: 403
+                data: {}
+                message: "Something went wrong"
+
+  requestBodies:
+    assignAndUnassignDistributions:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              distribution_id:
+                type: integer
+                example: "dr_1"
+              devices:
+                type: array
+                items:
+                  example: "AD-F2-7C-54-73-55"
+    addDistributions:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "pradeep"
+              email:
+                type: string
+                example: "pradeep@aerpace.com"
+              region:
+                type: string
+                example: "america"
+              phone_number:
+                type: string
+                example: "9109109100"
+              address:
+                type: string
+                example: "los santos"
+              country_code:
+                type: string
+                example: "+91"
+              distributor:
+                $ref: "#/components/schemas/distributor"
+    editDistributions:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "pradeep"
+              email:
+                type: string
+                example: "pradeep@aerpace.com"
+              region:
+                type: string
+                example: "america"
+              phone_number:
+                type: string
+                example: "9109109100"
+              address:
+                type: string
+                example: "los santos"
+              country_code:
+                type: string
+                example: "+91"

@@ -1,0 +1,173 @@
+paths:
+  /distribution:
+    get:
+      security:
+          - Authorization: []
+      tags:
+        - DISTRIBUTION
+      summary: user can list all the distributions
+      parameters:
+        - name: search
+          in: query
+          description: Search will be applied to first name, last name, email, name.
+          schema:
+            type: string
+            example: aditya
+        - name: region
+          in: query
+          description: Filter will be applied based on the region selected.
+          schema:
+            type: string
+            example: vizag
+        - name: page_number
+          in: query
+          description: Number of the page to be shown.
+          schema:
+            type: integer
+            example: 1
+        - name: page_limit
+          in: query
+          description: Limit of items per page.
+          schema:
+            type: integer
+            example: 10
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: "#/components/responses/listDistributionsSuccess"
+        401:
+          $ref: "#/components/responses/forbiddenRequest"
+        400:
+          $ref: "#/components/responses/listDistributionsBadRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+    post:
+      security:
+          - Authorization: []
+      tags:
+        - DISTRIBUTION
+      summary: add distributions
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/addDistributions"
+      responses:
+        200:
+          $ref: "#/components/responses/addDistributionsSuccess"
+        401:
+          $ref: "#/components/responses/forbiddenRequest"
+        400:
+          $ref: "#/components/responses/addDistributionsBadRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+  /distribution/assign:
+    post:
+      security:
+          - Authorization: []
+      tags:
+        - DISTRIBUTION
+      summary: Assign distributions
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/assignAndUnassignDistributions"
+      responses:
+        200:
+          $ref: "#/components/responses/assignDistributionsSuccess"
+        401:
+          $ref: "#/components/responses/forbiddenRequest"
+        400:
+          $ref: "#/components/responses/AssignDistributionsBadRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+  /distribution/unassign:
+    post:
+      security:
+          - Authorization: []
+      tags:
+        - DISTRIBUTION
+      summary: Unassign distributions
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/assignAndUnassignDistributions"
+      responses:
+        200:
+          $ref: "#/components/responses/UnassignDistributionsSuccess"
+        401:
+          $ref: "#/components/responses/forbiddenRequest"
+        400:
+          $ref: "#/components/responses/UnassignDistributionsBadRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+  /distribution/:id:
+    post:
+      security:
+          - Authorization: []
+      tags:
+        - DISTRIBUTION
+      summary: get a particular distribution
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: Id to be provided to get distribution details.
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: "#/components/responses/listSingleDistribution"
+        401:
+          $ref: "#/components/responses/forbiddenRequest"
+        400:
+          $ref: "#/components/responses/listSingleDistributionBadRequest"
+        500:
+          $ref: "#/components/responses/internalError"
+    patch:
+      security:
+          - Authorization: []
+      tags:
+        - DISTRIBUTION
+      summary: get a particular distribution
+      requestBody:
+        $ref: "#/components/requestBodies/editDistributions"
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: Id to be provided to edit distribution details.
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: "#/components/responses/listDistributionsSuccess"
+        401:
+          $ref: "#/components/responses/forbiddenRequest"
+        400:
+          $ref: "#/components/responses/editDistributionBadRequest"
+        500:
+          $ref: "#/components/responses/internalError"
