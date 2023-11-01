@@ -22,6 +22,9 @@ components:
         region:
           type: "string"
           example: "visakhapatam"
+        country_code:
+          type: "string"
+          example: "+91"
         phone_number:
           type: "string"
           example: "9109109100"
@@ -40,12 +43,18 @@ components:
         address:
           type: "string"
           example: "Dno: 123 , mdp"
+        email:
+          type: "string"
+          example: "aditya@gmail.com"
         state:
           type: "string"
           example: "pradesh"
         pincode:
           type: "string"
           example: "530022"
+        country_code:
+          type: "string"
+          example: "+91"
         phone_number:
           type: "string"
           example: "9109109100"
@@ -173,7 +182,23 @@ components:
                   $ref: "#/components/schemas/listDistributionObject"
               message:
                 type: string
-                example: "Devices unassigned to distribution Chandra PVT LTD successfully"
+                example: "Distribution created successfully"
+    editDistributionsSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                distributions:
+                  $ref: "#/components/schemas/listDistributionObject"
+              message:
+                type: string
+                example: "Distribution updated successfully"
     listSingleDistribution:
       description: "Success"
       content:
@@ -430,3 +455,5 @@ components:
               country_code:
                 type: string
                 example: "+91"
+              distributor:
+                $ref: "#/components/schemas/distributor"
