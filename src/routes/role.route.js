@@ -22,7 +22,7 @@ module.exports = function (app) {
       permissions.ADD_USER,
       permissions.EDIT_USER,
       permissions.EDIT_ROLE,
-      permissions.DELETE_ROLE,  
+      permissions.DELETE_ROLE,
     ]),
     listRoles,
   );
