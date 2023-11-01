@@ -1,17 +1,17 @@
 components:
   schemas:
     userRole:
-      description: "role details"
+      description: 'Role details.'
       type: object
       properties:
-        role_name: 
+        role_name:
           type: string
           example: admin
         id:
           type: string
           example: r_24
     listUser:
-      description: "list user profile object"
+      description: 'List user profile object.'
       type: object
       properties:
         first_name:
@@ -39,9 +39,9 @@ components:
           type: string
           example: andhra pradesh
         role:
-          $ref: "#/components/schemas/userRole"
+          $ref: '#/components/schemas/userRole'
     addUser:
-      description: "add user profile object"
+      description: 'Add user profile.'
       type: object
       properties:
         first_name:
@@ -71,11 +71,11 @@ components:
         user_type:
           type: string
           example: USER
-        id: 
+        id:
           type: string
           example: u_1
     editUser:
-      description: "edit user editable details"
+      description: 'Edit user editable details.'
       type: object
       properties:
         first_name:
@@ -101,7 +101,7 @@ components:
           example: 530022
         state:
           type: string
-          example: andhra pradesh     
+          example: andhra pradesh
 
   securitySchemes:
     Authorization:
@@ -110,7 +110,7 @@ components:
       name: Authorization
   responses:
     listUserSuccess:
-      description: "success"
+      description: 'success'
       content:
         application/json:
           schema:
@@ -125,7 +125,7 @@ components:
                   users:
                     type: array
                     items:
-                      $ref: "#/components/schemas/listUser"
+                      $ref: '#/components/schemas/listUser'
                   total_count:
                     type: integer
                     example: 50
@@ -140,9 +140,9 @@ components:
                     example: 7
               message:
                 type: string
-                example: "User fetched successfully"
+                example: 'User fetched successfully.'
     addUserSuccess:
-      description: "success"
+      description: 'success'
       content:
         application/json:
           schema:
@@ -153,12 +153,12 @@ components:
                 example: 200
               data:
                 type: object
-                $ref: "#/components/schemas/addUser"
+                $ref: '#/components/schemas/addUser'
               message:
                 type: string
-                example: "User created successfully"   
+                example: 'User created successfully.'
     editUserSuccess:
-      description: "success"
+      description: 'success'
       content:
         application/json:
           schema:
@@ -169,13 +169,13 @@ components:
                 example: 200
               data:
                 type: object
-                $ref: "#/components/schemas/editUser"
+                $ref: '#/components/schemas/editUser'
               message:
                 type: string
-                example: "User updated successfully"  
+                example: 'User updated successfully.'
 
     internalError:
-      description: "Internal server error"
+      description: 'Internal server error'
       content:
         application/json:
           schema:
@@ -189,9 +189,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong.'
     forbiddenRequest:
-      description: "Forbidden request"
+      description: 'Forbidden request'
       content:
         application/json:
           schema:
@@ -203,22 +203,22 @@ components:
                 type: object
               message:
                 type: string
-                example: "Something went wrong"
+                example: 'Something went wrong'
           examples:
             example1:
               summary: 403 - Access Denied
               value:
                 code: 403
                 data: {}
-                message: "Access Denied"
+                message: 'Access Denied'
             example2:
               summary: 403 - Something went wrong
               value:
                 code: 403
                 data: {}
-                message: "Something went wrong"
+                message: 'Something went wrong'
     userNotFound:
-      description: "Data not found"
+      description: 'Data not found'
       content:
         application/json:
           schema:
@@ -232,25 +232,49 @@ components:
                 example: 404
               message:
                 type: string
-                example: User not found
-    somethingWentWrong:
-      description: "Bad request"
+                example: User not found.
+    addUserSomethingWentWrong:
+      description: 'Bad request'
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              data:
-                type: object
-                example: {}
-              code:
-                type: integer
-                example: 400
-              message:
-                type: string
-                example: Something went wrong
+          examples:
+            example1:
+              summary: 400 - Invalid input fields
+              value:
+                code: 400
+                data: {}
+                message: 'Invalid input fields.'
+            example2:
+              summary: 400 - Invalid role_id
+              value:
+                code: 400
+                data: {}
+                message: 'Invalid role_id.'
+            example3:
+              summary: 400 - User already exists
+              value:
+                code: 400
+                data: {}
+                message: 'User already exists with this email.'
+    editUserSomethingWentWrong:
+      description: 'Bad request'
+      content:
+        application/json:
+          examples:
+            example1:
+              summary: 400 - Invalid user
+              value:
+                code: 400
+                data: {}
+                message: 'Invalid user id.'
+            example2:
+              summary: 400 - Invalid role_id
+              value:
+                code: 400
+                data: {}
+                message: 'Invalid role_id.'
     UnauthorizedSomethingWentWrong:
-      description: "Unauthorized request"
+      description: 'Unauthorized request'
       content:
         application/json:
           schema:
@@ -264,10 +288,44 @@ components:
                 example: 401
               message:
                 type: string
-                example: Something went wrong
-              
+                example: Something went wrong.
+
   requestBodies:
     editUser:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              first_name:
+                type: string
+                example: aditya
+              last_name:
+                type: string
+                example: chandra
+              email:
+                type: string
+                example: aditya@tilicho.in
+              phone_number:
+                type: string
+                example: 9090909090
+              roll_id:
+                type: string
+                example: r_1
+              country_code:
+                type: string
+                example: +91
+              address:
+                type: string
+                example: Visakhapatnam
+              pin_code:
+                type: string
+                example: 530022
+              state:
+                type: string
+                example: andhra pradesh
+    addUser:
       required: true
       content:
         application/json:
@@ -298,34 +356,3 @@ components:
               state:
                 type: string
                 example: andhra pradesh
-    addUser:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                first_name:
-                  type: string
-                  example: aditya
-                last_name:
-                  type: string
-                  example: chandra
-                email:
-                  type: string
-                  example: aditya@tilicho.in
-                phone_number:
-                  type: string
-                  example: 9090909090
-                country_code:
-                  type: string
-                  example: +91
-                address:
-                  type: string
-                  example: Visakhapatnam
-                pin_code:
-                  type: string
-                  example: 530022
-                state:
-                  type: string
-                  example: andhra pradesh

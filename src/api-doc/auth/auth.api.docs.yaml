@@ -5,16 +5,16 @@ paths:
         - AUTH
       summary: User can login using email and password credentials.
       requestBody:
-        $ref: "#/components/requestBodies/login"
+        $ref: '#/components/requestBodies/login'
       responses:
         200:
-          $ref: "#/components/responses/loginSuccess"
+          $ref: '#/components/responses/loginSuccess'
         401:
-          $ref: "#/components/responses/loginUnauthorizedRequest"
+          $ref: '#/components/responses/loginUnauthorizedRequest'
         400:
-          $ref: "#/components/responses/loginBadRequest"
+          $ref: '#/components/responses/loginBadRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
 
   /auth/forgot-password:
     post:
@@ -22,16 +22,16 @@ paths:
         - AUTH
       summary: User can reset his password when he forgets it, this will send a reset link to his email.
       requestBody:
-        $ref: "#/components/requestBodies/forgotPassword"  
+        $ref: '#/components/requestBodies/forgotPassword'
       responses:
         200:
-          $ref: "#/components/responses/forgotPasswordSuccess"
+          $ref: '#/components/responses/forgotPasswordSuccess'
         404:
-          $ref: "#/components/responses/userNotFound"
+          $ref: '#/components/responses/userNotFound'
         400:
-          $ref: "#/components/responses/forgotPasswordBadRequest"
+          $ref: '#/components/responses/forgotPasswordBadRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
 
   /auth/reset-password/:uuid:
     post:
@@ -39,7 +39,7 @@ paths:
         - AUTH
       summary: User can change the password by clicking on the reset link sent to his mail.
       requestBody:
-        $ref: "#/components/requestBodies/resetPassword"  
+        $ref: '#/components/requestBodies/resetPassword'
       parameters:
         - name: uuid
           in: path
@@ -50,13 +50,13 @@ paths:
             example: 2d1db902-2f44-4c90-9a3e-b9319755e8cd
       responses:
         200:
-          $ref: "#/components/responses/resetPasswordSuccess"
+          $ref: '#/components/responses/resetPasswordSuccess'
         400:
-          $ref: "#/components/responses/resetPasswordBadRequest"
+          $ref: '#/components/responses/resetPasswordBadRequest'
         401:
-          $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+          $ref: '#/components/responses/UnauthorizedSomethingWentWrong'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
 
   /auth/refresh:
     post:
@@ -64,26 +64,26 @@ paths:
         - AUTH
       summary: When id token expires, new id token will be generated with a valid refresh token.
       requestBody:
-        $ref: "#/components/requestBodies/refresh"  
+        $ref: '#/components/requestBodies/refresh'
       responses:
         200:
-          $ref: "#/components/responses/refreshSuccess"
+          $ref: '#/components/responses/refreshSuccess'
         400:
-          $ref: "#/components/responses/somethingWentWrong"
+          $ref: '#/components/responses/somethingWentWrong'
         401:
-          $ref: "#/components/responses/UnauthorizedSomethingWentWrong"
+          $ref: '#/components/responses/UnauthorizedSomethingWentWrong'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
 
   /auth/temporary-password-reset:
     post:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - AUTH
       summary: When user logins for the first time he can change his temporary password.
       requestBody:
-        $ref: "#/components/requestBodies/temporaryPasswordReset"  
+        $ref: '#/components/requestBodies/temporaryPasswordReset'
         required: true
         content:
           application/json:
@@ -102,12 +102,12 @@ paths:
             type: string
       responses:
         200:
-          $ref: "#/components/responses/resetPasswordSuccess"
+          $ref: '#/components/responses/resetPasswordSuccess'
         400:
-          $ref: "#/components/responses/somethingWentWrong"
-        403: 
-          $ref: "#/components/responses/authForbiddenRequest"
+          $ref: '#/components/responses/somethingWentWrong'
+        403:
+          $ref: '#/components/responses/authForbiddenRequest'
         404:
-          $ref: "#/components/responses/userNotFound"
+          $ref: '#/components/responses/userNotFound'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
