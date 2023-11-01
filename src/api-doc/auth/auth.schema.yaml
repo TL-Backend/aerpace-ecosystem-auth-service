@@ -13,6 +13,9 @@ components:
         email:
           type: string
           example: aditya@tilicho.in
+        country_code:
+          type: string
+          example: +91
         phone_number:
           type: string
           example: 9090909090

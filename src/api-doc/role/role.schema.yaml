@@ -261,7 +261,7 @@ components:
                 example: 'Something went wrong'
 
   requestBodies:
-    addRoleRequestBody:
+    addAndEditRoleRequestBody:
       required: true
       content:
         application/json:

@@ -4,7 +4,7 @@ paths:
       security:
         - Authorization: []
       tags:
-        - 'Roles'
+        - "Roles"
       summary: Get the list of roles.
       parameters:
         - name: Authorization
@@ -41,7 +41,7 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: '#/components/requestBodies/addRoleRequestBody'
+        $ref: '#/components/requestBodies/addAndEditRoleRequestBody'
       responses:
         200:
           $ref: '#/components/responses/listRolesSuccess'
@@ -89,6 +89,8 @@ paths:
       tags:
         - 'Roles'
       summary: To edit a role.
+      requestBody:
+        $ref: '#/components/requestBodies/addAndEditRoleRequestBody'
       parameters:
         - name: Authorization
           in: headers
@@ -103,9 +105,9 @@ paths:
             example: r_1
       responses:
         200:
-          $ref: '#/components/responses/editRolesSuccess'
+          $ref: "#/components/responses/editRolesSuccess"
         400:
-          $ref: '#/components/responses/editRoleBadRequest'
+          $ref: "#/components/responses/editRoleBadRequest"
         401:
           $ref: '#/components/responses/unauthorizedRequest'
         403:

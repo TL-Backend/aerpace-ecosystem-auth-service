@@ -3,6 +3,7 @@ paths:
     get:
       security:
         - Authorization: []
+        - Authorization: []
       tags:
         - USERS
       summary: All the active users will be listed.
@@ -73,10 +74,10 @@ paths:
         403:
           $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: '#/components/responses/somethingWentWrong'
+          $ref: '#/components/responses/addUserSomethingWentWrong'
         500:
-          $ref: '#/components/responses/internalError'
-  /users/:id:
+          $ref: "#/components/responses/internalError"
+  /users/{id}:
     patch:
       security:
         - Authorization: []
@@ -105,6 +106,6 @@ paths:
         403:
           $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: '#/components/responses/somethingWentWrong'
+          $ref: '#/components/responses/editUserSomethingWentWrong'
         500:
           $ref: '#/components/responses/internalError'

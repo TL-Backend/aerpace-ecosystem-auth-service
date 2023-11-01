@@ -33,7 +33,7 @@ paths:
         500:
           $ref: '#/components/responses/internalError'
 
-  /auth/reset-password/:uuid:
+  /auth/reset-password/{uuid}:
     post:
       tags:
         - AUTH
