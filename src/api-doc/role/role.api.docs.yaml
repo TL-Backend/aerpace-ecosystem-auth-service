@@ -52,8 +52,8 @@ paths:
         403:
           $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: '#/components/responses/internalError'
-  /roles/:id:
+          $ref: "#/components/responses/internalError"
+  /roles/{id}:
     delete:
       security:
         - Authorization: []
