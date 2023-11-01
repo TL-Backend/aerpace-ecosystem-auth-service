@@ -1,7 +1,7 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerValidation = require('express-ajv-swagger-validation');
 
-const swaggerURL  = process.env.AERPACE_URL
+const swaggerURL = process.env.AERPACE_URL;
 
 const swaggerDefinition = {
   openapi: '3.1.0',
