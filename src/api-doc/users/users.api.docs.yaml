@@ -3,7 +3,6 @@ paths:
     get:
       security:
         - Authorization: []
-        - Authorization: []
       tags:
         - USERS
       summary: All the active users will be listed.

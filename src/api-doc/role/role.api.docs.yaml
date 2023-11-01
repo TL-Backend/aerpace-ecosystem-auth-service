@@ -4,7 +4,7 @@ paths:
       security:
         - Authorization: []
       tags:
-        - "Roles"
+        - 'Roles'
       summary: Get the list of roles.
       parameters:
         - name: Authorization
@@ -52,8 +52,8 @@ paths:
         403:
           $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: '#/components/responses/internalError'
-  /roles/:id:
+          $ref: "#/components/responses/internalError"
+  /roles/{id}:
     delete:
       security:
         - Authorization: []
@@ -105,9 +105,9 @@ paths:
             example: r_1
       responses:
         200:
-          $ref: "#/components/responses/editRolesSuccess"
+          $ref: '#/components/responses/editRolesSuccess'
         400:
-          $ref: "#/components/responses/editRoleBadRequest"
+          $ref: '#/components/responses/editRoleBadRequest'
         401:
           $ref: '#/components/responses/unauthorizedRequest'
         403:
