@@ -1,27 +1,5 @@
 paths:
-  /devices/types:
-    get:
-      security:
-        - Authorization: []
-      tags:
-        - DEVICES
-      parameters:
-        - name: Authorization
-          in: headers
-          description: Id token to be provided to access.
-          schema:
-            type: string
-      summary: List devices types.
-      responses:
-        200:
-          $ref: "#/components/responses/listDeviceTypesSuccess"
-        401:
-          $ref: "#/components/responses/unauthorizedRequest"
-        403:
-          $ref: "#/components/responses/forbiddenRequest"
-        500:
-          $ref: "#/components/responses/internalError"
-  /devices/:device_type:
+  /devices/{device_type}:
     get:
       security:
         - Authorization: []

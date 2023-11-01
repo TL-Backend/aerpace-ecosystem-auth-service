@@ -76,7 +76,7 @@ paths:
           $ref: "#/components/responses/somethingWentWrong"
         500:
           $ref: "#/components/responses/internalError"
-  /users/:id:
+  /users/{id}:
     patch:
       security:
           - Authorization: []

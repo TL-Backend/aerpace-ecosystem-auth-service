@@ -53,7 +53,7 @@ paths:
           $ref: "#/components/responses/forbiddenRequest"
         500:
           $ref: "#/components/responses/internalError"
-  /roles/:id:
+  /roles/{id}:
     delete:
       security:
         - Authorization: []
