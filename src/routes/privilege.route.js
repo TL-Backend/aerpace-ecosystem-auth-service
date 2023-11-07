@@ -21,7 +21,7 @@ module.exports = function (app) {
     listMasterPrivileges,
   );
   app.get(
-    '/privileges/devices',
+    '/privileges/devices/:id',
     verifyIdToken,
     checkUserPermissionsAny([
       permissions.ADD_CAR,

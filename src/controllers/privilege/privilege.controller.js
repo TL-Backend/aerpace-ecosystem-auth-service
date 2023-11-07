@@ -50,8 +50,9 @@ exports.listMasterPrivileges = async (req, res, next) => {
 
 exports.getDeviceLevelPrivileges = async (req, res, next) => {
   try {
+    const { id } = req.params
     const { message, data, success, errorCode } = await getAsync({
-      uri: `${privilegeEndPoint}/${privilegeUrl.GET_DEVICE_LEVEL_PRIVILEGES}`,
+      uri: `${privilegeEndPoint}/${privilegeUrl.GET_DEVICE_LEVEL_PRIVILEGES}/${id}`,
       body: req.body,
       query: req.query,
     });
