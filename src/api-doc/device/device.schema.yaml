@@ -28,7 +28,7 @@ components:
           example: ev
         status:
           type: string
-          example: 'ACTIVE'
+          example: "ACTIVE"
     variantList:
       description: "variantList"
       type: object
@@ -41,7 +41,7 @@ components:
           example: ev
         status:
           type: string
-          example: 'ACTIVE'
+          example: "ACTIVE"
         versions:
           type: array
           items:
@@ -61,11 +61,34 @@ components:
               example: nexon
             status:
               type: string
-              example: 'ACTIVE'
+              example: "ACTIVE"
             variants:
               type: array
               items:
                 $ref: "#/components/schemas/variantList"
+    personalityPrivileges:
+      description: "personality details"
+      type: object
+      properties:
+        action_id:
+          type: integer
+          example: 1
+        action_name:
+          type: string
+          example: turn on
+        category_id:
+          type: integer
+          example: 1
+        effective_level:
+          type: string
+          example: "version"
+        action_identifier:
+          type: string
+          example: "AC_TURN_ON"
+        effective_level_id:
+          type: string
+          example: "ver_2"
+
     getPersonalityDetails:
       description: "personality details"
       type: object
@@ -74,29 +97,10 @@ components:
           type: string
           example: OWNER
         privileges:
-          type: object
-          properties:
-            AC_TURN_ON:
-              type: object
-              properties:
-                action_id:
-                  type: integer
-                  example: 1
-                action_name:
-                  type: string
-                  example: turn on
-                category_id:
-                  type: integer
-                  example: 1
-                effective_level:
-                  type: string
-                  example: 'version'
-                action_identifier:
-                  type: string
-                  example: 'AC_TURN_ON'
-                effective_level_id:
-                  type: string
-                  example: 'ver_2'
+          type: array
+          items:
+            $ref: "#/components/schemas/personalityPrivileges"
+
   securitySchemes:
     Authorization:
       type: apiKey
@@ -320,7 +324,7 @@ components:
                     example: m_1
               message:
                 type: string
-                example: "device added successfully"
+                example: "device created successfully"
     createDeviceLevelBadRequest:
       description: "Bad Request"
       content:
@@ -362,8 +366,70 @@ components:
                 code: 400
                 data: {}
                 message: "Model Id must be passed."
+    deviceDetailsSuccess:
+      description: "Success"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: CAR
+                  model_name:
+                    type: string
+                    example: NEXON
+                  variant_name:
+                    type: string
+                    example: EV
+                  version_name:
+                    type: string
+                    example: 2023
+                  status:
+                    type: string
+                    example: ACTIVE
+              message:
+                type: string
+                example: "data fetched successfully"
+    deviceDetailsNotFound:
+      description: "Not Found"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 404
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: null
+                  model_name:
+                    type: string
+                    example: null
+                  variant_name:
+                    type: string
+                    example: null
+                  version_name:
+                    type: string
+                    example: null
+                  status:
+                    type: string
+                    example: null
+              message:
+                type: string
+                example: "Data not found with the given id"
     unauthorizedRequest:
-      description: 'Unauthorized request'
+      description: "Unauthorized request"
       content:
         application/json:
           schema:
@@ -377,7 +443,7 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Something went wrong'              
+                example: "Something went wrong"
     forbiddenRequest:
       description: "Forbidden request"
       content:
@@ -424,6 +490,7 @@ components:
 
   requestBodies:
     editDevices:
+      description: Respective id to be provided to edit a particular level of device, i.e model_id to be provided to edit model or only variant_id to be provided for variant or version_id to be provided for version
       required: true
       content:
         application/json:
@@ -439,15 +506,9 @@ components:
               type:
                 type: string
                 example: CAR
-              model_id:
-                type: string
-                example: m_1
               variant_id:
                 type: string
                 example: va_1
-              version_id:
-                type: string
-                example: ver_1
               privileges:
                 type: array
                 description: An array of privileges.
@@ -465,6 +526,7 @@ components:
                         example: 1
                         description: The action allowed for this privilege.
     addDevices:
+      description: Respective id to be provided to create a particular level of device, i.e model_id to be provided to create model or only variant_id to be provided for variant or version_id to be provided for version
       required: true
       content:
         application/json:
@@ -480,9 +542,6 @@ components:
               type:
                 type: string
                 example: CAR
-              model_id:
-                type: string
-                example: m_1
               variant_id:
                 type: string
                 example: va_1

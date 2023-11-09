@@ -123,3 +123,33 @@ paths:
           $ref: "#/components/responses/forbiddenRequest"
         500:
           $ref: "#/components/responses/internalError"
+  /devices/device-level/{id}:
+    get:
+      security:
+        - Authorization: []
+      tags:
+        - DEVICES
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: id of the device level to be provided.
+          schema:
+            type: string
+      summary: fetched level names of devices.
+      responses:
+        200:
+          $ref: "#/components/responses/deviceDetailsSuccess"
+        404:
+          $ref: "#/components/responses/deviceDetailsNotFound"
+        401:
+          $ref: "#/components/responses/unauthorizedRequest"
+        403:
+          $ref: "#/components/responses/forbiddenRequest"
+        500:
+          $ref: "#/components/responses/internalError"
