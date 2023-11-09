@@ -72,7 +72,6 @@ paths:
             type: string
         - name: type
           in: query
-          required: true
           description: Type of the device to be provided.
           schema:
             type: string

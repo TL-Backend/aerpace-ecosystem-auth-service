@@ -500,9 +500,6 @@ components:
               name:
                 type: string
                 example: tesla
-              status:
-                type: string
-                example: ACTIVE
               type:
                 type: string
                 example: CAR
@@ -536,9 +533,6 @@ components:
               name:
                 type: string
                 example: tesla
-              status:
-                type: string
-                example: ACTIVE
               type:
                 type: string
                 example: CAR

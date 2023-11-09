@@ -242,14 +242,14 @@ components:
                 example: {}
               message:
                 type: string
-                example: "invalid version and it should be starting with ver_1"
+                example: "invalid version and it should be starting with ver_"
           examples:
             example1:
-              summary: 400 - Invalid version
+              summary: 400 - Invalid Id
               value:
                 code: 400
                 data: {}
-                message: "invalid version and it should be starting with ver_1"
+                message: "Invalid Id and and it should be starting with m_ or va_ or ver_"
     getDeviceLevelPrivilegesNotFound:
       description: "Not Found"
       content:
@@ -265,7 +265,7 @@ components:
                 example: {}
               message:
                 type: string
-                example: "invalid version id"
+                example: "Invalid id or data not found"
     masterPrivilegesSuccess:
       description: "Success"
       content:
