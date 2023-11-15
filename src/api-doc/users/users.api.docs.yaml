@@ -75,7 +75,7 @@ paths:
         400:
           $ref: '#/components/responses/addUserSomethingWentWrong'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /users/{id}:
     patch:
       security:

@@ -28,9 +28,9 @@ exports.importCsvValidation = async (req, res, next) => {
       req,
       res,
       err,
-      data:{
+      data: {
         response_file_name: null,
-        response_file_url: null
+        response_file_url: null,
       },
       message: err,
       code: statusCodes.STATUS_CODE_INVALID_FORMAT,
