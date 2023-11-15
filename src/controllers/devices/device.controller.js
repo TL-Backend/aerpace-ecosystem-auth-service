@@ -6,6 +6,7 @@ const {
 const { deviceUrl } = require('./device.url');
 
 const deviceEndPoint = process.env.DEVICE_URL;
+const deviceExecutorEndPoint = process.env.DEVICE_EXECUTOR_URL
 
 exports.listDevicesTypes = async (req, res, next) => {
   try {
@@ -175,7 +176,7 @@ exports.editDevices = async (req, res, next) => {
 exports.createDeviceLevel = async (req, res, next) => {
   try {
     const { message, data, success, errorCode } = await postAsync({
-      uri: `${deviceEndPoint}/${deviceUrl.ADD_DEVICE_LEVEL}`,
+      uri: `${deviceExecuteEndPoint}/${deviceUrl.ADD_DEVICE_LEVEL}`,
       body: req.body,
       query: req.query,
     });
@@ -258,7 +259,7 @@ exports.getValidHierarchy = async (req, res, next) => {
 exports.deviceExecutor = async (req, res, next) => {
   try {
     const { message, data, success, errorCode } = await postAsync({
-      uri: `${deviceEndPoint}/${deviceUrl.EXECUTE}`,
+      uri: `${deviceExecutorEndPoint}/${deviceUrl.EXECUTE}`,
       body: req.body,
       query: req.query,
     });
