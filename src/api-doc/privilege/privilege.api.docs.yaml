@@ -25,7 +25,7 @@ paths:
           $ref: "#/components/responses/forbiddenRequest"
         500:
           $ref: "#/components/responses/internalError"
-  /privileges/devices:
+  /privileges/devices/{id}:
     get:
       security:
         - Authorization: []
@@ -37,10 +37,10 @@ paths:
           description: Id token to be provided to access.
           schema:
             type: string
-        - name: version_id
-          in: query
+        - name: id
+          in: path
           required: true
-          description: Version_id to be provided to fetch the device privileges/
+          description: id to be provided to fetch the device actions
           schema:
             type: string
             example: ver_1
@@ -72,7 +72,6 @@ paths:
             type: string
         - name: type
           in: query
-          required: true
           description: Type of the device to be provided.
           schema:
             type: string
