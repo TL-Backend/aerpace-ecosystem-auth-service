@@ -34,6 +34,9 @@ components:
       description: distibutor object
       type: object
       properties:
+        id:
+          type: 'string'
+          example: 'u_0'
         first_name:
           type: 'string'
           example: 'aditya'
@@ -105,25 +108,27 @@ components:
                 type: integer
                 example: 200
               data:
-                distributions:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/listDistributions'
-                total_count:
-                  type: integer
-                  example: 50
-                page_limit:
-                  type: integer
-                  example: 10
-                page_number:
-                  type: integer
-                  example: 1
-                total_pages:
-                  type: integer
-                  example: 7
-                filters:
-                  type: object
-                  $ref: '#/components/schemas/listDistributionFilterSchema'
+                type: object
+                properties:
+                  distributions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/listDistributions'
+                  total_count:
+                    type: integer
+                    example: 50
+                  page_limit:
+                    type: integer
+                    example: 10
+                  page_number:
+                    type: integer
+                    example: 1
+                  total_pages:
+                    type: integer
+                    example: 7
+                  filters:
+                    type: object
+                    $ref: '#/components/schemas/listDistributionFilterSchema'
               message:
                 type: string
                 example: 'Distributions fetched successfully'
@@ -138,12 +143,14 @@ components:
                 type: integer
                 example: 200
               data:
-                distributions:
-                  type: string
-                  example: dr_1
-                failed_devices:
-                  type: array
-                  example: []
+                type: object
+                properties:
+                  distributions:
+                    type: string
+                    example: dr_1
+                  failed_devices:
+                    type: array
+                    example: []
               message:
                 type: string
                 example: "Devices Assigned to distribution T'challa PVT LTD"
@@ -158,12 +165,14 @@ components:
                 type: integer
                 example: 200
               data:
-                distributions:
-                  type: string
-                  example: dr_1
-                failed_devices:
-                  type: array
-                  example: []
+                type: object
+                properties:
+                  distributions:
+                    type: string
+                    example: dr_1
+                  failed_devices:
+                    type: array
+                    example: []
               message:
                 type: string
                 example: 'Devices unassigned to distribution Chandra PVT LTD successfully'
@@ -178,8 +187,10 @@ components:
                 type: integer
                 example: 200
               data:
-                distributions:
-                  $ref: '#/components/schemas/listDistributionObject'
+                type: object
+                properties:
+                  distributions:
+                    $ref: '#/components/schemas/listDistributionObject'
               message:
                 type: string
                 example: 'Distribution created successfully'
@@ -194,8 +205,10 @@ components:
                 type: integer
                 example: 200
               data:
-                distributions:
-                  $ref: '#/components/schemas/listDistributionObject'
+                type: object
+                properties:
+                  distributions:
+                    $ref: '#/components/schemas/listDistributionObject'
               message:
                 type: string
                 example: 'Distribution updated successfully'
