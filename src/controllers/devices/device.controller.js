@@ -1,12 +1,40 @@
 const { getAsync, patchAsync, postAsync } = require('../../APIRequest/request');
+const { logger } = require('../../utils/logger');
 const {
   errorResponse,
   successResponse,
 } = require('../../utils/responseHandler');
+const { statusCodes } = require('../../utils/statusCode');
 const { deviceUrl } = require('./device.url');
 
 const deviceEndPoint = process.env.DEVICE_URL;
 const deviceExecutorEndPoint = process.env.DEVICE_EXECUTOR_URL
+
+const responseHandler = ({ message, data, success, errorCode, req, res, next }) => {
+  if (!success) {
+    return errorResponse({
+      req,
+      res,
+      message,
+      code: errorCode,
+      data: data?.data,
+    });
+  }
+
+  const {
+    message: responseMessage,
+    data: responseData,
+    code: responseCode,
+  } = data;
+
+  return successResponse({
+    data: responseData,
+    req,
+    res,
+    message: responseMessage,
+    code: responseCode,
+  });
+}
 
 exports.listDevicesTypes = async (req, res, next) => {
   try {
@@ -15,30 +43,7 @@ exports.listDevicesTypes = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -58,29 +63,7 @@ exports.getDevicesList = async (req, res, next) => {
       params: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -99,29 +82,7 @@ exports.getPersonalityDetails = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -140,29 +101,7 @@ exports.editDevices = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -176,34 +115,12 @@ exports.editDevices = async (req, res, next) => {
 exports.createDeviceLevel = async (req, res, next) => {
   try {
     const { message, data, success, errorCode } = await postAsync({
-      uri: `${deviceExecuteEndPoint}/${deviceUrl.ADD_DEVICE_LEVEL}`,
+      uri: `${deviceEndPoint}/${deviceUrl.ADD_DEVICE_LEVEL}`,
       body: req.body,
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -223,29 +140,7 @@ exports.getValidHierarchy = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -264,29 +159,7 @@ exports.deviceExecutor = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({

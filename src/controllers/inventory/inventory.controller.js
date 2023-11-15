@@ -10,6 +10,32 @@ const { inventoryUrls } = require('./inventory.url');
 
 const inventoryEndPoint = process.env.INVENTORY_URL;
 
+const responseHandler = ({ message, data, success, errorCode, req, res, next }) => {
+  if (!success) {
+    return errorResponse({
+      req,
+      res,
+      message,
+      code: errorCode,
+      data: data?.data,
+    });
+  }
+
+  const {
+    message: responseMessage,
+    data: responseData,
+    code: responseCode,
+  } = data;
+
+  return successResponse({
+    data: responseData,
+    req,
+    res,
+    message: responseMessage,
+    code: responseCode,
+  });
+}
+
 exports.listInventory = async (req, res, next) => {
   try {
     const { message, data, success, errorCode } = await getAsync({
@@ -17,29 +43,7 @@ exports.listInventory = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -57,29 +61,7 @@ exports.getImportHistoryList = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -105,30 +87,7 @@ exports.importCSV = async (req, res, next) => {
         },
       },
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({

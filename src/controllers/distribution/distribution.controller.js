@@ -9,6 +9,32 @@ const { distributionUrl } = require('./distribution.url');
 
 const distributionEndPoint = process.env.DISTRIBUTION_URL;
 
+const responseHandler = ({ message, data, success, errorCode, req, res, next }) => {
+  if (!success) {
+    return errorResponse({
+      req,
+      res,
+      message,
+      code: errorCode,
+      data: data?.data,
+    });
+  }
+
+  const {
+    message: responseMessage,
+    data: responseData,
+    code: responseCode,
+  } = data;
+
+  return successResponse({
+    data: responseData,
+    req,
+    res,
+    message: responseMessage,
+    code: responseCode,
+  });
+}
+
 exports.addDistribution = async (req, res, next) => {
   try {
     const { message, data, success, errorCode } = await postAsync({
@@ -16,30 +42,7 @@ exports.addDistribution = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -58,30 +61,7 @@ exports.editDistribution = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -99,30 +79,7 @@ exports.listDistribution = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -140,30 +97,7 @@ exports.assignDistribution = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -181,30 +115,7 @@ exports.unassignDistribution = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -222,30 +133,7 @@ exports.getDistributionDetails = async (req, res, next) => {
       uri: `${distributionEndPoint}/${id}`,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({

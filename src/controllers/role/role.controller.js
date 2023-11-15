@@ -17,6 +17,38 @@ const { updateRBAC } = require('../../middleware/authorization/authorization');
 
 const rolesEndPoint = process.env.ROLES_URL;
 
+const responseHandler = async ({ message, data, success, errorCode, req, res, next }) => {
+  try {
+    if (!success) {
+      return errorResponse({
+        req,
+        res,
+        message,
+        code: errorCode,
+        data: data?.data,
+      });
+    }
+
+    await updateRBAC();
+
+    const {
+      message: responseMessage,
+      data: responseData,
+      code: responseCode,
+    } = data;
+
+    return successResponse({
+      data: responseData,
+      req,
+      res,
+      message: responseMessage,
+      code: responseCode,
+    });
+  } catch (err) {
+
+  }
+}
+
 exports.listRoles = async (req, res, next) => {
   try {
     const { message, data, success, errorCode } = await getAsync({
@@ -64,31 +96,7 @@ exports.createRole = async (req, res, next) => {
       body: req.body,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data,
-      });
-    }
-
-    await updateRBAC();
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -107,31 +115,7 @@ exports.editRole = async (req, res, next) => {
       body: req.body,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data,
-      });
-    }
-
-    await updateRBAC();
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -148,32 +132,7 @@ exports.deleteRole = async (req, res, next) => {
     const { message, data, success, errorCode } = await deleteAsync({
       uri: `${rolesEndPoint}/${roleUrls.DELETE_ROLES({ id })}`,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    await updateRBAC();
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
