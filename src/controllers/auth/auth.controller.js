@@ -9,6 +9,32 @@ const { authUrls } = require('./auth.url');
 
 const baseUrl = process.env.AUTH_URL;
 
+const responseHandler = ({ message, data, success, errorCode }) => {
+  if (!success) {
+    return errorResponse({
+      req,
+      res,
+      message,
+      code: errorCode,
+      data: data?.data,
+    });
+  }
+
+  const {
+    message: responseMessage,
+    data: responseData,
+    code: responseCode,
+  } = data;
+
+  return successResponse({
+    data: responseData,
+    req,
+    res,
+    message: responseMessage,
+    code: responseCode,
+  });
+}
+
 exports.login = async (req, res, next) => {
   try {
     const { message, data, success, errorCode } = await postAsync({
@@ -17,29 +43,30 @@ exports.login = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
+    return responseHandler({ message, data, success, errorCode })
+    // if (!success) {
+    //   return errorResponse({
+    //     req,
+    //     res,
+    //     message,
+    //     code: errorCode,
+    //     data: data?.data,
+    //   });
+    // }
 
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
+    // const {
+    //   message: responseMessage,
+    //   data: responseData,
+    //   code: responseCode,
+    // } = data;
 
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    // return successResponse({
+    //   data: responseData,
+    //   req,
+    //   res,
+    //   message: responseMessage,
+    //   code: responseCode,
+    // });
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -57,30 +84,30 @@ exports.forgotPassword = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
+    return responseHandler({ message, data, success, errorCode })
+    // if (!success) {
+    //   return errorResponse({
+    //     req,
+    //     res,
+    //     message,
+    //     code: errorCode,
+    //     data: data?.data,
+    //   });
+    // }
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
+    // const {
+    //   message: responseMessage,
+    //   data: responseData,
+    //   code: responseCode,
+    // } = data;
 
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    // return successResponse({
+    //   data: responseData,
+    //   req,
+    //   res,
+    //   message: responseMessage,
+    //   code: responseCode,
+    // });
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -98,30 +125,30 @@ exports.temporaryPasswordReset = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
+    return responseHandler({ message, data, success, errorCode })
+    // if (!success) {
+    //   return errorResponse({
+    //     req,
+    //     res,
+    //     message,
+    //     code: errorCode,
+    //     data: data?.data,
+    //   });
+    // }
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
+    // const {
+    //   message: responseMessage,
+    //   data: responseData,
+    //   code: responseCode,
+    // } = data;
 
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    // return successResponse({
+    //   data: responseData,
+    //   req,
+    //   res,
+    //   message: responseMessage,
+    //   code: responseCode,
+    // });
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -140,30 +167,30 @@ exports.resetPassword = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
+    return responseHandler({ message, data, success, errorCode })
+    // if (!success) {
+    //   return errorResponse({
+    //     req,
+    //     res,
+    //     message,
+    //     code: errorCode,
+    //     data: data?.data,
+    //   });
+    // }
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
+    // const {
+    //   message: responseMessage,
+    //   data: responseData,
+    //   code: responseCode,
+    // } = data;
 
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    // return successResponse({
+    //   data: responseData,
+    //   req,
+    //   res,
+    //   message: responseMessage,
+    //   code: responseCode,
+    // });
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -181,30 +208,30 @@ exports.getAccessTokenWithRefresh = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
+    return responseHandler({ message, data, success, errorCode })
+    // if (!success) {
+    //   return errorResponse({
+    //     req,
+    //     res,
+    //     message,
+    //     code: errorCode,
+    //     data: data?.data,
+    //   });
+    // }
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
+    // const {
+    //   message: responseMessage,
+    //   data: responseData,
+    //   code: responseCode,
+    // } = data;
 
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    // return successResponse({
+    //   data: responseData,
+    //   req,
+    //   res,
+    //   message: responseMessage,
+    //   code: responseCode,
+    // });
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
