@@ -8,7 +8,7 @@ const { logger } = require('../../utils/logger');
 const storage = multer.memoryStorage({
   dest: 'uploads/',
   limits: {
-    fileSize: 5242880,
+    fileSize: 6000000,
   },
 });
 const upload = multer({ storage: storage });
