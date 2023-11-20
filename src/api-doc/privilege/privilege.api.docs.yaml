@@ -17,7 +17,7 @@ paths:
       responses:
         200:
           $ref: "#/components/responses/addPersonalityPrivilegesSuccess"
-        400: 
+        400:
           $ref: "#/components/responses/addPersonalityPrivilegesBadRequest"
         401:
           $ref: "#/components/responses/unauthorizedRequest"
@@ -48,9 +48,9 @@ paths:
       responses:
         200:
           $ref: "#/components/responses/getDeviceLevelPrivilegesSuccess"
-        400: 
+        400:
           $ref: "#/components/responses/getDeviceLevelPrivilegesBadRequest"
-        404: 
+        404:
           $ref: "#/components/responses/getDeviceLevelPrivilegesNotFound"
         401:
           $ref: "#/components/responses/unauthorizedRequest"
@@ -58,7 +58,7 @@ paths:
           $ref: "#/components/responses/forbiddenRequest"
         500:
           $ref: "#/components/responses/internalError"
-  /privileges:
+  /privileges?type&id:
     get:
       security:
         - Authorization: []
@@ -76,18 +76,12 @@ paths:
           schema:
             type: string
             example: CAR
-        - name: model_id
+        - name: id
           in: query
-          description: When a model ID is provided, the privileges will be filtered, resulting in privileges that do not include the specific privileges associated with that particular model.
+          description: When a model ID is provided, the privileges will be filtered, resulting in privileges that do not include the specific privileges associated with that particular model. Similarly When a variant ID is provided, the privileges will be filtered, resulting in privileges that do not include the specific privileges associated with that particular variant.
           schema:
             type: string
             example: m_1
-        - name: variant_id
-          in: query
-          description: When a variant ID is provided, the privileges will be filtered, resulting in privileges that do not include the specific privileges associated with that particular variant.
-          schema:
-            type: string
-            example: va_1
       summary: List master privileges.
       responses:
         200:
