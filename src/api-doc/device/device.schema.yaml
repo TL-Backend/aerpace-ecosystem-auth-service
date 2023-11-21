@@ -683,7 +683,7 @@ components:
               device_id:
                 type: string
                 example: 10
-              parameter:
+              parameters:
                 type: object
                 properties:
                   temperature:
