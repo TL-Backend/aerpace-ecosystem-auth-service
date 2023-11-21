@@ -385,12 +385,21 @@ components:
                   model_name:
                     type: string
                     example: NEXON
+                  model_id:
+                    type: string
+                    example: m_1
                   variant_name:
                     type: string
                     example: EV
+                  variant_id:
+                    type: string
+                    example: va_1
                   version_name:
                     type: string
                     example: 2023
+                  version_id:
+                    type: string
+                    example: ver_1
                   status:
                     type: string
                     example: ACTIVE
