@@ -4,37 +4,12 @@ const {
   errorResponse,
   successResponse,
 } = require('../../utils/responseHandler');
+const { responseHandler } = require('../../utils/responseHelper');
 const { statusCodes } = require('../../utils/statusCode');
 const { deviceUrl } = require('./device.url');
 
 const deviceEndPoint = process.env.DEVICE_URL;
 const deviceExecutorEndPoint = process.env.DEVICE_EXECUTOR_URL
-
-const responseHandler = ({ message, data, success, errorCode, req, res, next }) => {
-  if (!success) {
-    return errorResponse({
-      req,
-      res,
-      message,
-      code: errorCode,
-      data: data?.data,
-    });
-  }
-
-  const {
-    message: responseMessage,
-    data: responseData,
-    code: responseCode,
-  } = data;
-
-  return successResponse({
-    data: responseData,
-    req,
-    res,
-    message: responseMessage,
-    code: responseCode,
-  });
-}
 
 exports.listDevicesTypes = async (req, res, next) => {
   try {

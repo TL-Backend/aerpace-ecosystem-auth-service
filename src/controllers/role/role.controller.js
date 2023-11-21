@@ -12,42 +12,10 @@ const {
   deleteAsync,
 } = require('../../APIRequest/request');
 const { roleUrls } = require('./role.url');
+const { responseHandler, responseHandlerForRoles } = require('../../utils/responseHelper');
 
-const { updateRBAC } = require('../../middleware/authorization/authorization');
 
 const rolesEndPoint = process.env.ROLES_URL;
-
-const responseHandler = async ({ message, data, success, errorCode, req, res, next }) => {
-  try {
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    await updateRBAC();
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
-  } catch (err) {
-
-  }
-}
 
 exports.listRoles = async (req, res, next) => {
   try {
@@ -56,29 +24,7 @@ exports.listRoles = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -96,7 +42,7 @@ exports.createRole = async (req, res, next) => {
       body: req.body,
     });
 
-    return responseHandler({ message, data, success, errorCode, req, res, next })
+    return responseHandlerForRoles({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -115,7 +61,7 @@ exports.editRole = async (req, res, next) => {
       body: req.body,
     });
 
-    return responseHandler({ message, data, success, errorCode, req, res, next })
+    return responseHandlerForRoles({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -132,7 +78,7 @@ exports.deleteRole = async (req, res, next) => {
     const { message, data, success, errorCode } = await deleteAsync({
       uri: `${rolesEndPoint}/${roleUrls.DELETE_ROLES({ id })}`,
     });
-    return responseHandler({ message, data, success, errorCode, req, res, next })
+    return responseHandlerForRoles({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({

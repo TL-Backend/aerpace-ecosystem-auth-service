@@ -4,36 +4,11 @@ const {
   successResponse,
   errorResponse,
 } = require('../../utils/responseHandler');
+const { responseHandler } = require('../../utils/responseHelper');
 const { statusCodes } = require('../../utils/statusCode');
 const { authUrls } = require('./auth.url');
 
 const baseUrl = process.env.AUTH_URL;
-
-const responseHandler = ({ message, data, success, errorCode, req, res, next }) => {
-  if (!success) {
-    return errorResponse({
-      req,
-      res,
-      message,
-      code: errorCode,
-      data: data?.data,
-    });
-  }
-
-  const {
-    message: responseMessage,
-    data: responseData,
-    code: responseCode,
-  } = data;
-
-  return successResponse({
-    data: responseData,
-    req,
-    res,
-    message: responseMessage,
-    code: responseCode,
-  });
-}
 
 exports.login = async (req, res, next) => {
   try {

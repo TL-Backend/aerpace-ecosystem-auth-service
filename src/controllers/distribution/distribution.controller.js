@@ -4,36 +4,11 @@ const {
   errorResponse,
   successResponse,
 } = require('../../utils/responseHandler');
+const { responseHandler } = require('../../utils/responseHelper');
 const { statusCodes } = require('../../utils/statusCode');
 const { distributionUrl } = require('./distribution.url');
 
 const distributionEndPoint = process.env.DISTRIBUTION_URL;
-
-const responseHandler = ({ message, data, success, errorCode, req, res, next }) => {
-  if (!success) {
-    return errorResponse({
-      req,
-      res,
-      message,
-      code: errorCode,
-      data: data?.data,
-    });
-  }
-
-  const {
-    message: responseMessage,
-    data: responseData,
-    code: responseCode,
-  } = data;
-
-  return successResponse({
-    data: responseData,
-    req,
-    res,
-    message: responseMessage,
-    code: responseCode,
-  });
-}
 
 exports.addDistribution = async (req, res, next) => {
   try {

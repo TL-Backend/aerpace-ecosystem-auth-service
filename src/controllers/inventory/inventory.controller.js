@@ -7,34 +7,9 @@ const { statusCodes } = require('../../utils/statusCode');
 const { logger } = require('../../utils/logger');
 const { getAsync, postAsync } = require('../../APIRequest/request');
 const { inventoryUrls } = require('./inventory.url');
+const { responseHandler } = require('../../utils/responseHelper');
 
 const inventoryEndPoint = process.env.INVENTORY_URL;
-
-const responseHandler = ({ message, data, success, errorCode, req, res, next }) => {
-  if (!success) {
-    return errorResponse({
-      req,
-      res,
-      message,
-      code: errorCode,
-      data: data?.data,
-    });
-  }
-
-  const {
-    message: responseMessage,
-    data: responseData,
-    code: responseCode,
-  } = data;
-
-  return successResponse({
-    data: responseData,
-    req,
-    res,
-    message: responseMessage,
-    code: responseCode,
-  });
-}
 
 exports.listInventory = async (req, res, next) => {
   try {

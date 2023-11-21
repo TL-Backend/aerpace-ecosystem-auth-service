@@ -3,35 +3,10 @@ const {
   errorResponse,
   successResponse,
 } = require('../../utils/responseHandler');
+const { responseHandler } = require('../../utils/responseHelper');
 const { privilegeUrl } = require('./privilege.url');
 
 const privilegeEndPoint = process.env.PRIVILEGE_URL;
-
-const responseHandler = ({ message, data, success, errorCode, req, res, next }) => {
-  if (!success) {
-    return errorResponse({
-      req,
-      res,
-      message,
-      code: errorCode,
-      data: data?.data,
-    });
-  }
-
-  const {
-    message: responseMessage,
-    data: responseData,
-    code: responseCode,
-  } = data;
-
-  return successResponse({
-    data: responseData,
-    req,
-    res,
-    message: responseMessage,
-    code: responseCode,
-  });
-}
 
 exports.listMasterPrivileges = async (req, res, next) => {
   try {
