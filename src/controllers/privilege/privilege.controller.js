@@ -3,6 +3,7 @@ const {
   errorResponse,
   successResponse,
 } = require('../../utils/responseHandler');
+const { responseHandler } = require('../../utils/responseHelper');
 const { privilegeUrl } = require('./privilege.url');
 
 const privilegeEndPoint = process.env.PRIVILEGE_URL;
@@ -14,30 +15,7 @@ exports.listMasterPrivileges = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -50,36 +28,13 @@ exports.listMasterPrivileges = async (req, res, next) => {
 
 exports.getDeviceLevelPrivileges = async (req, res, next) => {
   try {
-    const { id } = req.params
+    const { id } = req.params;
     const { message, data, success, errorCode } = await getAsync({
       uri: `${privilegeEndPoint}/${privilegeUrl.GET_DEVICE_LEVEL_PRIVILEGES}/${id}`,
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -97,30 +52,7 @@ exports.addPersonalityPrivileges = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({

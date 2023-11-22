@@ -7,6 +7,7 @@ const { statusCodes } = require('../../utils/statusCode');
 const { logger } = require('../../utils/logger');
 const { getAsync, postAsync } = require('../../APIRequest/request');
 const { inventoryUrls } = require('./inventory.url');
+const { responseHandler } = require('../../utils/responseHelper');
 
 const inventoryEndPoint = process.env.INVENTORY_URL;
 
@@ -17,29 +18,7 @@ exports.listInventory = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -57,29 +36,7 @@ exports.getImportHistoryList = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -105,39 +62,15 @@ exports.importCSV = async (req, res, next) => {
         },
       },
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
       req,
       res,
-      data:{
+      data: {
         response_file_name: null,
-        response_file_url: null
+        response_file_url: null,
       },
       code: statusCodes.STATUS_CODE_FAILURE,
     });

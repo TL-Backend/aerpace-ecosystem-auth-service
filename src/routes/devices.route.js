@@ -5,6 +5,7 @@ const {
   editDevices,
   createDeviceLevel,
   getValidHierarchy,
+  deviceExecutor,
 } = require('../controllers/devices/device.controller');
 const {
   verifyIdToken,
@@ -48,7 +49,12 @@ module.exports = function (app) {
   app.get(
     '/devices/device-level/:id',
     verifyIdToken,
-    checkUserPermissionsAny([permissions.VIEW_LIST_CAR, permissions.EDIT_CAR, permissions.ADD_PRIVILEGES_TO_PERSONALITY]),
-    getValidHierarchy
-  )
+    checkUserPermissionsAny([
+      permissions.VIEW_LIST_CAR,
+      permissions.EDIT_CAR,
+      permissions.ADD_PRIVILEGES_TO_PERSONALITY,
+    ]),
+    getValidHierarchy,
+  );
+  app.post('/devices/execute', verifyIdToken, deviceExecutor);
 };

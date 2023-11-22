@@ -1,5 +1,7 @@
 const {
-  listMasterPrivileges, getDeviceLevelPrivileges, addPersonalityPrivileges,
+  listMasterPrivileges,
+  getDeviceLevelPrivileges,
+  addPersonalityPrivileges,
 } = require('../controllers/privilege/privilege.controller');
 const {
   verifyIdToken,
@@ -16,26 +18,23 @@ module.exports = function (app) {
     checkUserPermissionsAny([
       permissions.VIEW_PERSONALITY_PRIVILEGES,
       permissions.ADD_PRIVILEGES_TO_PERSONALITY,
-      permissions.EDIT_PERSONALITY_PRIVILEGES
+      permissions.EDIT_PERSONALITY_PRIVILEGES,
     ]),
     listMasterPrivileges,
   );
   app.get(
     '/privileges/devices/:id',
     verifyIdToken,
-    checkUserPermissionsAny([
-      permissions.ADD_CAR,
-      permissions.EDIT_CAR
-    ]),
-    getDeviceLevelPrivileges
-  )
+    checkUserPermissionsAny([permissions.ADD_CAR, permissions.EDIT_CAR]),
+    getDeviceLevelPrivileges,
+  );
   app.post(
     '/privileges/personality',
     verifyIdToken,
     checkUserPermissionsAny([
       permissions.ADD_PRIVILEGES_TO_PERSONALITY,
-      permissions.EDIT_PERSONALITY_PRIVILEGES
+      permissions.EDIT_PERSONALITY_PRIVILEGES,
     ]),
-    addPersonalityPrivileges
-  )
+    addPersonalityPrivileges,
+  );
 };

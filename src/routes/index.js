@@ -10,7 +10,6 @@ require('./notificationToken.route')(router);
 require('./devices.route')(router);
 require('./privilege.route')(router);
 require('./notificationToken.route')(router);
-require('./deviceExecutor.route')(router);
 
 module.exports = {
   router,

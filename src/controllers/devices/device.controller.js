@@ -1,11 +1,15 @@
 const { getAsync, patchAsync, postAsync } = require('../../APIRequest/request');
+const { logger } = require('../../utils/logger');
 const {
   errorResponse,
   successResponse,
 } = require('../../utils/responseHandler');
+const { responseHandler } = require('../../utils/responseHelper');
+const { statusCodes } = require('../../utils/statusCode');
 const { deviceUrl } = require('./device.url');
 
 const deviceEndPoint = process.env.DEVICE_URL;
+const deviceExecutorEndPoint = process.env.DEVICE_EXECUTOR_URL
 
 exports.listDevicesTypes = async (req, res, next) => {
   try {
@@ -14,30 +18,7 @@ exports.listDevicesTypes = async (req, res, next) => {
       body: req.body,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -57,29 +38,7 @@ exports.getDevicesList = async (req, res, next) => {
       params: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -92,36 +51,13 @@ exports.getDevicesList = async (req, res, next) => {
 
 exports.getPersonalityDetails = async (req, res, next) => {
   try {
-    console.log(`${deviceEndPoint}/${deviceUrl.GET_DEVICES_LIST}`);
     const { message, data, success, errorCode } = await getAsync({
       uri: `${deviceEndPoint}/${deviceUrl.GET_PERSONALITY_DETAILS}`,
       body: req.body,
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -140,29 +76,7 @@ exports.editDevices = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -181,29 +95,7 @@ exports.createDeviceLevel = async (req, res, next) => {
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -216,37 +108,33 @@ exports.createDeviceLevel = async (req, res, next) => {
 
 exports.getValidHierarchy = async (req, res, next) => {
   try {
-    const { id } = req.params
-    console.log(`${deviceEndPoint}/${deviceUrl.GET_DEVICE_HIERARCHY}/${id}`)
+    const { id } = req.params;
     const { message, data, success, errorCode } = await getAsync({
       uri: `${deviceEndPoint}/${deviceUrl.GET_DEVICE_HIERARCHY}/${id}`,
       body: req.body,
       query: req.query,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data: data?.data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
+    return responseHandler({ message, data, success, errorCode, req, res, next })
+  } catch (err) {
+    logger.error(err.message);
+    return errorResponse({
       req,
       res,
-      message: responseMessage,
-      code: responseCode,
+      code: statusCodes.STATUS_CODE_FAILURE,
     });
+  }
+};
+
+exports.deviceExecutor = async (req, res, next) => {
+  try {
+    const { message, data, success, errorCode } = await postAsync({
+      uri: `${deviceExecutorEndPoint}/${deviceUrl.EXECUTE}`,
+      body: req.body,
+      query: req.query,
+    });
+
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({

@@ -2,7 +2,7 @@ paths:
   /distribution:
     get:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - DISTRIBUTION
       summary: user can list all the distributions
@@ -38,16 +38,16 @@ paths:
             type: string
       responses:
         200:
-          $ref: "#/components/responses/listDistributionsSuccess"
+          $ref: '#/components/responses/listDistributionsSuccess'
         401:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: "#/components/responses/listDistributionsBadRequest"
+          $ref: '#/components/responses/listDistributionsBadRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
     post:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - DISTRIBUTION
       summary: add distributions
@@ -58,20 +58,20 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: "#/components/requestBodies/addDistributions"
+        $ref: '#/components/requestBodies/addDistributions'
       responses:
         200:
-          $ref: "#/components/responses/addDistributionsSuccess"
+          $ref: '#/components/responses/addDistributionsSuccess'
         401:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: "#/components/responses/addDistributionsBadRequest"
+          $ref: '#/components/responses/addDistributionsBadRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /distribution/assign:
     post:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - DISTRIBUTION
       summary: Assign distributions
@@ -82,20 +82,20 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: "#/components/requestBodies/assignAndUnassignDistributions"
+        $ref: '#/components/requestBodies/assignAndUnassignDistributions'
       responses:
         200:
-          $ref: "#/components/responses/assignDistributionsSuccess"
+          $ref: '#/components/responses/assignDistributionsSuccess'
         401:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: "#/components/responses/AssignDistributionsBadRequest"
+          $ref: '#/components/responses/AssignDistributionsBadRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /distribution/unassign:
     post:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - DISTRIBUTION
       summary: Unassign distributions
@@ -106,25 +106,25 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: "#/components/requestBodies/assignAndUnassignDistributions"
+        $ref: '#/components/requestBodies/assignAndUnassignDistributions'
       responses:
         200:
-          $ref: "#/components/responses/UnassignDistributionsSuccess"
+          $ref: '#/components/responses/UnassignDistributionsSuccess'
         401:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: "#/components/responses/UnassignDistributionsBadRequest"
+          $ref: '#/components/responses/UnassignDistributionsBadRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /distribution/{id}:
     patch:
       security:
-          - Authorization: []
+        - Authorization: []
       tags:
         - DISTRIBUTION
       summary: edit a particular distribution
       requestBody:
-        $ref: "#/components/requestBodies/addDistributions"
+        $ref: '#/components/requestBodies/addDistributions'
       parameters:
         - name: Authorization
           in: headers
@@ -138,10 +138,10 @@ paths:
             type: string
       responses:
         200:
-          $ref: "#/components/responses/editDistributionsSuccess"
+          $ref: '#/components/responses/editDistributionsSuccess'
         401:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         400:
-          $ref: "#/components/responses/editDistributionBadRequest"
+          $ref: '#/components/responses/editDistributionBadRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'

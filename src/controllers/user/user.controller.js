@@ -4,6 +4,7 @@ const {
   successResponse,
   errorResponse,
 } = require('../../utils/responseHandler');
+const { responseHandler } = require('../../utils/responseHelper');
 
 const { userUrls } = require('./user.url');
 
@@ -16,30 +17,7 @@ exports.listUsers = async (req, res, next) => {
       query: req.query,
       headers: req.headers,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -58,29 +36,7 @@ exports.createUser = async (req, res, next) => {
       body: req.body,
     });
 
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -99,30 +55,7 @@ exports.editUser = async (req, res, next) => {
       query: req.query,
       body: req.body,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({
@@ -139,30 +72,7 @@ exports.getConfig = async (req, res, next) => {
       uri: `${userEndPoint}/${userUrls.CONFIG}`,
       query: req.query,
     });
-
-    if (!success) {
-      return errorResponse({
-        req,
-        res,
-        message,
-        code: errorCode,
-        data,
-      });
-    }
-
-    const {
-      message: responseMessage,
-      data: responseData,
-      code: responseCode,
-    } = data;
-
-    return successResponse({
-      data: responseData,
-      req,
-      res,
-      message: responseMessage,
-      code: responseCode,
-    });
+    return responseHandler({ message, data, success, errorCode, req, res, next })
   } catch (err) {
     logger.error(err.message);
     return errorResponse({

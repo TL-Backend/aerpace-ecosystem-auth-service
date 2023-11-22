@@ -20,15 +20,15 @@ paths:
       summary: fetches devices list based on type.
       responses:
         200:
-          $ref: "#/components/responses/listDevicesSuccess"
+          $ref: '#/components/responses/listDevicesSuccess'
         400:
-          $ref: "#/components/responses/listDeviceBadRequest"
+          $ref: '#/components/responses/listDeviceBadRequest'
         401:
-          $ref: "#/components/responses/unauthorizedRequest"
+          $ref: '#/components/responses/unauthorizedRequest'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /devices:
     patch:
       security:
@@ -43,18 +43,18 @@ paths:
             type: string
       summary: edit the devices.
       requestBody:
-        $ref: "#/components/requestBodies/editDevices"
+        $ref: '#/components/requestBodies/editDevices'
       responses:
         200:
-          $ref: "#/components/responses/editDevicesSuccess"
+          $ref: '#/components/responses/editDevicesSuccess'
         400:
-          $ref: "#/components/responses/editDeviceBadRequest"
+          $ref: '#/components/responses/editDeviceBadRequest'
         401:
-          $ref: "#/components/responses/unauthorizedRequest"
+          $ref: '#/components/responses/unauthorizedRequest'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /devices/personality:
     get:
       security:
@@ -88,15 +88,15 @@ paths:
       summary: get personality details.
       responses:
         200:
-          $ref: "#/components/responses/getPersonalityDetailsSuccess"
+          $ref: '#/components/responses/getPersonalityDetailsSuccess'
         400:
-          $ref: "#/components/responses/getPersonalityDetailsBadRequest"
+          $ref: '#/components/responses/getPersonalityDetailsBadRequest'
         401:
-          $ref: "#/components/responses/unauthorizedRequest"
+          $ref: '#/components/responses/unauthorizedRequest'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /devices/device-level:
     post:
       security:
@@ -110,19 +110,19 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: "#/components/requestBodies/addDevices"
+        $ref: '#/components/requestBodies/addDevices'
       summary: create device level.
       responses:
         200:
-          $ref: "#/components/responses/createDeviceLevelSuccess"
+          $ref: '#/components/responses/createDeviceLevelSuccess'
         400:
-          $ref: "#/components/responses/createDeviceLevelBadRequest"
+          $ref: '#/components/responses/createDeviceLevelBadRequest'
         401:
-          $ref: "#/components/responses/unauthorizedRequest"
+          $ref: '#/components/responses/unauthorizedRequest'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
   /devices/device-level/{id}:
     get:
       security:
@@ -144,12 +144,40 @@ paths:
       summary: fetched level names of devices.
       responses:
         200:
-          $ref: "#/components/responses/deviceDetailsSuccess"
+          $ref: '#/components/responses/deviceDetailsSuccess'
         404:
-          $ref: "#/components/responses/deviceDetailsNotFound"
+          $ref: '#/components/responses/deviceExecuteNotFound'
         401:
-          $ref: "#/components/responses/unauthorizedRequest"
+          $ref: '#/components/responses/unauthorizedRequest'
         403:
-          $ref: "#/components/responses/forbiddenRequest"
+          $ref: '#/components/responses/forbiddenRequest'
         500:
-          $ref: "#/components/responses/internalError"
+          $ref: '#/components/responses/internalError'
+  /devices/execute:
+    post:
+      security:
+        - Authorization: []
+      tags:
+        - DEVICES
+      parameters:
+        - name: Authorization
+          in: headers
+          description: Id token to be provided to access.
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/deviceExecutor'
+      summary: To communicate with the IOT device.
+      responses:
+        200:
+          $ref: '#/components/responses/deviceExecuteSuccess'
+        400:
+          $ref: '#/components/responses/deviceExecuteBadRequest'
+        404:
+          $ref: '#/components/responses/deviceExecuteNotFound'
+        401:
+          $ref: '#/components/responses/deviceExecutorUnauthorized'
+        403:
+          $ref: '#/components/responses/forbiddenRequest'
+        500:
+          $ref: '#/components/responses/internalError'
