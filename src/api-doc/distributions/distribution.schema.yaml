@@ -373,6 +373,22 @@ components:
                 code: 400
                 data: {}
                 message: 'Provided distribution id is invalid.'
+    unauthorizedRequest:
+      description: "Unauthorized request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 401
+              data:
+                type: object
+                example: {}
+              message:
+                type: string
+                example: "Something went wrong"
     forbiddenRequest:
       description: 'Forbidden request'
       content:
@@ -416,6 +432,30 @@ components:
                 type: array
                 items:
                   example: 'AD-F2-7C-54-73-55'
+          examples:
+            example1:
+              summary: Success
+              value:
+                distribution_id: dr_1
+                devices: ["AD-F2-7C-54-73-55"]
+            example2:
+              summary: Invalid distribution id
+              value:
+                devices: ["AD-F2-7C-54-73-55"] 
+            example3:
+              summary: List of device required
+              value:
+                distribution_id: dr_1
+            example4:
+              summary: Empty list of devices
+              value:
+                distribution_id: dr_1
+                devices: []
+            example5:
+              summary: Distributor not found
+              value:
+                distribution_id: dr_100
+                devices: ["AD-F2-7C-54-73-55"]
     addDistributions:
       required: true
       content:
@@ -443,6 +483,41 @@ components:
                 example: '+91'
               distributor:
                 $ref: '#/components/schemas/distributor'
+          examples:
+            example1:
+              summary: Success
+              value:
+                name: pradeep
+                email: pradeep@tilicho.in
+                region: america
+                phone_number: '9874932839'
+                address: los santos
+                country_code: '+91'
+                distributor:
+                    first_name: 'aditya'
+                    last_name: 'chandra'
+                    address: 'Dno: 123 , mdp'
+                    email: 'aditya@gmail.com'
+                    state: 'pradesh'
+                    pin_code: '530022'
+                    country_code: '+91'
+                    phone_number: '9109109100'
+            example2:
+              summary: input fields mandatory
+              value:
+                name: pradeep
+                region: america
+                address: los santos
+                country_code: +91
+                distributor:
+                    first_name: 'aditya'
+                    last_name: 'chandra'
+                    address: 'Dno: 123 , mdp'
+                    email: 'aditya@gmail.com'
+                    state: 'pradesh'
+                    pin_code: '530022'
+                    country_code: '+91'
+                    phone_number: '9109109100'
     editDistributions:
       required: true
       content:

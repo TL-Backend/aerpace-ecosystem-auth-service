@@ -11,7 +11,7 @@ paths:
           description: Id token to be provided to access.
           schema:
             type: string
-      summary: List devices types.
+      summary: Add privileges to personality.
       requestBody:
         $ref: '#/components/requestBodies/addPersonalityPrivileges'
       responses:

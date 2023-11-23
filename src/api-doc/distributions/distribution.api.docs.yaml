@@ -40,6 +40,8 @@ paths:
         200:
           $ref: '#/components/responses/listDistributionsSuccess'
         401:
+          $ref: '#/components/responses/unauthorizedRequest'
+        403:
           $ref: '#/components/responses/forbiddenRequest'
         400:
           $ref: '#/components/responses/listDistributionsBadRequest'
@@ -63,6 +65,8 @@ paths:
         200:
           $ref: '#/components/responses/addDistributionsSuccess'
         401:
+          $ref: '#/components/responses/unauthorizedRequest'
+        403:
           $ref: '#/components/responses/forbiddenRequest'
         400:
           $ref: '#/components/responses/addDistributionsBadRequest'
@@ -87,6 +91,8 @@ paths:
         200:
           $ref: '#/components/responses/assignDistributionsSuccess'
         401:
+          $ref: '#/components/responses/unauthorizedRequest'
+        403:
           $ref: '#/components/responses/forbiddenRequest'
         400:
           $ref: '#/components/responses/AssignDistributionsBadRequest'
@@ -111,6 +117,8 @@ paths:
         200:
           $ref: '#/components/responses/UnassignDistributionsSuccess'
         401:
+          $ref: '#/components/responses/unauthorizedRequest'
+        403:
           $ref: '#/components/responses/forbiddenRequest'
         400:
           $ref: '#/components/responses/UnassignDistributionsBadRequest'
@@ -140,6 +148,8 @@ paths:
         200:
           $ref: '#/components/responses/editDistributionsSuccess'
         401:
+          $ref: '#/components/responses/unauthorizedRequest'
+        403:
           $ref: '#/components/responses/forbiddenRequest'
         400:
           $ref: '#/components/responses/editDistributionBadRequest'

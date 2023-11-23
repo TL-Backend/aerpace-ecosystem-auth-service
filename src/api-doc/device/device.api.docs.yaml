@@ -17,6 +17,7 @@ paths:
           description: Type of the device to be provided.
           schema:
             type: string
+            example: CAR
       summary: fetches devices list based on type.
       responses:
         200:
@@ -73,18 +74,21 @@ paths:
           description: Model id to be provided.
           schema:
             type: string
+            example: m_1
         - name: variant_id
           in: query
           required: true
           description: variant id to be provided.
           schema:
             type: string
+            example: va_1
         - name: version_id
           in: query
           required: true
           description: version id to be provided.
           schema:
             type: string
+            example: ver_1
       summary: get personality details.
       responses:
         200:
@@ -141,6 +145,7 @@ paths:
           description: id of the device level to be provided.
           schema:
             type: string
+            example: ver_1
       summary: fetched level names of devices.
       responses:
         200:

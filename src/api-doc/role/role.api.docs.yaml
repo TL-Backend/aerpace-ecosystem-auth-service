@@ -41,7 +41,7 @@ paths:
           schema:
             type: string
       requestBody:
-        $ref: '#/components/requestBodies/addAndEditRoleRequestBody'
+        $ref: '#/components/requestBodies/addRequestBody'
       responses:
         200:
           $ref: '#/components/responses/listRolesSuccess'
@@ -90,7 +90,7 @@ paths:
         - 'Roles'
       summary: To edit a role.
       requestBody:
-        $ref: '#/components/requestBodies/addAndEditRoleRequestBody'
+        $ref: '#/components/requestBodies/editRequestBody'
       parameters:
         - name: Authorization
           in: headers

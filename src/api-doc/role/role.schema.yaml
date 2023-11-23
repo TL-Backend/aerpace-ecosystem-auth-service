@@ -261,7 +261,7 @@ components:
                 example: 'Something went wrong'
 
   requestBodies:
-    addAndEditRoleRequestBody:
+    addRequestBody:
       required: true
       content:
         application/json:
@@ -275,3 +275,52 @@ components:
                 type: array
                 example:
                   ['USERS#ROLES_TAB#TAB_LIST_VIEW', 'USERS#ROLES_TAB#ADD_ROLE']
+          examples:
+            example1:
+              summary: Success
+              value:
+                role_name: Role manager
+                permissions: ['USERS#ROLES_TAB#TAB_LIST_VIEW', 'USERS#ROLES_TAB#ADD_ROLE']
+            example2:
+              summary: Role already exists with the name
+              value:
+                role_name: Admin
+                permissions: ['USERS#ROLES_TAB#TAB_LIST_VIEW', 'USERS#ROLES_TAB#ADD_ROLE']
+            example3:
+              summary: Feature doesn't exists
+              value:
+                role_name: Admin
+                permissions: ['USER', 'USERS#ROLES_TAB#ADD_ROLE']
+    editRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              role_name:
+                type: string
+                example: 'Role manager'
+              permissions:
+                type: array
+                example:
+                  ['USERS#ROLES_TAB#TAB_LIST_VIEW', 'USERS#ROLES_TAB#ADD_ROLE']
+          examples:
+            example1:
+              summary: Success
+              value:
+                role_name: Role manager
+                permissions: ['USERS#ROLES_TAB#TAB_LIST_VIEW', 'USERS#ROLES_TAB#ADD_ROLE']
+            example2:
+              summary: Role already exists with the name
+              value:
+                role_name: Admin
+                permissions: ['USERS#ROLES_TAB#TAB_LIST_VIEW', 'USERS#ROLES_TAB#ADD_ROLE']
+            example3:
+              summary: Feature doesn't exists
+              value:
+                role_name: Admin
+                permissions: ['USER', 'USERS#ROLES_TAB#ADD_ROLE']
+            example4:
+              summary: Nothing to update
+              value: {}

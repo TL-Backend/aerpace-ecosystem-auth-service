@@ -1,7 +1,7 @@
 components:
   schemas:
     listDeviceTypes:
-      description: 'listDeviceTypes'
+      description: "listDeviceTypes"
       type: object
       properties:
         type:
@@ -17,23 +17,23 @@ components:
           type: integer
           example: 3'
     getDeviceLevelPrivileges:
-      description: 'get device level privileges'
+      description: "get device level privileges"
       type: object
       properties:
         model:
           type: array
           items:
-            $ref: '#/components/schemas/deviceModelObject'
+            $ref: "#/components/schemas/deviceModelObject"
         variant:
           type: array
           items:
-            $ref: '#/components/schemas/deviceVariantObject'
+            $ref: "#/components/schemas/deviceVariantObject"
         version:
           type: array
           items:
-            $ref: '#/components/schemas/deviceVersionObject'
+            $ref: "#/components/schemas/deviceVersionObject"
     deviceModelObject:
-      description: 'model object in device level privileges'
+      description: "model object in device level privileges"
       type: object
       properties:
         action_id:
@@ -41,15 +41,15 @@ components:
           example: 2
         action_name:
           type: string
-          example: 'TURN_OFF'
+          example: "TURN_OFF"
         category_id:
           type: integer
           example: 2
         category_name:
           type: string
-          example: 'TURN_ON'
+          example: "TURN_ON"
     deviceVariantObject:
-      description: 'variant object in device level privileges'
+      description: "variant object in device level privileges"
       type: object
       properties:
         action_id:
@@ -57,15 +57,15 @@ components:
           example: 2
         action_name:
           type: string
-          example: 'TURN_OFF'
+          example: "TURN_OFF"
         category_id:
           type: integer
           example: 2
         category_name:
           type: string
-          example: 'TURN_ON'
+          example: "TURN_ON"
     deviceVersionObject:
-      description: 'version object in device level privileges'
+      description: "version object in device level privileges"
       type: object
       properties:
         action_id:
@@ -73,15 +73,15 @@ components:
           example: 2
         action_name:
           type: string
-          example: 'TURN_OFF'
+          example: "TURN_OFF"
         category_id:
           type: integer
           example: 2
         category_name:
           type: string
-          example: 'TURN_ON'
+          example: "TURN_ON"
     masterPrivileges:
-      description: 'version object in device level privileges'
+      description: "version object in device level privileges"
       type: object
       properties:
         id:
@@ -89,13 +89,13 @@ components:
           example: 1
         category:
           type: string
-          example: 'AC'
+          example: "AC"
         actions:
           type: array
           items:
-            $ref: '#/components/schemas/privilegesActionsObject'
+            $ref: "#/components/schemas/privilegesActionsObject"
     privilegesActionsObject:
-      description: 'privileges action object'
+      description: "privileges action object"
       type: object
       properties:
         id:
@@ -103,7 +103,7 @@ components:
           example: 2
         action_name:
           type: string
-          example: 'TURN_OFF'
+          example: "TURN_OFF"
         action_identifier:
           type: string
           example: AC_TURN_OFF
@@ -116,7 +116,7 @@ components:
 
   responses:
     addPersonalityPrivilegesSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -139,12 +139,12 @@ components:
                     example: ver_1
                   effected_personalities:
                     type: array
-                    example: ['OWNER']
+                    example: ["OWNER"]
               message:
                 type: string
-                example: 'privileges were added to a personality successfully'
+                example: "privileges were added to a personality successfully"
     addPersonalityPrivilegesBadRequest:
-      description: 'Bad Request'
+      description: "Bad Request"
       content:
         application/json:
           schema:
@@ -158,50 +158,50 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Invalid device type'
+                example: "Invalid device type"
           examples:
             example1:
               summary: 400 - Invalid device type
               value:
                 code: 400
                 data: {}
-                message: 'Invalid device type'
+                message: "Invalid device type"
             example2:
               summary: 400 - Invalid model id
               value:
                 code: 400
                 data: {}
-                message: 'model id  Id should be present which should be string and start with m_1'
+                message: "Something went wrong"
             example3:
               summary: 400 - Invalid variant id
               value:
                 code: 400
                 data: {}
-                message: 'variant Id should be present which should be string and start with va_1'
+                message: "Something went wrong"
             example4:
               summary: 400 - Invalid version id
               value:
                 code: 400
                 data: {}
-                message: 'version Id should be present which should be string and start with ver_1'
+                message: "Something went wrong"
             example5:
               summary: 400 - Invalid privileges
               value:
                 code: 400
                 data: {}
-                message: 'privileged should be present and it must be an object'
+                message: "privileges cannot be empty"
             example6:
               summary: 400 - Invalid personality
               value:
                 code: 400
                 data: {}
-                message: ' Invalid personality: DRIVER is sent in privileges'
+                message: " Invalid personality: DRIVER is sent in privileges"
             example7:
               summary: 400 - Invalid List of actions
               value:
                 code: 400
                 data: {}
-                message: ' List of actions should be present  for the personality DRIVER'
+                message: " List of actions should be present  for the personality DRIVER"
             example8:
               summary: 400 - improper list of action
               value:
@@ -209,7 +209,7 @@ components:
                 data: {}
                 message: " Improper list of action id's were given."
     getDeviceLevelPrivilegesSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -223,12 +223,12 @@ components:
                 properties:
                   privileges:
                     type: object
-                    $ref: '#/components/schemas/getDeviceLevelPrivileges'
+                    $ref: "#/components/schemas/getDeviceLevelPrivileges"
               message:
                 type: string
-                example: 'data fetched successful'
+                example: "data fetched successful"
     getDeviceLevelPrivilegesBadRequest:
-      description: 'Bad Request'
+      description: "Bad Request"
       content:
         application/json:
           schema:
@@ -242,16 +242,16 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'invalid version and it should be starting with ver_'
+                example: "invalid version and it should be starting with ver_"
           examples:
             example1:
               summary: 400 - Invalid Id
               value:
                 code: 400
                 data: {}
-                message: 'Invalid Id and and it should be starting with m_ or va_ or ver_'
+                message: "Invalid Id and and it should be starting with m_ or va_ or ver_"
     getDeviceLevelPrivilegesNotFound:
-      description: 'Not Found'
+      description: "Not Found"
       content:
         application/json:
           schema:
@@ -265,9 +265,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Invalid id or data not found'
+                example: "Invalid id or data not found"
     masterPrivilegesSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -282,12 +282,12 @@ components:
                   master_privileges:
                     type: array
                     items:
-                      $ref: '#/components/schemas/masterPrivileges'
+                      $ref: "#/components/schemas/masterPrivileges"
               message:
                 type: string
-                example: 'data fetched successful'
+                example: "data fetched successful"
     masterPrivilegesBadRequest:
-      description: 'Bad Request'
+      description: "Bad Request"
       content:
         application/json:
           schema:
@@ -301,34 +301,28 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'invalid device type'
+                example: "invalid device type"
           examples:
             example1:
-              summary: 400 - Invalid variant id, or model_id is missing
+              summary: 400 - Invalid id
               value:
                 code: 400
                 data: {}
-                message: 'Invalid variant id, or model_id is missing'
+                message: "Something went wrong"
             example2:
               summary: 400 - Invalid device type
               value:
                 code: 400
                 data: {}
-                message: 'Invalid device type'
+                message: "Invalid device type"
             example3:
-              summary: 400 - Invalid model or variant id
+              summary: 400 - Invalid level id
               value:
                 code: 400
                 data: {}
-                message: 'Invalid model or variant id'
-            example4:
-              summary: 400 - Invalid model or variant id
-              value:
-                code: 400
-                data: {}
-                message: 'Invalid model id'
+                message: "Invalid id or data not found"
     unauthorizedRequest:
-      description: 'Unauthorized request'
+      description: "Unauthorized request"
       content:
         application/json:
           schema:
@@ -342,9 +336,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
     forbiddenRequest:
-      description: 'Forbidden request'
+      description: "Forbidden request"
       content:
         application/json:
           schema:
@@ -356,22 +350,22 @@ components:
                 type: object
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
           examples:
             example1:
               summary: 403 - Access Denied
               value:
                 code: 403
                 data: {}
-                message: 'Access Denied'
+                message: "Access Denied"
             example2:
               summary: 403 - Something went wrong
               value:
                 code: 403
                 data: {}
-                message: 'Something went wrong'
+                message: "Something went wrong"
     internalError:
-      description: 'Internal Server Error'
+      description: "Internal Server Error"
       content:
         application/json:
           schema:
@@ -385,7 +379,7 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
   requestBodies:
     addPersonalityPrivileges:
       required: true
@@ -422,3 +416,72 @@ components:
                         type: integer
                         example: 1
                         description: The action allowed for this privilege.
+          examples:
+            example1:
+              summary: Success
+              value:
+                type: CAR
+                model_id: m_1
+                variant_id: va_1
+                version_id: ver_1
+                privileges: [{ personality: OWNER, actions: [1, 2] }]
+            example2:
+              summary: Invalid type
+              value:
+                model_id: m_1
+                variant_id: va_1
+                version_id: ver_1
+                privileges: [{ personality: OWNER, actions: [1, 2] }]
+            example3:
+              summary: Invalid model
+              value:
+                type: CAR
+                variant_id: va_1
+                version_id: ver_1
+                privileges: [{ personality: OWNER, actions: [1, 2] }]
+            example4:
+              summary: Invalid variant
+              value:
+                type: CAR
+                model_id: m_1
+                version_id: ver_1
+                privileges: [{ personality: OWNER, actions: [1, 2] }]
+            example5:
+              summary: Invalid version
+              value:
+                type: CAR
+                model_id: m_1
+                variant_id: va_1
+                privileges: [{ personality: OWNER, actions: [1, 2] }]
+            example6:
+              summary: Invalid privileges
+              value:
+                type: CAR
+                model_id: m_1
+                variant_id: va_1
+                version_id: ver_1
+                privileges: [{ personality: OWNER, actions: [1, 2] }]
+            example7:
+              summary: Invalid personality
+              value:
+                type: CAR
+                model_id: m_1
+                variant_id: va_1
+                version_id: ver_1
+                privileges: [{ personality: FRIEND, actions: [1, 2] }]
+            example8:
+              summary: Invalid actions
+              value:
+                type: CAR
+                model_id: m_1
+                variant_id: va_1
+                version_id: ver_1
+                privileges: [{personality: DRIVER}]
+            example9:
+              summary: Improper actions
+              value:
+                type: CAR
+                model_id: m_1
+                variant_id: va_1
+                version_id: ver_1
+                privileges: [{ personality: DRIVER, actions: [10, 20] }]
