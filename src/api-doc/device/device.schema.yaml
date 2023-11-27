@@ -1,7 +1,7 @@
 components:
   schemas:
     listDeviceTypes:
-      description: 'listDeviceTypes'
+      description: "listDeviceTypes"
       type: object
       properties:
         type:
@@ -17,7 +17,7 @@ components:
           type: integer
           example: 3
     versionList:
-      description: 'variantList'
+      description: "variantList"
       type: object
       properties:
         id:
@@ -28,9 +28,9 @@ components:
           example: ev
         status:
           type: string
-          example: 'ACTIVE'
+          example: "ACTIVE"
     variantList:
-      description: 'variantList'
+      description: "variantList"
       type: object
       properties:
         id:
@@ -41,13 +41,13 @@ components:
           example: ev
         status:
           type: string
-          example: 'ACTIVE'
+          example: "ACTIVE"
         versions:
           type: array
           items:
-            $ref: '#/components/schemas/versionList'
+            $ref: "#/components/schemas/versionList"
     listDevices:
-      description: 'list device based on type'
+      description: "list device based on type"
       type: object
       properties:
         model:
@@ -61,13 +61,13 @@ components:
               example: nexon
             status:
               type: string
-              example: 'ACTIVE'
+              example: "ACTIVE"
             variants:
               type: array
               items:
-                $ref: '#/components/schemas/variantList'
+                $ref: "#/components/schemas/variantList"
     personalityPrivileges:
-      description: 'personality details'
+      description: "personality details"
       type: object
       properties:
         action_id:
@@ -81,16 +81,16 @@ components:
           example: 1
         effective_level:
           type: string
-          example: 'version'
+          example: "version"
         action_identifier:
           type: string
-          example: 'AC_TURN_ON'
+          example: "AC_TURN_ON"
         effective_level_id:
           type: string
-          example: 'ver_2'
+          example: "ver_2"
 
     getPersonalityDetails:
-      description: 'personality details'
+      description: "personality details"
       type: object
       properties:
         name:
@@ -99,7 +99,7 @@ components:
         privileges:
           type: array
           items:
-            $ref: '#/components/schemas/personalityPrivileges'
+            $ref: "#/components/schemas/personalityPrivileges"
 
   securitySchemes:
     Authorization:
@@ -109,7 +109,7 @@ components:
 
   responses:
     listDeviceTypesSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -124,12 +124,12 @@ components:
                   device_types:
                     type: array
                     items:
-                      $ref: '#/components/schemas/listDeviceTypes'
+                      $ref: "#/components/schemas/listDeviceTypes"
               message:
                 type: string
-                example: 'data fetched successful'
+                example: "data fetched successful"
     listDevicesSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -144,12 +144,12 @@ components:
                   devices:
                     type: array
                     items:
-                      $ref: '#/components/schemas/listDevices'
+                      $ref: "#/components/schemas/listDevices"
               message:
                 type: string
-                example: 'devices fetched successfully'
+                example: "devices fetched successfully"
     listDeviceBadRequest:
-      description: 'Bad Request'
+      description: "Bad Request"
       content:
         application/json:
           schema:
@@ -163,9 +163,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Invalid device type CAR'
+                example: "Invalid device type CAR"
     editDevicesSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -179,9 +179,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Devices edited successfully'
+                example: "Devices edited successfully"
     editDeviceBadRequest:
-      description: 'Bad Request'
+      description: "Bad Request"
       content:
         application/json:
           schema:
@@ -195,64 +195,88 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Unable to perform edit operation for device details'
+                example: "Unable to perform edit operation for device details"
           examples:
             example1:
-              summary: 400 - Invalid status
+              summary: 400 - No device input
               value:
                 code: 400
                 data: {}
-                message: 'status should be present and it must be an string'
+                message: "Either model_id or variant_id or version_id must be given"
             example2:
-              summary: 400 - Invalid type
+              summary: 400 - Invalid name
               value:
                 code: 400
                 data: {}
-                message: 'type should be present and it must be an string'
+                message: "name cannot be empty and it must be an character(s)"
             example3:
               summary: 400 - Invalid privileges
               value:
                 code: 400
                 data: {}
-                message: 'privileges should be present and it must be an string'
+                message: "Something went wrong"
             example4:
-              summary: 400 - Model missing
+              summary: 400 - Invalid device type
               value:
                 code: 400
                 data: {}
-                message: 'Model Id must be passed.'
+                message: "Missing or invalid device type."
             example5:
               summary: 400 - Unable to perform edit operation
               value:
                 code: 400
                 data: {}
-                message: 'Unable to perform edit operation for device details.'
+                message: "Unable to edit device in current status."
             example6:
               summary: 400 - Invalid model id type
               value:
                 code: 400
                 data: {}
-                message: 'Model id should be of type string and should start with m_.'
+                message: "Something went wrong"
             example7:
               summary: 400 - Invalid Variant id type
               value:
                 code: 400
                 data: {}
-                message: 'Variant id should be of type string and should start with va_ .'
+                message: "Something went wrong."
             example8:
               summary: 400 - Invalid version id type
               value:
                 code: 400
                 data: {}
-                message: 'Version id should be of type string and should start with ver_ .'
+                message: "Something went wrong."
             example9:
               summary: 400 - Invalid Category id type
               value:
                 code: 400
                 data: {}
-                message: 'Category id must be present in privileges and it must be integer.'
+                message: "Category id must be present in privileges and it must be numeric."
+            example10:
+              summary: 400 - Invalid actions
+              value:
+                code: 400
+                data: {}
+                message: "Something went wrong"
+            example11:
+              summary: 400 - Model name exists
+              value:
+                code: 400
+                data: {}
+                message: "Model name already exists."
+            example12:
+              summary: 400 - Variant name exists
+              value:
+                code: 400
+                data: {}
+                message: "Variant name already exists."
+            example13:
+              summary: 400 - Version name exists
+              value:
+                code: 400
+                data: {}
+                message: "Version name already exists."
     getPersonalityDetailsSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -267,12 +291,12 @@ components:
                   personalities:
                     type: array
                     items:
-                      $ref: '#/components/schemas/getPersonalityDetails'
+                      $ref: "#/components/schemas/getPersonalityDetails"
               message:
                 type: string
-                example: 'Devices edited successfully'
+                example: "Devices edited successfully"
     getPersonalityDetailsBadRequest:
-      description: 'Bad Request'
+      description: "Bad Request"
       content:
         application/json:
           schema:
@@ -286,28 +310,28 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Invalid model'
+                example: "Invalid model"
           examples:
             example1:
               summary: 400 - Invalid model
               value:
                 code: 400
                 data: {}
-                message: 'Invalid model'
+                message: "Invalid model"
             example2:
               summary: 400 - Invalid variant
               value:
                 code: 400
                 data: {}
-                message: 'Invalid variant'
+                message: "Invalid variant"
             example3:
               summary: 400 - Invalid version
               value:
                 code: 400
                 data: {}
-                message: 'Invalid version'
+                message: "Invalid version"
     createDeviceLevelSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -324,9 +348,9 @@ components:
                     example: m_1
               message:
                 type: string
-                example: 'device created successfully'
+                example: "device created successfully"
     createDeviceLevelBadRequest:
-      description: 'Bad Request'
+      description: "Bad Request"
       content:
         application/json:
           schema:
@@ -340,34 +364,82 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'status should be present and it must be an string'
+                example: "status should be present and it must be an string"
           examples:
             example1:
               summary: 400 - Invalid model type
               value:
                 code: 400
                 data: {}
-                message: 'Model id should be of type string and should start with m_ '
+                message: "Something went wrong."
             example2:
-              summary: 400 - Invalid model type
+              summary: 400 - Invalid name
               value:
                 code: 400
                 data: {}
-                message: 'Model id should be of type string and should start with m_ '
+                message: "name cannot be empty and it must be an character(s)"
             example3:
+              summary: 400 - Invalid privileges
+              value:
+                code: 400
+                data: {}
+                message: "Something went wrong"
+            example4:
+              summary: 400 - Invalid device type
+              value:
+                code: 400
+                data: {}
+                message: "Missing or invalid device type."
+            example5:
               summary: 400 - Invalid variant type
               value:
                 code: 400
                 data: {}
-                message: 'Variant id should be of type string and should start with va_'
-            example4:
-              summary: 400 - Model id should be passed
+                message: "Something went wrong."
+            example6:
+              summary: 400 - Invalid Category id type
               value:
                 code: 400
                 data: {}
-                message: 'Model Id must be passed.'
+                message: "Category id must be present in privileges and it must be numeric."
+            example7:
+              summary: 400 - Invalid actions
+              value:
+                code: 400
+                data: {}
+                message: "Something went wrong"
+            example8:
+              summary: 400 - Model name exists
+              value:
+                code: 400
+                data: {}
+                message: "Model name already exists."
+            example9:
+              summary: 400 - Variant name exists
+              value:
+                code: 400
+                data: {}
+                message: "Variant name already exists."
+            example10:
+              summary: 400 - Version name exists
+              value:
+                code: 400
+                data: {}
+                message: "Version name already exists."
+            example11:
+              summary: 400 - Invalid model
+              value:
+                code: 400
+                data: {}
+                message: "Invalid model"
+            example12:
+              summary: 400 - Invalid variant
+              value:
+                code: 400
+                data: {}
+                message: "Invalid variant"
     deviceDetailsSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -405,9 +477,9 @@ components:
                     example: ACTIVE
               message:
                 type: string
-                example: 'data fetched successfully'
+                example: "data fetched successfully"
     deviceDetailsNotFound:
-      description: 'Not Found'
+      description: "Not Found"
       content:
         application/json:
           schema:
@@ -436,9 +508,9 @@ components:
                     example: null
               message:
                 type: string
-                example: 'Data not found with the given id'
+                example: "Data not found with the given id"
     deviceExecuteSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -452,9 +524,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Device communicated successfully'
+                example: "Device communicated successfully"
     deviceExecuteNotFound:
-      description: 'Not Found'
+      description: "Not Found"
       content:
         application/json:
           schema:
@@ -475,15 +547,15 @@ components:
               value:
                 code: 404
                 data: {}
-                message: 'Action type not found '
+                message: "Action type not found "
             example2:
               summary: 404 - Device not found
               value:
                 code: 404
                 data: {}
-                message: 'Device not found'
+                message: "Device not found"
     deviceExecuteBadRequest:
-      description: 'Bad Request'
+      description: "Bad Request"
       content:
         application/json:
           schema:
@@ -497,34 +569,34 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Action is missing or action invalid'
+                example: "Action is missing or action invalid"
           examples:
             example1:
               summary: 400 - Invalid action
               value:
                 code: 400
                 data: {}
-                message: 'Action is missing or action invalid'
+                message: "Action is missing or action invalid"
             example2:
               summary: 400 - Invalid device
               value:
                 code: 400
                 data: {}
-                message: 'Device_id is missing or device_id invalid'
+                message: "Device_id is missing or device_id invalid"
             example3:
               summary: 400 - Invalid parameter
               value:
                 code: 400
                 data: {}
-                message: 'Parameters required for given action'
+                message: "Parameters required for given action"
             example4:
               summary: 400 - Invalid parameter types
               value:
                 code: 400
                 data: {}
-                message: 'Parameter not valid for given action'
+                message: "Parameter not valid for given action"
     deviceExecutorUnauthorized:
-      description: 'Unauthorized request'
+      description: "Unauthorized request"
       content:
         application/json:
           schema:
@@ -538,22 +610,22 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
           examples:
             example1:
               summary: 401 - Something went wrong
               value:
                 code: 401
                 data: {}
-                message: 'Something went wrong'
+                message: "Something went wrong"
             example2:
               summary: 401 - No access
               value:
                 code: 401
                 data: {}
-                message: 'Unauthorized to perform the operation'
+                message: "Unauthorized to perform the operation"
     unauthorizedRequest:
-      description: 'Unauthorized request'
+      description: "Unauthorized request"
       content:
         application/json:
           schema:
@@ -567,9 +639,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
     forbiddenRequest:
-      description: 'Forbidden request'
+      description: "Forbidden request"
       content:
         application/json:
           schema:
@@ -581,22 +653,22 @@ components:
                 type: object
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
           examples:
             example1:
               summary: 403 - Access Denied
               value:
                 code: 403
                 data: {}
-                message: 'Access Denied'
+                message: "Access Denied"
             example2:
               summary: 403 - Something went wrong
               value:
                 code: 403
                 data: {}
-                message: 'Something went wrong'
+                message: "Something went wrong"
     internalError:
-      description: 'Internal Server Error'
+      description: "Internal Server Error"
       content:
         application/json:
           schema:
@@ -610,7 +682,7 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
 
   requestBodies:
     editDevices:
@@ -646,6 +718,52 @@ components:
                         type: integer
                         example: 1
                         description: The action allowed for this privilege.
+          examples:
+            example1:
+              summary: Invalid name
+              value:
+                type: CAR
+                variant_id: va_1
+                privileges: [{ category_id: 1, actions: [10, 11] }]
+            example2:
+              summary: Invalid type
+              value:
+                name: tesla
+                variant_id: va_1
+                privileges: [{ category_id: 1, actions: [10, 11] }]
+            example3:
+              summary: No device input
+              value:
+                name: tesla
+                type: CAR
+                privileges: [{ category_id: 1, actions: [10, 11] }]
+            example4:
+              summary: Invalid privilege
+              value:
+                name: tesla
+                type: CAR
+                variant_id: va_1
+            example5:
+              summary: Invalid Category
+              value:
+                name: tesla
+                type: CAR
+                variant_id: va_1
+                privileges: [{ actions: [10, 11] }]
+            example6:
+              summary: Invalid actions
+              value:
+                name: tesla
+                type: CAR
+                variant_id: va_1
+                privileges: [{ category_id: 1 }]
+            example7:
+              summary: Success
+              value:
+                name: tesla
+                type: CAR
+                variant_id: va_1
+                privileges: [{ category_id: 1, actions: [1, 2] }]
     addDevices:
       description: Respective id to be provided to create a particular level of device, i.e model_id to be provided to create model or only variant_id to be provided for variant or version_id to be provided for version
       required: true
@@ -679,6 +797,46 @@ components:
                         type: integer
                         example: 1
                         description: The action allowed for this privilege.
+          examples:
+            example1:
+              summary: Invalid name
+              value:
+                type: CAR
+                variant_id: va_1
+                privileges: [{ category_id: 1, actions: [10, 11] }]
+            example2:
+              summary: Invalid type
+              value:
+                name: tesla
+                variant_id: va_1
+                privileges: [{ category_id: 1, actions: [10, 11] }]
+            example4:
+              summary: Invalid privilege
+              value:
+                name: tesla
+                type: CAR
+                variant_id: va_1
+            example5:
+              summary: Invalid Category
+              value:
+                name: tesla
+                type: CAR
+                variant_id: va_1
+                privileges: [{ actions: [10, 11] }]
+            example6:
+              summary: Invalid actions
+              value:
+                name: tesla
+                type: CAR
+                variant_id: va_1
+                privileges: [{ category_id: 1 }]
+            example7:
+              summary: Success
+              value:
+                name: tesla
+                type: CAR
+                variant_id: va_1
+                privileges: [{ category_id: 1, actions: [10, 11] }]
     deviceExecutor:
       required: true
       content:
@@ -693,8 +851,37 @@ components:
                 type: string
                 example: 10
               parameters:
-                type: object
-                properties:
-                  temperature:
-                    type: integer
-                    example: 10
+                temperature: 10
+          examples:
+            example1:
+              summary: Success
+              value:
+                action: AC#TURN_ON
+                device_id: 12
+                parameters:
+                  temperature: 10
+            example2:
+              summary: Invalid action
+              value:
+                action: AC_ON
+                device_id: 12
+                parameters:
+                  temperature: 10
+            example3:
+              summary: Invalid device
+              value:
+                action: AC#TURN_ON
+                parameters:
+                  temperature: 10
+            example4:
+              summary: Invalid parameter type
+              value:
+                action: AC#TURN_ON
+                device_id: 12
+                parameters:
+                  temp: 10
+            example5:
+              summary: Invalid parameter type
+              value:
+                action: AC#TURN_ON
+                device_id: 12

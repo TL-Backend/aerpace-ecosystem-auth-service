@@ -309,22 +309,47 @@ components:
                 example: aditya@tilicho.in
               phone_number:
                 type: string
-                example: 9090909090
-              roll_id:
+                example: '9090909090'
+              role_id:
                 type: string
                 example: r_1
               country_code:
                 type: string
-                example: +91
+                example: '+91'
               address:
                 type: string
                 example: Visakhapatnam
               pin_code:
                 type: string
-                example: 530022
+                example: '530022'
               state:
                 type: string
                 example: andhra pradesh
+          examples:
+            example1:
+              summary: Success
+              value:
+                role_id: r_1
+                first_name: praddep
+                last_name: chandra
+                email: pawan@tilicho.in
+                phone_number: '9099090090'
+                country_code: '+91'
+                address: vizag
+                pin_code: '530022'
+                state: andhra pradesh
+            example2:
+              summary: Invalid role_id
+              value:
+                role_id: 1
+                first_name: praddep
+                last_name: chandra
+                email: aditya@tilicho.in
+                phone_number: '9099090090'
+                country_code: '+91'
+                address: vizag
+                pin_code: '530022'
+                state: andhra pradesh
     addUser:
       required: true
       content:
@@ -332,6 +357,9 @@ components:
           schema:
             type: object
             properties:
+              role_id:
+                type: string
+                example: r_4
               first_name:
                 type: string
                 example: aditya
@@ -343,16 +371,64 @@ components:
                 example: aditya@tilicho.in
               phone_number:
                 type: string
-                example: 9090909090
+                example: '9090909090'
               country_code:
                 type: string
-                example: +91
+                example: '+91'
               address:
                 type: string
                 example: Visakhapatnam
               pin_code:
                 type: string
-                example: 530022
+                example: '530022'
               state:
                 type: string
                 example: andhra pradesh
+          examples:
+            example1:
+              summary: Success
+              value:
+                role_id: r_4
+                first_name: praddep
+                last_name: chandra
+                email: pawan@tilicho.in
+                phone_number: '9099090090'
+                country_code: '+91'
+                address: vizag
+                pin_code: '530022'
+                state: andhra pradesh
+            example2:
+              summary: User already exists
+              value:
+                role_id: r_4
+                first_name: praddep
+                last_name: chandra
+                email: aditya@tilicho.in
+                phone_number: '9099090090'
+                country_code: '+91'
+                address: vizag
+                pin_code: '530022'
+                state: andhra pradesh
+            example3:
+              summary: Invalid role_id
+              value:
+                role_id: 1
+                first_name: praddep
+                last_name: chandra
+                email: aditya@tilicho.in
+                phone_number: '9099090090'
+                country_code: '+91'
+                address: vizag
+                pin_code: '530022'
+                state: andhra pradesh
+            example4:
+              summary: Invalid input fields
+              value:
+                role_id: r_4
+                first_name: praddep
+                last_name: chandra
+                phone_number: '9099090090'
+                country_code: '+91'
+                address: vizag
+                pin_code: '530022'
+                state: andhra pradesh

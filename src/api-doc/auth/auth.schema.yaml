@@ -1,7 +1,7 @@
 components:
   schemas:
     userProfile:
-      description: 'profile'
+      description: "profile"
       type: object
       properties:
         first_name:
@@ -43,7 +43,7 @@ components:
 
   responses:
     loginSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -57,17 +57,17 @@ components:
                 properties:
                   id_token:
                     type: string
-                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98'
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
                   refresh_token:
                     type: string
-                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98'
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
                   profile:
-                    $ref: '#/components/schemas/userProfile'
+                    $ref: "#/components/schemas/userProfile"
               message:
                 type: string
-                example: 'Login successful'
+                example: "Login successful"
     loginUnauthorizedRequest:
-      description: 'Unauthorized'
+      description: "Unauthorized"
       content:
         application/json:
           schema:
@@ -81,9 +81,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Invalid credentials'
+                example: "Invalid credentials"
     loginBadRequest:
-      description: 'Bad request'
+      description: "Bad request"
       content:
         application/json:
           schema:
@@ -99,7 +99,7 @@ components:
                 type: string
                 example: Email required, Password required, App type required
     authForbiddenRequest:
-      description: 'Forbidden request'
+      description: "Forbidden request"
       content:
         application/json:
           schema:
@@ -113,9 +113,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
     forgotPasswordSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -131,7 +131,7 @@ components:
                 type: string
                 example: Link to reset password is sent to your email
     forgotPasswordBadRequest:
-      description: 'Bad request'
+      description: "Bad request"
       content:
         application/json:
           schema:
@@ -147,7 +147,7 @@ components:
                 type: string
                 example: Email required
     resetPasswordSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -163,7 +163,7 @@ components:
                 type: string
                 example: Password changed successfully
     resetPasswordBadRequest:
-      description: 'Bad request'
+      description: "Bad request"
       content:
         application/json:
           schema:
@@ -179,7 +179,7 @@ components:
                 type: string
                 example: password required
     refreshSuccess:
-      description: 'Success'
+      description: "Success"
       content:
         application/json:
           schema:
@@ -190,15 +190,44 @@ components:
                 properties:
                   id_token:
                     type: string
-                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98'
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8zIiwidXNlcl90eXBlIjoiVVNFUiIsInJvbGVfbmFtZSI6ImFkbWluIiwicm9sZV9pZCI6InJfMSIsInRva2VuX3R5cGUiOiJJRF9UT0tFTiIsImlhdCI6MTY5NjMyNTQzNSwiZXhwIjoxNjk2MzM5ODM1fQ.f-90A5K9Wp37j6amUtueNJEUME5X1CxNsgnfDR20u98"
               code:
                 type: integer
                 example: 200
               message:
                 type: string
                 example: Access token refreshed successfully
+    refreshBadRequest:
+      description: "Bad request"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: Something went wrong
+          examples:
+            example1:
+              summary: Something went wrong
+              value:
+                data: {}
+                code: 400
+                email: Something went wrong
+            example2:
+              summary: Token required
+              value:
+                data: {}
+                code: 400
+                email: Token required
     internalError:
-      description: 'Internal server error'
+      description: "Internal server error"
       content:
         application/json:
           schema:
@@ -212,9 +241,9 @@ components:
                 example: {}
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
     userNotFound:
-      description: 'Data not found'
+      description: "Data not found"
       content:
         application/json:
           schema:
@@ -230,7 +259,7 @@ components:
                 type: string
                 example: User not found
     somethingWentWrong:
-      description: 'Bad request'
+      description: "Bad request"
       content:
         application/json:
           schema:
@@ -244,9 +273,9 @@ components:
                 example: 400
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
     UnauthorizedSomethingWentWrong:
-      description: 'Unauthorized request'
+      description: "Unauthorized request"
       content:
         application/json:
           schema:
@@ -260,7 +289,7 @@ components:
                 example: 401
               message:
                 type: string
-                example: 'Something went wrong'
+                example: "Something went wrong"
 
   requestBodies:
     login:
@@ -279,6 +308,24 @@ components:
               app:
                 type: string
                 example: ADMIN_PORTAL
+          examples:
+            example1:
+              summary: Success credentials
+              value:
+                email: aditya@tilicho.in
+                password: Aditya@5
+                app: ADMIN_PORTAL
+            example2:
+              summary: Invalid credentials
+              value:
+                email: user@aerpace.in
+                password: aerpace
+                app: ADMIN_PORTAL
+            example3:
+              summary: Empty credentials
+              value:
+                email: aditya@tilicho.in
+                app: ADMIN_PORTAL
     forgotPassword:
       required: true
       content:
@@ -289,6 +336,18 @@ components:
               email:
                 type: string
                 example: user@aerpace.in
+          examples:
+            example1:
+              summary: Success
+              value:
+                email: aditya@tilicho.in
+            example2:
+              summary: Invalid mail
+              value:
+                email: user@aerpace.in
+            example3:
+              summary: Empty credentials
+              value: {}
     resetPassword:
       required: true
       content:
@@ -299,6 +358,14 @@ components:
               new_password:
                 type: string
                 example: newpassword@123
+          examples:
+            example1:
+              summary: Success
+              value:
+                new_password: aditya@5
+            example2:
+              summary: Empty password
+              value: {}
     refresh:
       required: true
       content:
@@ -309,6 +376,14 @@ components:
               refresh_token:
                 type: string
                 example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
+          examples:
+            example1:
+              summary: Expired token
+              value:
+                refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidV8xNSIsInRva2VuX3R5cGUiOiJSRUZSRVNIX1RPS0VOIiwiaWF0IjoxNjk1ODgzMzM0LCJleHAiOjE2OTU4ODMzOTR9.6ac7oHEGw_YgoAFel8Kn2Hix3HvNZKPL6HL0V2l-iQ4
+            example2:
+              summary: Empty refresh token
+              value: {}
     temporaryPasswordReset:
       required: true
       content:
@@ -319,3 +394,11 @@ components:
               new_password:
                 type: string
                 example: newpassword@123
+          examples:
+            example1:
+              summary: Success
+              value:
+                new_password: aditya@5
+            example2:
+              summary: Empty password
+              value: {}

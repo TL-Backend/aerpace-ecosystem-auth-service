@@ -69,7 +69,7 @@ paths:
         200:
           $ref: '#/components/responses/refreshSuccess'
         400:
-          $ref: '#/components/responses/somethingWentWrong'
+          $ref: '#/components/responses/refreshBadRequest'
         401:
           $ref: '#/components/responses/UnauthorizedSomethingWentWrong'
         500:
