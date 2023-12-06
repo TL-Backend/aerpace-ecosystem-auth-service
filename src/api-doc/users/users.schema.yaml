@@ -102,6 +102,127 @@ components:
         state:
           type: string
           example: andhra pradesh
+    configData:    
+      description: 'config data.'
+      type: object
+      properties:
+        master_permissions:
+          type: array
+          items: 
+            $ref: '#/components/schemas/permissionList'
+        role:
+          type: object
+          properties:
+            id:   
+              type: string
+              example: r_1
+            role_name:  
+              type: string
+              example: super admin
+            permissions_list:
+              type: array
+              example: [ "USERS_MANAGEMENT#USERS_TAB#TAB_LIST_VIEW"]
+            permissions_tree:
+              type: array
+              items: 
+                $ref: '#/components/schemas/permissionTreeList'     
+    permissionTreeList:
+      description: permissions tree of a roles
+      type: object
+      properties:
+        name: 
+          type: string
+          exampe: user management
+        pages:
+          type: array
+          items: 
+            $ref: '#/components/schemas/pageOfPermissionsTreeList'
+        features:
+          type: array
+          example: []
+        identifier:
+          type: string
+          example: USERS_MANAGEMENT
+              
+    pageOfPermissionsTreeList:
+      description: pages list for permissions tree of a roles
+      type: object
+      properties:
+        name: 
+          type: string
+          exampe: users
+        pages:
+          type: array
+          example: []
+        features:
+          items: 
+            $ref: '#/components/schemas/featureList'
+        identifier: 
+          type: string
+          example: USERS_MANAGEMENT#USERS_TAB
+
+    permissionList:
+      description: list of master permissions
+      type: object
+      properties:
+        id: 
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: user management
+        parent_id:
+          type: integer
+          example: 1
+        identifier:
+          type: string
+          example: USERS_MANAGEMENT
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/pageList'
+        features:
+          type: array
+          example: []
+    featureList:
+      description: list of pages
+      type: object
+      properties:
+        id: 
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: List users
+        parent_id:
+          type: integer
+          example: 1
+        identifier:
+          type: string
+          example: USERS_MANAGEMENT#USERS_TAB#TAB_LIST_VIEW
+    pageList:
+      description: list of pages
+      type: object
+      properties:
+        id: 
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: users
+        parent_id:
+          type: integer
+          example: 1
+        identifier:
+          type: string
+          example: USERS_MANAGEMENT#USERS_TAB
+        pages: 
+          type: array
+          example: []
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/featureList'
 
   securitySchemes:
     Authorization:
@@ -173,6 +294,39 @@ components:
               message:
                 type: string
                 example: 'User updated successfully.'
+    configSuccess:
+      description: 'success'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code: 
+                type: integer
+                example: 200
+              data:
+                type: object
+                $ref: '#/components/schemas/configData'
+              message:
+                type: string
+                example: Config files fetched successfully
+    
+    configDataNotFound:
+      description: 'Data not found'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                example: {}
+              code:
+                type: integer
+                example: 404
+              message:
+                type: string
+                example: Pages or features not found.
 
     internalError:
       description: 'Internal server error'
