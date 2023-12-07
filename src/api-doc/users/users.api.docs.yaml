@@ -108,3 +108,28 @@ paths:
           $ref: '#/components/responses/editUserSomethingWentWrong'
         500:
           $ref: '#/components/responses/internalError'
+  /users/config:
+    get:
+      security:
+        - Authorization: []
+      tags:
+        - USERS
+      summary: Config api.
+      parameters:
+        - name: id
+          in: query
+          description: User Id to be provided to fetch the config details.
+          schema:
+            type: string
+            example: aditya
+      responses:
+        200:
+          $ref: '#/components/responses/configSuccess'
+        401:
+          $ref: '#/components/responses/UnauthorizedSomethingWentWrong'
+        403:
+          $ref: '#/components/responses/forbiddenRequest'
+        404:
+          $ref: '#/components/responses/configDataNotFound'
+        500:
+          $ref: '#/components/responses/internalError'
